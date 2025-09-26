@@ -1,0 +1,33 @@
+{
+  "verification_date": "2025-09-27T00:00:00Z",
+  "account": "DUH923436",
+  "redis_stream": "stream:ibkr:executions",
+  "stream_length": 10,
+  "sample_execution": {
+    "exec_id": "00020057.68d76985.01.01",
+    "contract": {
+      "symbol": "SPY",
+      "sec_type": "OPT",
+      "local_symbol": "SPY   251017C00665000",
+      "exchange": "SMART",
+      "primary_exchange": "NASDAQ"
+    },
+    "execution": {
+      "side": "BOT",
+      "price": 6.5,
+      "shares": 1.0,
+      "time": "2025-09-26T16:49:30+00:00",
+      "exchange": "SAPPHIRE",
+      "cum_qty": 1.0,
+      "remain": 0.0
+    },
+    "commission_report": {
+      "commission": -0.65,
+      "currency": "USD",
+      "realized_pnl": 0.0
+    }
+  },
+  "heartbeat_key": "state:ibkr:executions",
+  "heartbeat_status": "ok",
+  "notes": "10 option executions captured via execDetailsEvent + commissionReportEvent; orphan commissions discarded, timestamps stored in ISO format."
+}

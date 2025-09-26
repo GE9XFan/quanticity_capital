@@ -109,3 +109,12 @@ account_bundle:
       position_pattern: "raw:ibkr:position:pnl:{symbol}"
       heartbeat: "state:ibkr:account:pnl"
       ttl_seconds: 30
+
+executions:
+  redis:
+    stream: "stream:ibkr:executions"
+    maxlen: 5000
+    last_key: "raw:ibkr:execution:last"
+    heartbeat: "state:ibkr:executions"
+  include_commission: true
+  include_order_status: true

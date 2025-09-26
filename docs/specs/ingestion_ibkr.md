@@ -65,7 +65,10 @@ Collect the following inputs from the user before writing code:
    - Keys: `raw:ibkr:account:pnl` and `raw:ibkr:position:pnl:{symbol}` TTL 30s.
    - Account-level PnL plus per-symbol PnL snapshots (unrealized/realized at 15s cadence).
 6. **Execution Feed**
-   - All order executions appended to Redis Stream `stream:executions` with no TTL (archived daily to Postgres).
+   - Redis Stream `stream:ibkr:executions` (maxlen default 5000) storing full execution + commission details.
+   - Snapshot key `raw:ibkr:execution:last` captures most recent execution for fast lookup; heartbeat `state:ibkr:executions` tracks listener health.
+   - Payload: include all fields exposed via ib_insync `ExecDetails`, `OrderStatus`, and `CommissionReport` (order/contract identifiers, fill quantities, avg price, liquidity, commission, realized/unrealized PnL).
+   - Startup flow: hydrate stream with `reqAllOpenOrdersAsync` + `reqExecutionsAsync`, then rely on live events; orphan commission reports are discarded to prevent empty contract/execution payloads.
 
 ## Implementation Notes
 - Use `ib_insync` for simplified async integration; wrap event loop integration carefully to avoid blocking.
