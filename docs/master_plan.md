@@ -1,5 +1,10 @@
 # Quanticity Capital Options System – Master Plan
 
+## Implementation Status (September 2025)
+- ✅ **Phase 2 – Alpha Vantage ingestion**: realtime options, intraday base feed, top gainers/losers, and per-symbol news sentiment are live (`config/alpha_vantage.yml`, `docs/alpha_vantage_endpoints.md`). Verification artifacts available under `docs/verification/`.
+- ✅ **Phase 3 – IBKR ingestion**: quotes, level-2 depth, account summary, positions, account/per-position PnL, and executions ingest via `config/ibkr.yml` + `src/ingestion/ibkr/`. Stream tracker (`docs/ibkr_streams.md`) lists all feeds as `done` with capture references.
+- 📌 **Next up**: Phase 4 analytics (per implementation plan) once ingestion metrics remain stable.
+
 ## 1. Purpose and Vision
 Build a MacBook-first automated options trading stack that ingests live data, performs institutional-grade analytics, generates and executes signals, and publishes outputs across trading and social channels. The system must remain understandable, modular, and redis-centric, with Redis acting as the data exchange hub between independently deployable modules orchestrated by a single `main.py` runtime.
 
@@ -57,12 +62,18 @@ Key pattern: `scope:module:entity[:context]`. All keys store JSON unless noted. 
 
 | Scope | Example Key | Description | TTL | Refresh Cadence |
 |-------|-------------|-------------|-----|-----------------|
-| `raw:options` | `raw:options:SPY` | Alpha Vantage realtime options chain | 30s | 10s per symbol |
-| `raw:greeks` | `raw:greeks:SPY:2024-09-25` | Filtered greeks for expiry | 45s | 20s |
-| `raw:l2` | `raw:l2:SPY` | IBKR level-2 depth snapshot | 10s | 5s round-robin |
-| `raw:quotes` | `raw:quotes:SPY` | IBKR top-of-book quotes | 6s | 3s |
+| `raw:alpha_vantage:realtime_options:{symbol}` | `raw:alpha_vantage:realtime_options:SPY` | AV options chain payload | 30s | 10s per symbol |
+| `raw:alpha_vantage:time_series_intraday:{symbol}` | `raw:alpha_vantage:time_series_intraday:NVDA` | AV 1‑minute price feed | 60s | 30s |
+| `raw:alpha_vantage:top_gainers_losers` | `raw:alpha_vantage:top_gainers_losers` | Daily US market movers snapshot | 300s | 180s |
+| `raw:alpha_vantage:news_sentiment:{symbol}` | `raw:alpha_vantage:news_sentiment:AAPL` | AV news sentiment per equity | 900s | 600s |
+| `raw:ibkr:quotes:{symbol}` | `raw:ibkr:quotes:SPY` | IBKR top-of-book quotes | 6s | 3s |
+| `raw:ibkr:l2:{symbol}` | `raw:ibkr:l2:SPY` | IBKR level-2 depth snapshot | 10s | 5s rotation |
+| `raw:ibkr:account:summary` | `raw:ibkr:account:summary` | IBKR account metrics | 30s | 15s |
+| `raw:ibkr:account:positions` | `raw:ibkr:account:positions` | STK/OPT positions snapshot | 30s | 15s |
+| `raw:ibkr:account:pnl` | `raw:ibkr:account:pnl` | Account PnL (daily/unrealized/realized) | 30s | 15s |
+| `raw:ibkr:position:pnl:{symbol}` | `raw:ibkr:position:pnl:SPY` | Per-symbol PnL snapshot | 30s | 15s |
+| `stream:ibkr:executions` | `stream:ibkr:executions` | IBKR executions + commissions | stream (maxlen 5000) | on event |
 | `raw:macro` | `raw:macro:real_gdp` | Macro series | 12h | 6h |
-| `raw:news` | `raw:news:AAPL` | Alpha Vantage news sentiment | 20m | 10m |
 | `derived:analytics` | `derived:analytics:SPY` | Aggregated analytics bundle | 20s | 10s |
 | `derived:correlation` | `derived:correlation:equities` | Correlation matrix snapshot | 15m | 5m |
 | `derived:vol_regime` | `derived:vol_regime:SPY` | Volatility regime classification | 2m | 1m |

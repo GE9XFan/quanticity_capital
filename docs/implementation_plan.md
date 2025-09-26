@@ -14,30 +14,32 @@
 - Configure basic linters only if needed (e.g., `ruff`) via an optional `pyproject.toml` section—keep tooling minimal to avoid setup friction.
 - Document filesystem expectations, naming conventions, and how modules should read configuration so future features slot in consistently.
 
-## Phase 2 – Alpha Vantage Ingestion (Sequential Iterations)
-- Adopt a strict one-endpoint-at-a-time workflow. Before any code is written, request from the user:
-  - Endpoint name and target symbols/series.
-  - Exact query parameters (function, interval, datatype, pagination, etc.).
-  - A real JSON sample or cURL response to validate shape.
-  - Expected refresh cadence and the TTL that should be applied in Redis.
-- Create a tracking table (`docs/alpha_vantage_endpoints.md`) to log progress: requested, parameters received, implemented, validated in Redis.
-- For each endpoint iteration:
-  1. Capture configuration in `config/alpha_vantage.yml` under a unique key.
-  2. Keep the endpoint module thin: implement the payload validator and delegate execution to `AlphaVantageIngestionRunner` in `src/ingestion/alpha_vantage/_shared.py`, which handles retries, Redis writes, and heartbeats.
-  3. Store payloads in Redis using the agreed key pattern (`raw:alpha_vantage:<endpoint>[:<symbol>]`) and TTL confirmed with the user. Persist the raw response plus metadata (`as_of`, `ttl_applied`, `request_params`).
-  4. Validate manually: run the module, dump the Redis key, and capture the result in `docs/verification/<endpoint>_<date>.json`.
-  5. Only move to the next endpoint after the user signs off on fetch correctness, storage layout, and expiry behaviour.
-- Initial endpoint order (adjustable once requirements are confirmed):
-  1. `REALTIME_OPTIONS` for ETFs.
-  2. `TIME_SERIES_INTRADAY` (base price feed backing indicators).
-  3. `TOP_GAINERS_LOSERS`.
-  4. `NEWS_SENTIMENT`.
+## Phase 2 – Alpha Vantage Ingestion (Sequential Iterations) ✅ Completed September 2025
+- Delivered endpoints: `REALTIME_OPTIONS`, `TIME_SERIES_INTRADAY`, `TOP_GAINERS_LOSERS`, `NEWS_SENTIMENT` (per-symbol equities). See `docs/alpha_vantage_endpoints.md` and verification artifacts under `docs/verification/`.
+- Key outputs: configuration in `config/alpha_vantage.yml`, thin endpoint modules delegating to the shared runner, Redis payloads `raw:alpha_vantage:*`, heartbeats `state:alpha_vantage:*`, and unit tests covering validators/storage.
+- Each endpoint has a captured JSON sample and verification snapshot; trackers mark all as `done`.
+- **Future Alpha Vantage endpoints – workflow reminder**
+  - Adopt a strict one-endpoint-at-a-time workflow. Before coding, collect from the user: endpoint name, symbols/series, exact query parameters, sample JSON/cURL, expected cadence, and Redis TTL.
+  - Log every request in `docs/alpha_vantage_endpoints.md` (awaiting-params → done).
+  - For each iteration:
+    1. Capture configuration in `config/alpha_vantage.yml` under a unique key.
+    2. Keep the endpoint module thin; delegate execution to `AlphaVantageIngestionRunner` in `src/ingestion/alpha_vantage/_shared.py` (retries, Redis writes, heartbeats).
+    3. Persist payloads to `raw:alpha_vantage:<endpoint>[:<symbol>]` with metadata (`requested_at`, `ttl_applied`, `request_params`).
+    4. Validate manually, capture verification artefact in `docs/verification/<endpoint>_<date>.json`.
+    5. Advance only after user sign-off on correctness, storage layout, and expiry behaviour.
 
-## Phase 3 – Interactive Brokers Connectivity (Post-AV Sign-off)
-- Review the latest handshake requirements with the user (preferred API—`ib_insync` vs native). Document connection parameters in `.env` and configuration files before touching code.
-- Implement connection management inside `src/ingestion/ibkr/` with session lifecycle, reconnect, and heartbeat logging to Redis (`state:ibkr:*`).
-- Expose a manual test script (`python -m src.ingestion.ibkr.cli --account`) that the user can run to verify credentials and basic data persistence before automation begins.
-- Mirror the AV workflow: one data stream at a time (account summary → positions → top-of-book → level 2), each validated with captured Redis snapshots prior to expanding scope.
+## Phase 3 – Interactive Brokers Connectivity ✅ Completed September 2025
+- Streams implemented and verified (paper TWS 127.0.0.1:7497):
+  * Top-of-book quotes (`src/ingestion/ibkr/quotes.py` → `raw:ibkr:quotes:{symbol}`)
+  * Level-2 depth rotation (`src/ingestion/ibkr/level2.py` → `raw:ibkr:l2:{symbol}`)
+  * Account bundle (`src/ingestion/ibkr/account.py` → summary, positions, account/per-position PnL)
+  * Execution stream (`src/ingestion/ibkr/executions.py` → `stream:ibkr:executions` + snapshot)
+- Configuration lives in `config/ibkr.yml`; stream tracker (`docs/ibkr_streams.md`) lists all as `done` with verification artifacts.
+- Each module includes async event handling, Redis persistence, heartbeats, and unit tests.
+- **Future IBKR feeds – checklist**
+  - Capture handshake inputs (account codes, cadence/TTL expectations, Redis contract) in `config/ibkr.yml` before coding. Update `docs/ibkr_streams.md` with status transitions.
+  - Reuse the ib_insync connection helpers and emit heartbeats under `state:ibkr:*`.
+  - Persist raw data under `raw:ibkr:*` (or stream namespaces) with consistent metadata; verify and archive snapshots in `docs/verification/` prior to advancing.
 
 ## Phase 4 – Analytics Foundations (After AV + IBKR Data Stable)
 - Stand up analytics only once both ingestion pipelines are populating Redis reliably.
