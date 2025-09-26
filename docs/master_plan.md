@@ -1,9 +1,9 @@
 # Quanticity Capital Options System – Master Plan
 
 ## Implementation Status (September 2025)
-- ✅ **Phase 2 – Alpha Vantage ingestion**: realtime options, intraday base feed, top gainers/losers, and per-symbol news sentiment are live (`config/alpha_vantage.yml`, `docs/alpha_vantage_endpoints.md`). Verification artifacts available under `docs/verification/`.
+- ✅ **Phase 2 – Alpha Vantage ingestion**: realtime options, intraday base feed, top gainers/losers, news sentiment, macro series, and fundamentals (calendar, estimates, statements, cash flow, shares, transcripts) are live and verified (`config/alpha_vantage.yml`, `docs/alpha_vantage_endpoints.md`). Fresh captures dated 2025-09-26 reside under `docs/verification/`.
 - ✅ **Phase 3 – IBKR ingestion**: quotes, level-2 depth, account summary, positions, account/per-position PnL, and executions ingest via `config/ibkr.yml` + `src/ingestion/ibkr/`. Stream tracker (`docs/ibkr_streams.md`) lists all feeds as `done` with capture references.
-- 📌 **Next up**: Phase 4 analytics (per implementation plan) once ingestion metrics remain stable.
+- 📌 **Next up**: Phase 4 analytics (per implementation plan). All ingestion prerequisites are satisfied; scope definition and `config/analytics.yml` are the immediate action items.
 
 ## 1. Purpose and Vision
 Build a MacBook-first automated options trading stack that ingests live data, performs institutional-grade analytics, generates and executes signals, and publishes outputs across trading and social channels. The system must remain understandable, modular, and redis-centric, with Redis acting as the data exchange hub between independently deployable modules orchestrated by a single `main.py` runtime.

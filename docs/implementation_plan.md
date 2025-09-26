@@ -15,9 +15,9 @@
 - Document filesystem expectations, naming conventions, and how modules should read configuration so future features slot in consistently.
 
 ## Phase 2 – Alpha Vantage Ingestion (Sequential Iterations) ✅ Completed September 2025
-- Delivered endpoints: `REALTIME_OPTIONS`, `TIME_SERIES_INTRADAY`, `TOP_GAINERS_LOSERS`, `NEWS_SENTIMENT` (per-symbol equities). See `docs/alpha_vantage_endpoints.md` and verification artifacts under `docs/verification/`.
-- Key outputs: configuration in `config/alpha_vantage.yml`, thin endpoint modules delegating to the shared runner, Redis payloads `raw:alpha_vantage:*`, heartbeats `state:alpha_vantage:*`, and unit tests covering validators/storage.
-- Each endpoint has a captured JSON sample and verification snapshot; trackers mark all as `done`.
+- Delivered endpoints now cover the full Alpha Vantage surface we scoped: realtime options, intraday base feed, top gainers/losers, news sentiment, macro series (`REAL_GDP`, `CPI`, `INFLATION`, `TREASURY_YIELD`, `FEDERAL_FUNDS_RATE`), and fundamentals (`EARNINGS_CALENDAR`, `EARNINGS_ESTIMATES`, `INCOME_STATEMENT`, `BALANCE_SHEET`, `CASH_FLOW`, `SHARES_OUTSTANDING`, `EARNINGS_CALL_TRANSCRIPT`). See `docs/alpha_vantage_endpoints.md` for status tracking and the live captures stored under `docs/verification/`.
+- Key outputs: configuration in `config/alpha_vantage.yml`, thin endpoint modules delegating to the shared runner, Redis payloads `raw:alpha_vantage:*`, heartbeats `state:alpha_vantage:*`, and unit tests covering validators/storage. CSV handling for calendar responses and the revised validator shapes are exercised in the test suite.
+- Every endpoint has an updated sample fixture and a 2025-09-26 verification artifact; the tracker marks all entries `done` with notes on cadence, TTL, and payload structure.
 - **Future Alpha Vantage endpoints – workflow reminder**
   - Adopt a strict one-endpoint-at-a-time workflow. Before coding, collect from the user: endpoint name, symbols/series, exact query parameters, sample JSON/cURL, expected cadence, and Redis TTL.
   - Log every request in `docs/alpha_vantage_endpoints.md` (awaiting-params → done).
@@ -42,7 +42,7 @@
   - Persist raw data under `raw:ibkr:*` (or stream namespaces) with consistent metadata; verify and archive snapshots in `docs/verification/` prior to advancing.
 
 ## Phase 4 – Analytics Foundations (After AV + IBKR Data Stable)
-- Stand up analytics only once both ingestion pipelines are populating Redis reliably.
+- All ingestion prerequisites are now met; Redis contains verified AV macro/fundamental keys alongside IBKR streams. Phase 4 can begin as soon as analytics scope is confirmed.
 - Define analytics inputs in a configuration file (`config/analytics.yml`) that references the Redis keys created during AV/IBKR phases.
 - Implement analytics modules incrementally, starting with the minimum viable calculations needed for downstream signals. Each module writes to `derived:*` keys with TTLs confirmed alongside the user.
 - Add unit/integration tests that replay stored JSON samples from `docs/verification/` to avoid regressions without hitting live APIs during development.
