@@ -1,0 +1,140 @@
+# Alpha Vantage ingestion configuration.
+# This file pairs with config/runtime.json; values from .env override both when set.
+defaults:
+  api_url: https://www.alphavantage.co/query
+  api_key_env: ALPHAVANTAGE_API_KEY
+  request:
+    max_attempts: 3
+    backoff_seconds:
+      - 1
+      - 3
+      - 7
+  redis:
+    key_prefix: raw:alpha_vantage
+    heartbeat_prefix: state:alpha_vantage
+
+endpoints:
+  realtime_options:
+    function: REALTIME_OPTIONS
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      require_greeks: true
+    cadence_seconds: 10
+    redis:
+      key_pattern: "raw:alpha_vantage:realtime_options:{symbol}"
+      ttl_seconds: 30
+    samples:
+      - docs/samples/alpha_vantage/realtime_options/TSLA.json
+
+  vwap:
+    function: VWAP
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      interval: 1min
+    cadence_seconds: 30
+    redis:
+      key_pattern: "raw:alpha_vantage:vwap:{symbol}"
+      ttl_seconds: 300
+    samples:
+      - docs/samples/alpha_vantage/vwap/IBM.json
+
+  macd:
+    function: MACD
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      interval: 1min
+      series_type: close
+      fastperiod: 12
+      slowperiod: 26
+      signalperiod: 9
+    cadence_seconds: 30
+    redis:
+      key_pattern: "raw:alpha_vantage:macd:{symbol}"
+      ttl_seconds: 300
+    samples:
+      - docs/samples/alpha_vantage/macd/USDEUR.json
+
+  bbands:
+    function: BBANDS
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      interval: 1min
+      time_period: 20
+      series_type: close
+      nbdevup: 2
+      nbdevdn: 2
+      matype: 0
+    cadence_seconds: 30
+    redis:
+      key_pattern: "raw:alpha_vantage:bbands:{symbol}"
+      ttl_seconds: 300
+    samples:
+      - docs/samples/alpha_vantage/bbands/IBM.json
