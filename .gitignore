@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Environment
+.env
+.env.*
+
+# Logs
+logs/
+
+# Node
+node_modules/
+dist/
+
+# Redis dump
+*.rdb
+
+# Misc
+.DS_Store
+.idea/
+.vscode/
