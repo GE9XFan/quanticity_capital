@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import logging
 import random
 from dataclasses import dataclass, field
 from typing import Any, Awaitable, Callable, Iterable, Optional, Protocol, TypeVar, cast
@@ -34,8 +33,7 @@ class SupportsWarning(Protocol):
         event: str | None = ...,
         *args: Any,
         **kwargs: Any,
-    ) -> Any:
-        ...
+    ) -> Any: ...
 
 
 @dataclass(slots=True)
