@@ -10,7 +10,7 @@ Collect the following inputs from the user before writing code:
 |-------|-------------|-------|
 | Connection host/port | TWS or Gateway address (`127.0.0.1:7497` paper, `7496` live) | ✅ Paper trading port `7497`; connect to local TWS. |
 | Gateway vs. TWS | Whether automation connects to IB Gateway or full TWS UI | ✅ Use TWS (already running and configured). |
-| Client ID pool | Reserved range that will not clash with manual sessions | ✅ Adopt default pool `101-120`. |
+| Client ID pool | Reserved range that will not clash with manual sessions | ✅ Adopt default pool `101-120`; orchestrator assigns slots deterministically (quotes=101, level2=102, account=103, executions=104). |
 | Heartbeat cadence | Seconds between connectivity heartbeats | ✅ 5 seconds. |
 | Reconnect backoff | Sequence of delays after disconnects | ✅ `[1, 5, 15, 30, 60]`. |
 | Pacing window | Maximum subscription bursts before throttling | ✅ Enforce max 3 concurrent level-2 subscriptions. |

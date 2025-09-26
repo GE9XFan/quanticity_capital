@@ -14,10 +14,18 @@ Transform raw market, options, and macro data into institutional-grade analytics
 - Modular plugin design: each metric implemented as component with defined inputs/outputs.
 - Caches intermediate results (e.g., implied vol surfaces) within processing cycle to avoid duplicate work.
 
+## Base Package Scaffolding (2025-09-27)
+- `config/analytics.yml` now captures source contracts (Alpha Vantage realtime options, IBKR quotes/level2/positions) and metric outputs (initially `dealer_greeks` enabled, remaining metrics staged with `enabled: false`).
+- `src/analytics/config.py` parses the YAML into dataclasses (`AnalyticsConfig`, `SourceConfig`, `MetricConfig`) with Redis defaults and loader staleness windows.
+- `src/analytics/contracts.py` defines canonical data structures for inputs (`OptionChain`, `QuoteSnapshot`, `Level2Book`, `PositionSnapshot`) and analytics outputs (`AnalyticsResult`, `QualityFlag`).
+- `src/analytics/loaders.py` exposes async helpers to hydrate those contracts from Redis (`load_alpha_vantage_option_chains`, `load_ibkr_quotes`, `load_ibkr_level2_books`, `load_ibkr_positions`) with freshness enforcement and schema validation.
+- `src/analytics/math/black_scholes.py` provides deterministic Black-Scholes greeks (delta/gamma/theta/vega/rho/charm/vanna/volga) used by the dealer analytics runner.
+- Future metrics can consume these loaders and contracts to guarantee uniform precision and persistence semantics.
+
 ## Metric Specifications
 1. **Dealer Greeks & Exposures**
-   - Input: options chains + greeks, IBKR positions.
-   - Output: per symbol delta, gamma, vega, theta, charm, vanna, volga aggregated by dealer assumption.
+   - Input: options chains (live Alpha Vantage) + IBKR quotes/positions.
+   - Output: per symbol delta, gamma, vega, theta, rho, charm, vanna, volga aggregated by dealer assumption. Charm/vanna/volga are derived via Black-Scholes using live mark, tenor, and implied volatility.
    - Key: `derived:dealer_exposure:<symbol>` TTL 20s.
 2. **VPIN / Order Flow Toxicity**
    - Input: trade volume buckets from Alpha Vantage (if available) or IBKR trades; fallback to estimates from volume/oi.
