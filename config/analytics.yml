@@ -1,0 +1,40 @@
+# Analytics engine parameterization
+metrics:
+  dealer_exposure:
+    enabled: true
+    smoothing_window: 5
+  vpin:
+    enabled: true
+    bucket_minutes: 5
+  volatility_regime:
+    enabled: true
+    lookback_minutes: 60
+    thresholds:
+      calm: 0.2
+      elevated: 0.45
+      stressed: 0.7
+  liquidity_stress:
+    enabled: true
+    depth_levels: 10
+  volume_oi_anomaly:
+    enabled: true
+    zscore_threshold: 2.5
+  correlation_matrix:
+    enabled: true
+    lookback_minutes: 240
+  moc_imbalance:
+    enabled: true
+    notional_threshold: 2500000
+  macro_overlays:
+    enabled: true
+  futures_linkage:
+    enabled: true
+  risk_summary:
+    enabled: true
+    weights:
+      dealer_exposure: 0.25
+      volatility_regime: 0.2
+      liquidity_stress: 0.2
+      vpin: 0.15
+      macro_overlays: 0.1
+      futures_linkage: 0.1

@@ -1,0 +1,31 @@
+# Observability thresholds and alert routing
+heartbeats:
+  orchestrator: 10
+  scheduler: 5
+  ingestion_alpha_vantage: 15
+  ingestion_ibkr: 15
+  analytics: 15
+  signal_engine: 15
+  execution: 5
+  watchdog: 15
+  social_hub: 30
+  dashboard_api: 15
+
+data_freshness:
+  av_realtime_options_seconds: 30
+  av_tech_indicators_seconds: 120
+  av_news_seconds: 900
+  ibkr_l2_seconds: 15
+
+alerting:
+  telegram:
+    enabled: true
+    bot_token_env: TELEGRAM_ALERT_BOT_TOKEN
+    chat_id_env: TELEGRAM_ALERT_CHAT_ID
+  email:
+    enabled: false
+
+logging:
+  log_dir: logs
+  max_bytes: 52428800
+  backups: 5
