@@ -1,64 +1,77 @@
-# Alpha Vantage Ingestion Module – Reset Plan (September 2025)
+# Alpha Vantage Ingestion – Iterative Build Guide (September 2025)
 
-## Goal
-Rebuild the Alpha Vantage ingestion suite from a clean slate. The previous implementation accumulated unsupported symbol calls, ad-hoc concurrency tuning, and multi-process orchestration that became unmanageable. This plan sets the targets and guardrails for the new build.
+## Objective
+Deliver a dependable Alpha Vantage pipeline by implementing one endpoint at a time, only advancing after the user supplies exact API inputs and signs off on Redis persistence (structure + TTL). This reset replaces the earlier broad scope to keep the solo-dev workflow manageable and verifiable.
 
-## Scope (Phase 1)
-1. **Realtime Options (ETF + Techascope equities)**
-   - Endpoint: `REALTIME_OPTIONS`.
-   - Symbols: SPY, QQQ, IWM plus the Techascope equities universe. Alpha Vantage currently serves these when `require_greeks=true` is supplied.
-   - Cadence: every 6s with per-symbol staggering.
-   - Output: `raw:options:<symbol>` JSON payloads + heartbeat key `state:ingestion:options:<symbol>`.
-2. **Technical Indicators (same symbol set)**
-   - Initial set: VWAP (1m), MACD (1m), BBANDS (daily).
-   - Symbols: mirror the realtime options list so analytics share a uniform coverage map.
-   - Cadence: every 30s per symbol.
-   - Output: `raw:indicator:<symbol>:<indicator>`.
-3. **Top Gainers / Losers**
-   - Endpoint: `TOP_GAINERS_LOSERS`
-   - Cadence: every 2m.
-   - Output: `raw:market_movers`.
-4. **News Sentiment (equities only)**
-   - Endpoint: `NEWS_SENTIMENT`
-   - Symbols: Techascope equities list (AV supports single-stock news).
-   - Cadence: every 10m.
-   - Output: `raw:news:equities` (aggregate) plus future per-symbol expansion.
+## Ground Rules
+- **Python 3.11 + venv:** All commands run inside the project virtual environment. Dependencies are tracked in `requirements.txt` and added only when the code that needs them lands.
+- **Configuration first:** Each endpoint requires entries in `.env` (API key) and `config/alpha_vantage.yml` for cadence, symbols, and request parameters before code exists.
+- **User handshake:** No implementation starts without the user providing: endpoint name, target symbols, full querystring (function + params), a representative JSON payload, expected refresh cadence, and the TTL that should be enforced in Redis.
+- **Sequential delivery:** Finish, document, and validate one endpoint entirely before starting the next.
 
-Phase 1 explicitly excludes single-stock option chains, analytics window batches, and macro series. Those will be reintroduced once the framework is stable.
+## Implementation Workflow
+1. **Capture Inputs**
+   - Record the request in `docs/alpha_vantage_endpoints.md` with status `awaiting-params`.
+   - Once the user supplies parameters + sample JSON, update the tracking entry to `ready-to-build`.
+   - Store the sample JSON under `docs/samples/alpha_vantage/<endpoint>/<symbol>.json` for regression tests.
+2. **Configure**
+   - Add a section to `config/alpha_vantage.yml`:
+     ```yaml
+     realtime_options:
+       function: REALTIME_OPTIONS
+       symbols: [SPY, QQQ]
+       params:
+         require_greeks: true
+       cadence_seconds: 12
+       redis:
+         key_pattern: "raw:alpha_vantage:realtime_options:{symbol}"
+         ttl_seconds: 24
+     ```
+   - Update `requirements.txt` if new dependencies are required.
+3. **Implement**
+   - Create `src/ingestion/alpha_vantage/<endpoint_slug>.py` with:
+     - `httpx.AsyncClient` fetch using shared retry/backoff helpers from `src/core/http.py`.
+     - Request construction strictly from the config (no hard-coded defaults beyond API key).
+     - Response validation (ensure required keys are present; log and return without writing if malformed).
+     - Redis write through a small helper `src/core/redis.py.set_json(key, payload, ttl)`.
+     - Logged metadata including request params, HTTP status, payload size, and computed TTL.
+4. **Verify**
+   - Run the module manually (`python -m src.ingestion.alpha_vantage.<endpoint_slug> --symbol SPY`).
+   - Inspect Redis with `redis-cli` or a helper script; capture the stored JSON and TTL in `docs/verification/<endpoint_slug>_<date>.json`.
+   - Update the tracking table status to `awaiting-signoff` and share the captured file with the user for confirmation.
+   - Once approved, tag the entry `done` and note any follow-up actions (e.g., additional symbols, different TTLs).
 
-## Design Requirements
-- **Capability Map:** Configuration must identify which symbols are permitted per endpoint; unsupported requests are never issued.
-- **Single Orchestrator:** Ingestion runs within the main runtime. No sidecar processes or bespoke launch scripts.
-- **Bounded Concurrency:** Shared async semaphore per endpoint group (start with 4) plus backoff handling.
-- **Retry Strategy:** Three attempts per request with exponential backoff (1s, 3s, 7s). After final failure, record a cooldown timestamp and skip the symbol for one cadence.
-- **Redis Usage:** Simple singleton client; pipelining only when multiple writes are unavoidable. Keys store `{ "symbol": ..., "as_of": ..., "data": ... }` payloads with TTL = 2× cadence.
-- **Metrics:** Heartbeat timestamps + error counters per job under `state:ingestion:*`. No bespoke metric hashes in phase 1; health monitor is the source of truth.
-- **Logging:** Structured log entry for each request (start, success, failure). Error logs must include HTTP status and truncated body.
-
-## Configuration
-- Extend `config/symbols.yml` with capability flags:
-  ```yaml
-  ingestion:
-    av:
-      realtime_options: [SPY, QQQ, IWM, NVDA, AAPL, MSFT, GOOGL, META, ORCL, AMZN, TSLA, DIS, V, COST, WMT, GE, AMD]
-      tech_indicators: [SPY, QQQ, IWM, NVDA, AAPL, MSFT, GOOGL, META, ORCL, AMZN, TSLA, DIS, V, COST, WMT, GE, AMD]
-      news_sentiment: [NVDA, AAPL, MSFT, GOOGL, META, ORCL, AMZN, TSLA, DIS, V, COST, WMT, GE, AMD]
+## Redis Contract
+- Default key template: `raw:alpha_vantage:<endpoint_slug>[:<symbol>]` (symbols optional for aggregate endpoints).
+- Stored payload schema:
+  ```json
+  {
+    "symbol": "SPY",
+    "endpoint": "REALTIME_OPTIONS",
+    "requested_at": "2025-09-26T14:03:12Z",
+    "ttl_applied": 24,
+    "request_params": { "require_greeks": true },
+    "data": { /* raw Alpha Vantage JSON */ }
+  }
   ```
-- Scheduler job cadences remain defined in `config/schedule.yml`.
-- Env var: `ALPHAVANTAGE_API_KEY`.
+- TTL values come directly from the user handshake. Never guess or round; surface mismatches immediately.
+- Maintain a heartbeat key alongside data writes: `state:alpha_vantage:<endpoint_slug>[:<symbol>]` storing the last success timestamp.
 
-## Deliverables
-1. New ingestion framework (`src/services/ingestion/alpha_vantage/`) implementing the scope above.
-2. Updated health monitor to flag missing ETF options/indicators and news payloads.
-3. Integration checks verifying Redis keys, TTLs, and log outputs for one full cadence.
+## Error Handling & Backoff
+- Use exponential backoff intervals `[1s, 3s, 7s]` with a max of three attempts per request.
+- On final failure, log the HTTP status/body excerpt and set the heartbeat key with `status="error"` so monitoring can surface the issue.
+- Propagate Alpha Vantage throttling headers (`Note` or `Information` fields) into structured logs for troubleshooting.
 
-## Out of Scope (Phase 1)
-- Single-stock option chains (requires `OPTION_CHAIN` endpoint + paging).
-- Analytics sliding window batches.
-- Macro/fundamental endpoints.
-- IBKR ingestion (separate spec).
+## Testing & Regression Artifacts
+- For each implemented endpoint, add a pytest module under `tests/ingestion/alpha_vantage/test_<endpoint_slug>.py` that replays the stored sample JSON, exercising the normalization + Redis write helpers without hitting the live API.
+- Keep captured live responses small—trim arrays if necessary before committing to `docs/verification/` while preserving structure needed for tests.
 
-## Next Steps After Phase 1
-- Extend capability map with per-endpoint parameters, then add equity option ingestion using the correct API.
-- Introduce macro/fundamental fetches with slower cadences.
-- Revisit connection pooling only if metrics show Redis saturation.
+## Out of Scope (Until the User Requests It)
+- Additional endpoints (macro, fundamentals, analytics batches) beyond those explicitly queued in `docs/alpha_vantage_endpoints.md`.
+- Async orchestration or scheduling layers—the initial focus is on manual runs validated by the user.
+- Automatic symbol discovery or dynamic TTL calculation.
+
+## Success Criteria
+- Every endpoint has: configuration, implementation, test coverage using recorded samples, a verification artifact, and user sign-off.
+- Redis keys match agreed naming, TTLs, and contain complete Alpha Vantage payloads plus metadata.
+- No additional endpoints are started without written confirmation of inputs.
