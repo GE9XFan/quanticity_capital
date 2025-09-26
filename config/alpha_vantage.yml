@@ -212,3 +212,240 @@ endpoints:
       ttl_seconds: 300
     samples:
       - docs/samples/alpha_vantage/bbands/IBM.json
+
+  macro_real_gdp:
+    function: REAL_GDP
+    symbols:
+      - US
+    params:
+      interval: quarterly
+    request:
+      include_symbol: false
+    cadence_seconds: 21600  # 6 hours
+    redis:
+      key_pattern: "raw:alpha_vantage:macro:real_gdp"
+      ttl_seconds: 43200
+    samples:
+      - docs/samples/alpha_vantage/macro/real_gdp.json
+
+  macro_cpi:
+    function: CPI
+    symbols:
+      - US
+    params:
+      interval: monthly
+    request:
+      include_symbol: false
+    cadence_seconds: 21600
+    redis:
+      key_pattern: "raw:alpha_vantage:macro:cpi"
+      ttl_seconds: 43200
+    samples:
+      - docs/samples/alpha_vantage/macro/cpi.json
+
+  macro_inflation:
+    function: INFLATION
+    symbols:
+      - US
+    request:
+      include_symbol: false
+    cadence_seconds: 21600
+    redis:
+      key_pattern: "raw:alpha_vantage:macro:inflation"
+      ttl_seconds: 43200
+    samples:
+      - docs/samples/alpha_vantage/macro/inflation.json
+  treasury_yield:
+    function: TREASURY_YIELD
+    symbols:
+      - US10Y
+    params:
+      interval: weekly
+      maturity: 10year
+    request:
+      include_symbol: false
+    cadence_seconds: 21600
+    redis:
+      key_pattern: "raw:alpha_vantage:macro:treasury_yield:10year"
+      ttl_seconds: 43200
+    samples:
+      - docs/samples/alpha_vantage/macro/treasury_yield_10year.json
+
+  federal_funds_rate:
+    function: FEDERAL_FUNDS_RATE
+    symbols:
+      - US
+    params:
+      interval: monthly
+    request:
+      include_symbol: false
+    cadence_seconds: 21600
+    redis:
+      key_pattern: "raw:alpha_vantage:macro:federal_funds_rate"
+      ttl_seconds: 43200
+    samples:
+      - docs/samples/alpha_vantage/macro/federal_funds_rate.json
+
+  earnings_calendar:
+    function: EARNINGS_CALENDAR
+    symbols:
+      - GLOBAL
+    params:
+      horizon: 3month
+      datatype: json
+    request:
+      include_symbol: false
+      response_format: csv
+      csv_root_key: earningsCalendar
+    cadence_seconds: 43200
+    redis:
+      key_pattern: "raw:alpha_vantage:earnings_calendar"
+      ttl_seconds: 86400
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/earnings_calendar.json
+
+  earnings_estimates:
+    function: EARNINGS_ESTIMATES
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    cadence_seconds: 604800
+    redis:
+      key_pattern: "raw:alpha_vantage:earnings_estimates:{symbol}"
+      ttl_seconds: 604800
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/earnings_estimates_NVDA.json
+
+  income_statement:
+    function: INCOME_STATEMENT
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    cadence_seconds: 604800
+    redis:
+      key_pattern: "raw:alpha_vantage:income_statement:{symbol}"
+      ttl_seconds: 604800
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/income_statement_NVDA.json
+
+  balance_sheet:
+    function: BALANCE_SHEET
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    cadence_seconds: 604800
+    redis:
+      key_pattern: "raw:alpha_vantage:balance_sheet:{symbol}"
+      ttl_seconds: 604800
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/balance_sheet_NVDA.json
+
+  cash_flow:
+    function: CASH_FLOW
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    cadence_seconds: 604800
+    redis:
+      key_pattern: "raw:alpha_vantage:cash_flow:{symbol}"
+      ttl_seconds: 604800
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/cash_flow_NVDA.json
+
+  shares_outstanding:
+    function: SHARES_OUTSTANDING
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    cadence_seconds: 604800
+    redis:
+      key_pattern: "raw:alpha_vantage:shares_outstanding:{symbol}"
+      ttl_seconds: 604800
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/shares_outstanding_NVDA.json
+
+  earnings_call_transcript:
+    function: EARNINGS_CALL_TRANSCRIPT
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      quarter: 2025Q1
+    cadence_seconds: 86400
+    redis:
+      key_pattern: "raw:alpha_vantage:earnings_call_transcript:{symbol}:{quarter}"
+      ttl_seconds: 259200
+    samples:
+      - docs/samples/alpha_vantage/fundamentals/earnings_call_transcript_NVDA_2024Q3.json

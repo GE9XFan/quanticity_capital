@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+import csv
+import io
 from datetime import datetime, timezone
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Sequence
 
@@ -107,7 +109,11 @@ class AlphaVantageIngestionRunner:
         self._validator = validator
         self._retry_status_codes = tuple(retry_status_codes or (429,))
 
-    async def run(self, symbols: Iterable[str] | None = None) -> None:
+    async def run(
+        self,
+        symbols: Iterable[str] | None = None,
+        request_param_overrides: Mapping[str, Any] | None = None,
+    ) -> None:
         runtime_config, alpha_config = load_configuration()
         endpoint = _resolve_endpoint(alpha_config, self._slug)
         defaults = _resolve_defaults(alpha_config)
@@ -122,6 +128,8 @@ class AlphaVantageIngestionRunner:
             raise ConfigurationError("Endpoint function missing from configuration")
 
         base_params = dict(endpoint.get("params", {}))
+        if request_param_overrides:
+            base_params.update(dict(request_param_overrides))
         cadence_seconds = endpoint.get("cadence_seconds")
         ttl_seconds = endpoint.get("redis", {}).get("ttl_seconds")
         redis_key_pattern = endpoint.get("redis", {}).get("key_pattern")
@@ -213,11 +221,18 @@ class AlphaVantageIngestionRunner:
 
         now = datetime.now(timezone.utc)
         heartbeat_key = f"{redis_heartbeat_prefix}:{self._slug}:{symbol}"
-        redis_key = (
-            redis_key_pattern.format(symbol=symbol)
-            if "{symbol}" in redis_key_pattern
-            else redis_key_pattern
-        )
+        format_kwargs: Dict[str, Any] = {"symbol": symbol}
+        for key, value in request_params.items():
+            if isinstance(value, (str, int)) and key not in format_kwargs:
+                format_kwargs[key] = value
+        try:
+            redis_key = redis_key_pattern.format(**format_kwargs)
+        except (KeyError, IndexError, ValueError):
+            redis_key = (
+                redis_key_pattern.format(symbol=symbol)
+                if "{symbol}" in redis_key_pattern
+                else redis_key_pattern
+            )
 
         try:
             response = await request_with_backoff(
@@ -230,7 +245,7 @@ class AlphaVantageIngestionRunner:
                 retry_status_codes=self._retry_status_codes,
             )
             response.raise_for_status()
-            payload = response.json()
+            payload = self._decode_payload(response, request_settings)
         except (HttpError, httpx.HTTPError, ValueError) as exc:
             LOGGER.error("ingestion.fetch_failed", endpoint=self._slug, symbol=symbol, error=str(exc))
             await set_heartbeat(
@@ -303,6 +318,21 @@ class AlphaVantageIngestionRunner:
                 )
 
         return self._validator(payload, symbol)
+
+    def _decode_payload(
+        self,
+        response: httpx.Response,
+        request_settings: Mapping[str, Any],
+    ) -> Mapping[str, Any]:
+        response_format = str(request_settings.get("response_format", "json")).lower()
+        if response_format == "csv":
+            csv_text = response.text
+            if not csv_text.strip():
+                return {request_settings.get("csv_root_key", "rows"): []}
+            reader = csv.DictReader(io.StringIO(csv_text))
+            rows = [dict(row) for row in reader]
+            return {request_settings.get("csv_root_key", "rows"): rows}
+        return response.json()
 
 
 __all__ = [

@@ -12,8 +12,15 @@ from src.ingestion.alpha_vantage._shared import (
 
 
 class FakeResponse:
-    def __init__(self, payload: Dict[str, Any], status_code: int = 200) -> None:
+    def __init__(
+        self,
+        payload: Dict[str, Any] | None = None,
+        *,
+        text: str | None = None,
+        status_code: int = 200,
+    ) -> None:
         self._payload = payload
+        self._text = text
         self.status_code = status_code
 
     def raise_for_status(self) -> None:  # pragma: no cover - only used for non-200 paths
@@ -21,7 +28,13 @@ class FakeResponse:
             raise AssertionError("Unexpected non-200 status during test")
 
     def json(self) -> Dict[str, Any]:
+        if self._payload is None:
+            raise ValueError("No JSON payload configured")
         return self._payload
+
+    @property
+    def text(self) -> str:
+        return self._text or ""
 
 
 @pytest.fixture
@@ -104,8 +117,13 @@ def runner_env(monkeypatch: pytest.MonkeyPatch) -> Dict[str, Any]:
         lambda timeout: FakeHttpClient(),
     )
 
-    def set_response(payload: Dict[str, Any], status_code: int = 200) -> Dict[str, Any]:
-        response = FakeResponse(payload=payload, status_code=status_code)
+    def set_response(
+        payload: Dict[str, Any] | None,
+        status_code: int = 200,
+        *,
+        text: str | None = None,
+    ) -> Dict[str, Any]:
+        response = FakeResponse(payload=payload, text=text, status_code=status_code)
         capture: Dict[str, Any] = {"retry_codes": None, "params": []}
 
         async def fake_request_with_backoff(
@@ -158,7 +176,67 @@ def test_runner_persists_payload_success(runner_env: Dict[str, Any]) -> None:
 
     heartbeats = runner_env["heartbeats"]
     assert heartbeats[-1]["status"] == "ok"
+
+
+def test_runner_request_param_overrides(runner_env: Dict[str, Any]) -> None:
+    capture = runner_env["set_response"]({"data": {"value": 1}})
+    runner = runner_env["make_runner"](lambda payload, symbol: payload)
+
+    asyncio.run(
+        runner.run(["SPY"], request_param_overrides={"interval": "daily", "window": 10})
+    )
+
+    params = capture["params"][0]
+    assert params["interval"] == "daily"
+    assert params["window"] == 10
+
+
+def test_runner_formats_key_with_request_fields(runner_env: Dict[str, Any]) -> None:
+    endpoint_config = runner_env["endpoint_config"]
+    original_pattern = endpoint_config["redis"]["key_pattern"]
+    original_params = dict(endpoint_config.get("params", {}))
+    heartbeats = runner_env["heartbeats"]
+    try:
+        endpoint_config["redis"]["key_pattern"] = (
+            "raw:alpha_vantage:test_endpoint:{symbol}:{year}Q{quarter}"
+        )
+        endpoint_config.setdefault("params", {})["year"] = 2025
+        endpoint_config["params"]["quarter"] = 3
+
+        runner = runner_env["make_runner"](lambda payload, symbol: payload)
+        runner_env["set_response"]({"data": {"value": 1}})
+
+        asyncio.run(runner.run(["SPY"]))
+
+        writes = runner_env["writes"]
+        assert writes[-1]["key"].endswith(":2025Q3")
+    finally:
+        endpoint_config["redis"]["key_pattern"] = original_pattern
+        endpoint_config["params"] = original_params
     assert heartbeats[-1]["extra"]["ttl_seconds"] == 30
+
+
+def test_runner_parses_csv_response(runner_env: Dict[str, Any]) -> None:
+    endpoint_config = runner_env["endpoint_config"]
+    endpoint_config["request"] = {
+        "include_symbol": False,
+        "response_format": "csv",
+        "csv_root_key": "earningsCalendar",
+    }
+    endpoint_config["symbols"] = ["GLOBAL"]
+    endpoint_config["redis"] = {
+        "key_pattern": "raw:alpha_vantage:earnings_calendar",
+        "ttl_seconds": 86400,
+    }
+
+    csv_text = "symbol,reportDate,estimate\nNVDA,2025-11-20,7.05\n"
+    runner_env["set_response"](None, text=csv_text)
+    runner = runner_env["make_runner"](lambda payload, symbol: payload)
+
+    asyncio.run(runner.run(["GLOBAL"]))
+
+    writes = runner_env["writes"]
+    assert writes[-1]["payload"]["data"]["earningsCalendar"][0]["symbol"] == "NVDA"
 
 
 @pytest.mark.parametrize(
