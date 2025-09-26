@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 import httpx
 import structlog
@@ -23,15 +23,19 @@ async def request_with_backoff(
     params: Mapping[str, Any] | None = None,
     max_attempts: int = 3,
     backoff_seconds: list[int] | tuple[int, ...] | None = None,
+    retry_status_codes: Iterable[int] | None = None,
 ) -> httpx.Response:
     """Execute a request with exponential backoff between attempts."""
     attempts = 0
     errors: list[str] = []
+    retry_codes = set(retry_status_codes or [])
+
     while attempts < max_attempts:
         attempts += 1
         try:
             response = await client.request(method, url, params=params)
-            if response.status_code < 500:
+            should_retry = response.status_code >= 500 or response.status_code in retry_codes
+            if not should_retry:
                 return response
             errors.append(f"{response.status_code}:{response.text[:200]}")
         except httpx.HTTPError as exc:  # network/timeout/etc

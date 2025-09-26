@@ -23,7 +23,7 @@
 - Create a tracking table (`docs/alpha_vantage_endpoints.md`) to log progress: requested, parameters received, implemented, validated in Redis.
 - For each endpoint iteration:
   1. Capture configuration in `config/alpha_vantage.yml` under a unique key.
-  2. Implement a single fetch module in `src/ingestion/alpha_vantage/<endpoint>.py` using `httpx` with retry/backoff helpers from `src/core/http.py`.
+  2. Keep the endpoint module thin: implement the payload validator and delegate execution to `AlphaVantageIngestionRunner` in `src/ingestion/alpha_vantage/_shared.py`, which handles retries, Redis writes, and heartbeats.
   3. Store payloads in Redis using the agreed key pattern (`raw:alpha_vantage:<endpoint>[:<symbol>]`) and TTL confirmed with the user. Persist the raw response plus metadata (`as_of`, `ttl_applied`, `request_params`).
   4. Validate manually: run the module, dump the Redis key, and capture the result in `docs/verification/<endpoint>_<date>.json`.
   5. Only move to the next endpoint after the user signs off on fetch correctness, storage layout, and expiry behaviour.

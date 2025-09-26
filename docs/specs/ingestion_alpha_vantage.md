@@ -29,12 +29,11 @@ Deliver a dependable Alpha Vantage pipeline by implementing one endpoint at a ti
      ```
    - Update `requirements.txt` if new dependencies are required.
 3. **Implement**
-   - Create `src/ingestion/alpha_vantage/<endpoint_slug>.py` with:
-     - `httpx.AsyncClient` fetch using shared retry/backoff helpers from `src/core/http.py`.
-     - Request construction strictly from the config (no hard-coded defaults beyond API key).
-     - Response validation (ensure required keys are present; log and return without writing if malformed).
-     - Redis write through a small helper `src/core/redis.py.set_json(key, payload, ttl)`.
-     - Logged metadata including request params, HTTP status, payload size, and computed TTL.
+   - Every endpoint module should stay thin and delegate to the shared runner in `src/ingestion/alpha_vantage/_shared.py`.
+     - Instantiate `AlphaVantageIngestionRunner` with a validator that knows how to vet the payload for that endpoint.
+     - The runner already wires `httpx.AsyncClient`, retry/backoff logic, Redis persistence, and heartbeat updates so individual modules remain declarative.
+     - Request construction must still draw configuration strictly from `config/alpha_vantage.yml` (no hard-coded defaults beyond the API key env var).
+   - If an endpoint requires custom retry handling, pass the relevant HTTP status codes (`retry_status_codes`) when constructing the runner (e.g., retry 429 throttles).
 4. **Verify**
    - Run the module manually (`python -m src.ingestion.alpha_vantage.<endpoint_slug> --symbol SPY`).
    - Inspect Redis with `redis-cli` or a helper script; capture the stored JSON and TTL in `docs/verification/<endpoint_slug>_<date>.json`.
@@ -60,7 +59,7 @@ Deliver a dependable Alpha Vantage pipeline by implementing one endpoint at a ti
 ## Error Handling & Backoff
 - Use exponential backoff intervals `[1s, 3s, 7s]` with a max of three attempts per request.
 - On final failure, log the HTTP status/body excerpt and set the heartbeat key with `status="error"` so monitoring can surface the issue.
-- Propagate Alpha Vantage throttling headers (`Note` or `Information` fields) into structured logs for troubleshooting.
+- Propagate Alpha Vantage throttling headers (`Note` or `Information` fields) into structured logs for troubleshooting; the shared runner surfaces these via `PayloadValidationError` so they never reach Redis silently.
 
 ## Testing & Regression Artifacts
 - For each implemented endpoint, add a pytest module under `tests/ingestion/alpha_vantage/test_<endpoint_slug>.py` that replays the stored sample JSON, exercising the normalization + Redis write helpers without hitting the live API.
