@@ -1,41 +1,85 @@
 # Orchestrator (`main.py`)
 
 ## Purpose
-Provide a single entry point that initializes configuration, dependencies, and module task loops, ensuring every subsystem runs under a unified event loop with graceful shutdown and observability.
+The orchestrator is the single entry point that wires configuration, logging, Redis, and module
+lifecycles. It ensures every enabled subsystem runs under a shared event loop, publishes
+heartbeats, aggregates module status, and coordinates graceful shutdown when signalled or when a
+module fails.
 
-## Responsibilities
-- Bootstrap configuration, logging, and dependency clients (Redis, Postgres, HTTP, IBKR gateway, OpenAI, social APIs).
-- Spawn and supervise module tasks (scheduler, ingestion workers, analytics engine, signal engine, execution manager, watchdog, social dispatcher, dashboard API).
-- Maintain lifecycle hooks: startup sequencing, health checks, graceful teardown on signals/uncaught errors.
-- Publish orchestrator heartbeat (`system:heartbeat:orchestrator`) and aggregate module health for dashboard/API consumption.
+## Startup Sequence
+1. Load the validated `AppConfig` via `core.settings.get_settings()`.
+2. Configure structured logging through `core.logging.setup_logging()` (Structlog + stdlib).
+3. Acquire the async Redis client from `core.redis.get_redis()`.
+4. Instantiate `Orchestrator(settings, redis, logger)` and register signal handlers for
+   `SIGINT`/`SIGTERM`.
+5. Call `Orchestrator.run()` which creates an `asyncio.TaskGroup` hosting heartbeats,
+   the heartbeat monitor, and any enabled modules (scheduler in Phase 2).
 
-## Inputs & Dependencies
-- `.env` / YAML config files for credentials, symbol sets, cadences.
-- Redis connection (async) and Postgres connection pool.
-- Scheduler task definitions from `config/schedule.yml`.
-- Module factories providing async task coroutines.
+## Module Management
+- Runtime toggles live in `config/runtime.yml`. The orchestrator maps them to module names and
+  tracks three sets internally:
+  - `_managed_modules`: running modules supervised by the orchestrator.
+  - `_pending_modules`: modules enabled in config but not yet launched.
+  - `_disabled_modules`: modules disabled in config.
+- Phase 2 launches the scheduler when `modules.scheduler` is `true`; other modules remain pending
+  or disabled but are still surfaced in status reporting.
+- Each module registers a stop callback so `request_shutdown()` can await `stop()` implementations.
 
-## Outputs
-- log entries (structured JSON) describing startup, task transitions, failures.
-- `system:heartbeat:*` keys for orchestrator and child modules.
-- `system:events` Redis Stream for major lifecycle events (start/stop/error).
+## Heartbeats & Observability
+- Heartbeat TTLs are pulled from `config/observability.yml` (`observability.heartbeats`).
+- The orchestrator publishes its heartbeat to `system:heartbeat:orchestrator` and expects each
+  managed module to emit `system:heartbeat:<module>`.
+- `_heartbeat_monitor_loop` runs every ~2 seconds:
+  - Reads current heartbeats for orchestrator + managed modules.
+  - Emits derived status (`ok`, `stale`, `missing`, `invalid`, `disabled`, `pending`, `stopped`).
+  - Writes the aggregate map to the Redis hash `system:heartbeat:status`.
+  - Records recovery/degradation events via the `system:events` stream.
+- On shutdown the orchestrator marks itself as `stopped` in the status hash while preserving other
+  module statuses.
 
-## Key Behaviors
-- **Startup Order:** configuration → logging → Redis → Postgres → scheduler → ingestion modules → analytics → signals → execution → watchdog → social → dashboard.
-- **Task Supervision:** use `asyncio.TaskGroup` (Python 3.11) for structured concurrency; restart policies configurable per module.
-- **Graceful Shutdown:** handles `SIGINT`/`SIGTERM`, notifies modules, flushes pending social posts, closes network connections, and deregisters IBKR subscriptions.
-- **Failure Handling:** on unrecoverable module failure, emit alert event and decide to restart task or exit entire orchestrator depending on severity.
+## Failure Escalation & Event Stream
+- `_module_wrapper` wraps every module coroutine. If a module raises, the orchestrator:
+  1. Logs the crash with `exc_info=True`.
+  2. Records a `module_crashed` entry on the `system:events` stream.
+  3. Calls `request_shutdown()` which propagates `stop()` to all modules.
+  4. Re-raises the exception so callers (and tests) observe the failure.
+- Normal lifecycle transitions also write to `system:events` (`orchestrator_start`,
+  `shutdown_requested`, `orchestrator_stop`, heartbeat degraded/recovered, etc.).
 
-## Configuration
-- `config/runtime.yml`: toggles for modules (enable/disable), concurrency levels, restart policies.
-- `config/symbols.yml`: shared symbol universe, TTL overrides.
-- `config/credentials.example`: env var mapping for secrets.
+## Redis Keys Produced
+| Key | Description |
+| --- | ----------- |
+| `system:heartbeat:orchestrator` | ISO timestamp heartbeat set with TTL from observability config. |
+| `system:heartbeat:<module>` | Expected heartbeat key for every managed module. |
+| `system:heartbeat:status` | Hash of module → status (`ok`, `stale`, `disabled`, `pending`, etc.). |
+| `system:events` | Redis Stream capturing lifecycle events, crashes, and shutdown requests. |
 
-## Observability
-- Emits heartbeat every 10s.
-- Aggregates module heartbeats and exposes via dashboard API endpoint `/health`.
-- Logs module start/stop durations and failure stack traces.
+## Scheduler Integration (Phase 2)
+- When the scheduler toggle is enabled, the orchestrator instantiates
+  `Scheduler(config.schedule, redis, heartbeat_ttl)` and supervises it within the same
+  `TaskGroup`.
+- The scheduler heartbeat (`system:heartbeat:scheduler`) is automatically incorporated into status
+  aggregation. When disabled, the orchestrator records `scheduler → disabled` in the status hash.
 
-## Integration Testing
-- Launch orchestrator in paper-trading mode with Alpha Vantage live keys; verify health endpoints and heartbeat keys.
-- Confirm orchestrator recovers from forced module failure (simulate exception) and logs restart.
+## Verification Commands
+Run these commands against the configured Redis instance to confirm heartbeats and events are
+present:
+
+```bash
+redis-cli --scan --pattern 'system:heartbeat:*'
+redis-cli ttl system:heartbeat:orchestrator
+redis-cli hgetall system:heartbeat:status
+redis-cli XREAD COUNT 5 STREAMS system:events 0-0
+```
+
+`ttl` should report a positive number (seconds remaining) while the orchestrator is running.
+`system:heartbeat:status` will include `disabled` entries for modules that are toggled off in
+`config/runtime.yml` and `pending` for modules enabled but not yet launched in this phase.
+
+## Runbook Notes
+- Prefer `asyncio.run(main())` via `src/quanticity_capital/main.py` to ensure signal handlers are
+  attached.
+- Before toggling modules, update `config/runtime.yml` and commit the change alongside spec
+  updates.
+- Keep the observability TTL map in sync with actual heartbeat cadences so stale detection remains
+  accurate.

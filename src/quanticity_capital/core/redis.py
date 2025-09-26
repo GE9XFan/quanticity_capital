@@ -7,7 +7,7 @@ import json
 import logging
 import random
 from dataclasses import dataclass, field
-from typing import Any, Awaitable, Callable, Iterable, Optional, TypeVar, cast
+from typing import Any, Awaitable, Callable, Iterable, Optional, Protocol, TypeVar, cast
 
 try:  # pragma: no cover - executed when orjson is installed
     import orjson as _orjson
@@ -24,6 +24,18 @@ T = TypeVar("T")
 
 _redis_client: Optional[Redis] = None
 _redis_lock = asyncio.Lock()
+
+
+class SupportsWarning(Protocol):
+    """Minimal logger interface for retry warnings."""
+
+    def warning(
+        self,
+        event: str | None = ...,
+        *args: Any,
+        **kwargs: Any,
+    ) -> Any:
+        ...
 
 
 @dataclass(slots=True)
@@ -72,7 +84,7 @@ async def redis_retry(
     operation: Callable[[], Awaitable[T]],
     *,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> T:
     """Execute ``operation`` with exponential backoff."""
 
@@ -131,7 +143,7 @@ async def write_json(
     index: Optional[str] = None,
     index_member: Optional[str] = None,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> None:
     """Store ``payload`` at ``key`` with optional TTL and index bookkeeping."""
 
@@ -152,6 +164,7 @@ async def write_json(
 
         await redis_retry(_add_index, retry_config=retry_config, logger=logger)
         if ttl is not None:
+
             async def _expire_index() -> bool:
                 return await cast(Awaitable[bool], redis.expire(index, ttl))
 
@@ -168,7 +181,7 @@ async def fetch_json(
     *,
     default: Any = None,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> Any:
     """Retrieve JSON payload stored by :func:`write_json`."""
 
@@ -187,7 +200,7 @@ async def ensure_ttl(
     ttl: int,
     *,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> None:
     """Extend TTL for ``key`` when it is missing or lower than ``ttl`` seconds."""
 
@@ -196,6 +209,7 @@ async def ensure_ttl(
 
     current_ttl = await redis_retry(_ttl, retry_config=retry_config, logger=logger)
     if current_ttl is None or current_ttl < 0 or current_ttl < ttl:
+
         async def _expire_key() -> bool:
             return await cast(Awaitable[bool], redis.expire(key, ttl))
 
@@ -212,13 +226,14 @@ async def remove_from_index(
     members: Iterable[str],
     *,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> None:
     """Remove ``members`` from an index set."""
 
     member_list = list(members)
     if not member_list:
         return
+
     async def _srem() -> int:
         return await cast(Awaitable[int], redis.srem(index_key, *member_list))
 
@@ -234,7 +249,7 @@ async def list_index(
     index_key: str,
     *,
     retry_config: Optional[RetryConfig] = None,
-    logger: Optional[logging.Logger] = None,
+    logger: Optional[SupportsWarning] = None,
 ) -> set[str]:
     """Return members of an index set."""
 

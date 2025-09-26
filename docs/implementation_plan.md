@@ -13,10 +13,16 @@
 - Create shared models (Pydantic) for options chains, analytics bundles, signals, orders, social posts.
 
 ## Phase 2 – Scheduler & Orchestrator (Day 2-4)
-- Implement central orchestrator (`main.py`) using `asyncio` event loop and structured task registry.
-- Build rate-limit aware scheduler with token buckets per endpoint and symbol rotation logic.
-- Persist scheduler state in Redis (`system:schedule:*`) and expose CLI to inspect queues.
-- Integrate heartbeat monitoring and failure notification hooks.
+- Bootstrap structured logging (Structlog + stdlib) and Redis dependency wiring for the
+  orchestrator entry point.
+- Implement the orchestrator with `asyncio.TaskGroup`, module toggles from `config/runtime.yml`,
+  lifecycle event stream, and aggregated heartbeat status in Redis.
+- Deliver the scheduler runtime: token buckets, rotation queues, Redis-backed state persistence,
+  and a `snapshot()` hook for future CLI inspection.
+- Ensure orchestrator ↔ scheduler integration (heartbeat propagation, failure escalation,
+  graceful shutdown).
+- Document verification steps (Redis commands for heartbeats/state) and add targeted unit tests for
+  orchestrator + scheduler behaviour.
 
 ## Phase 3 – Alpha Vantage Ingestion (Day 4-7)
 - Implement reusable HTTP client with exponential backoff and concurrency caps.
