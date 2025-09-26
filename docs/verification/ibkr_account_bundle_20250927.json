@@ -1,0 +1,65 @@
+{
+  "verification_timestamp": "2025-09-26T16:28:54+00:00",
+  "account_summary": {
+    "redis_key": "raw:ibkr:account:summary",
+    "ttl_seconds": 30,
+    "account": "DUH923436",
+    "sample_values": {
+      "NetLiquidation": "249948.72 USD",
+      "BuyingPower": "979552.02 USD",
+      "AvailableFunds": "244888.01 USD",
+      "TotalCashValue": "244888.01 USD",
+      "GrossPositionValue": "4644.00 USD"
+    },
+    "heartbeat": {
+      "status": "ok",
+      "row_count": 30
+    }
+  },
+  "positions": {
+    "redis_key": "raw:ibkr:account:positions", 
+    "ttl_seconds": 30,
+    "account": "DUH923436",
+    "positions_count": 2,
+    "sample_positions": [
+      {
+        "symbol": "SPY",
+        "sec_type": "OPT",
+        "position": 1.0,
+        "avg_cost": 939.86
+      },
+      {
+        "symbol": "SPY",
+        "sec_type": "OPT",
+        "position": 5.0,
+        "avg_cost": 745.70
+      }
+    ],
+    "heartbeat": {
+      "status": "ok",
+      "position_count": 2
+    }
+  },
+  "account_pnl": {
+    "redis_key": "raw:ibkr:account:pnl",
+    "ttl_seconds": 30,
+    "account": "DUH923436",
+    "daily_pnl": 53.64,
+    "unrealized": 53.64,
+    "realized": 0.0,
+    "heartbeat": {
+      "status": "ok",
+      "positions": 1
+    }
+  },
+  "position_pnl": {
+    "redis_pattern": "raw:ibkr:position:pnl:{symbol}",
+    "ttl_seconds": 30,
+    "sample_symbol": "SPY",
+    "sample_data": {
+      "daily_pnl": 82.21,
+      "unrealized": 82.21
+    }
+  },
+  "notes": "Account bundle fully functional with async ib_insync integration. Summary/positions/PnL all capturing correctly. Per-symbol PnL working for SPY options positions."
+}

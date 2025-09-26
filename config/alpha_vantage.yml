@@ -43,6 +43,80 @@ endpoints:
     samples:
       - docs/samples/alpha_vantage/realtime_options/TSLA.json
 
+  time_series_intraday:
+    function: TIME_SERIES_INTRADAY
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - NVDA
+      - AAPL
+      - MSFT
+      - GOOGL
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      interval: 1min
+      outputsize: full
+      extended_hours: "true"
+    cadence_seconds: 30
+    redis:
+      key_pattern: "raw:alpha_vantage:time_series_intraday:{symbol}"
+      ttl_seconds: 60
+    samples:
+      - docs/samples/alpha_vantage/time_series_intraday/IBM.json
+
+  top_gainers_losers:
+    function: TOP_GAINERS_LOSERS
+    symbols:
+      - MARKET
+    params: {}
+    request:
+      include_symbol: false
+    cadence_seconds: 180
+    redis:
+      key_pattern: "raw:alpha_vantage:top_gainers_losers:{symbol}"
+      ttl_seconds: 300
+    samples:
+      - docs/samples/alpha_vantage/top_gainers_losers/sample.json
+
+  news_sentiment:
+    function: NEWS_SENTIMENT
+    symbols:
+      - NVDA
+      - AAPL
+      - MSFT
+      - META
+      - ORCL
+      - AMZN
+      - TSLA
+      - DIS
+      - V
+      - COST
+      - WMT
+      - GE
+      - AMD
+    params:
+      limit: 50
+      sort: LATEST
+    request:
+      include_symbol: true
+      symbol_param: tickers
+    cadence_seconds: 600
+    redis:
+      key_pattern: "raw:alpha_vantage:news_sentiment:{symbol}"
+      ttl_seconds: 900
+    samples:
+      - docs/samples/alpha_vantage/news_sentiment/sample.json
+
   vwap:
     function: VWAP
     symbols:

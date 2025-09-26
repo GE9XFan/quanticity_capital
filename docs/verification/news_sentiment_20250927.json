@@ -1,0 +1,60 @@
+{
+  "verification_date": "2025-09-27",
+  "implementation": "per-ticker strategy with symbol_param",
+  "notes": "Each ticker now gets individual NEWS_SENTIMENT request with tickers=<symbol> parameter",
+  "samples": {
+    "AAPL": {
+      "request_params": {
+        "function": "NEWS_SENTIMENT",
+        "limit": 50,
+        "sort": "LATEST",
+        "tickers": "AAPL"
+      },
+      "feed_count": 50,
+      "sample_headline": "How To Trade SPY, Top Tech Stocks Using Technical Analysis"
+    },
+    "MSFT": {
+      "request_params": {
+        "function": "NEWS_SENTIMENT",
+        "limit": 50,
+        "sort": "LATEST",
+        "tickers": "MSFT"
+      },
+      "feed_count": 50,
+      "sample_headline": "Cloud Services Brokerage Market Surges to $26.2 billion by 2029 - Dominated by A"
+    },
+    "NVDA": {
+      "request_params": {
+        "function": "NEWS_SENTIMENT",
+        "limit": 50,
+        "sort": "LATEST",
+        "tickers": "NVDA"
+      },
+      "feed_count": 50,
+      "sample_headline": "Alchip and Ayar Labs Unveil Co-Packaged Optics for AI Datacenter Scale-Up"
+    }
+  },
+  "redis_keys_verified": [
+    "raw:alpha_vantage:news_sentiment:AAPL",
+    "raw:alpha_vantage:news_sentiment:MSFT",
+    "raw:alpha_vantage:news_sentiment:NVDA",
+    "raw:alpha_vantage:news_sentiment:GOOGL",
+    "raw:alpha_vantage:news_sentiment:META",
+    "raw:alpha_vantage:news_sentiment:ORCL",
+    "raw:alpha_vantage:news_sentiment:AMZN",
+    "raw:alpha_vantage:news_sentiment:TSLA",
+    "raw:alpha_vantage:news_sentiment:DIS",
+    "raw:alpha_vantage:news_sentiment:V",
+    "raw:alpha_vantage:news_sentiment:COST",
+    "raw:alpha_vantage:news_sentiment:WMT",
+    "raw:alpha_vantage:news_sentiment:GE",
+    "raw:alpha_vantage:news_sentiment:AMD"
+  ],
+  "config_verified": {
+    "symbols": ["NVDA", "AAPL", "MSFT", "GOOGL", "META", "ORCL", "AMZN", "TSLA", "DIS", "V", "COST", "WMT", "GE", "AMD"],
+    "request.include_symbol": true,
+    "request.symbol_param": "tickers",
+    "ttl_seconds": 900,
+    "cadence_seconds": 600
+  }
+}

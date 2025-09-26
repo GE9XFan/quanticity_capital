@@ -42,6 +42,11 @@ def load_alpha_config() -> Dict[str, Any]:
     return _read_yaml(CONFIG_DIR / "alpha_vantage.yml")
 
 
+def load_ibkr_config() -> Dict[str, Any]:
+    """Load Interactive Brokers configuration if present."""
+    return _read_yaml(CONFIG_DIR / "ibkr.yml")
+
+
 def load_configuration() -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """Load environment variables and configuration files in a predictable order."""
     load_dotenv()
@@ -61,5 +66,6 @@ __all__ = [
     "PROJECT_ROOT",
     "load_runtime_config",
     "load_alpha_config",
+    "load_ibkr_config",
     "load_configuration",
 ]

@@ -3,6 +3,32 @@
 ## Purpose
 Maintain resilient connectivity to Interactive Brokers TWS/Gateway, rotate market data subscriptions within IBKR constraints, and persist account/market data into Redis with precise TTL guarantees.
 
+## Handshake Checklist
+Collect the following inputs from the user before writing code:
+
+| Input | Description | Notes |
+|-------|-------------|-------|
+| Connection host/port | TWS or Gateway address (`127.0.0.1:7497` paper, `7496` live) | ✅ Paper trading port `7497`; connect to local TWS. |
+| Gateway vs. TWS | Whether automation connects to IB Gateway or full TWS UI | ✅ Use TWS (already running and configured). |
+| Client ID pool | Reserved range that will not clash with manual sessions | ✅ Adopt default pool `101-120`. |
+| Heartbeat cadence | Seconds between connectivity heartbeats | ✅ 5 seconds. |
+| Reconnect backoff | Sequence of delays after disconnects | ✅ `[1, 5, 15, 30, 60]`. |
+| Pacing window | Maximum subscription bursts before throttling | ✅ Enforce max 3 concurrent level-2 subscriptions. |
+| Redis contracts | Confirm key patterns, TTL, and metadata expectations | Defaults listed in `DEFAULT_CONTRACTS` of `src/ingestion/ibkr/handshake.py`. |
+| Symbol rotation groups | Universe and grouping for level-2 cycles | ✅ Use `DEFAULT_LEVEL2_GROUPS` (five trios + final pair). |
+| Authentication | Location of IBKR credentials and auto-login status | ✅ TWS kept running; rely on existing session for auto-connect (no headless login). |
+
+### Proposed Level-2 Rotation (5s windows, 3 concurrent symbols)
+
+| Group | Symbols |
+|-------|---------|
+| grp1 | SPY, QQQ, IWM |
+| grp2 | NVDA, AAPL, MSFT |
+| grp3 | GOOGL, META, ORCL |
+| grp4 | AMZN, TSLA, DIS |
+| grp5 | V, COST, WMT |
+| grp6 | GE, AMD *(2-symbol tail group)* |
+
 ## Connectivity Requirements
 - Host: `127.0.0.1`, Port: `7497` (paper). Live port configurable (default `7496`).
 - Client IDs: orchestrator assigns unique IDs per module; primary ingestion client defaults to 101 to avoid clashing with manual master client (1).
@@ -20,20 +46,24 @@ Maintain resilient connectivity to Interactive Brokers TWS/Gateway, rotate marke
 
 ## Data Capture Targets
 1. **Level-2 Depth**
-   - Key: `raw:l2:<symbol>` TTL 10s.
+   - Key: `raw:ibkr:l2:{symbol}` TTL 10s.
    - Payload: top 10 levels bid/ask with size, market maker, timestamp.
-   - Rotation groups precomputed; scheduler requests subscription/unsubscription events.
+   - Rotation groups precomputed (see `config/ibkr.yml`), module manages subscribe/unsubscribe cycle in 5s windows.
+   - Use `contract_overrides` to specify exchange/primary exchange for symbols requiring venue-specific depth (e.g., NASDAQ TotalView entitlements for NVDA/AAPL/MSFT).
 2. **Top-of-Book Quotes**
-   - Key: `raw:quotes:<symbol>` TTL 6s.
-   - Fields: bid, ask, last, volume, implied volatility (if provided), timestamp.
+   - Key: `raw:ibkr:quotes:{symbol}` TTL 6s.
+   - Fields: bid, ask, last, bid/ask size, last size, volume, mark price, timestamp.
+   - Implementation: snapshot polling via `src/ingestion/ibkr/quotes.py` using `ib_insync` with `reqMktData(..., snapshot=True)`.
 3. **Account Summary**
-   - Key: `raw:account:summary` TTL 30s.
+   - Key: `raw:ibkr:account:summary` TTL 30s.
    - Includes cash, equity with loan, buying power, margin requirements.
+   - Implementation target: `src/ingestion/ibkr/account.py` using `ib.accountSummary()` with 15s cadence.
 4. **Positions**
-   - Key: `raw:account:positions` TTL 30s.
-   - Per position (symbol, quantity, avg cost, realized PnL).
+   - Key: `raw:ibkr:account:positions` TTL 30s.
+   - Per position (symbol, quantity, avg cost, realized PnL). Filter asset classes (default STK/OPT via config).
 5. **PnL Streams**
-   - Keys: `raw:account:pnl` and `raw:position:pnl:<symbol>` TTL 30s.
+   - Keys: `raw:ibkr:account:pnl` and `raw:ibkr:position:pnl:{symbol}` TTL 30s.
+   - Account-level PnL plus per-symbol PnL snapshots (unrealized/realized at 15s cadence).
 6. **Execution Feed**
    - All order executions appended to Redis Stream `stream:executions` with no TTL (archived daily to Postgres).
 

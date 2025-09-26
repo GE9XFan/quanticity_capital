@@ -57,7 +57,7 @@ Key pattern: `scope:module:entity[:context]`. All keys store JSON unless noted. 
 
 | Scope | Example Key | Description | TTL | Refresh Cadence |
 |-------|-------------|-------------|-----|-----------------|
-| `raw:options` | `raw:options:SPY` | Alpha Vantage realtime options chain | 30s | 12s per symbol |
+| `raw:options` | `raw:options:SPY` | Alpha Vantage realtime options chain | 30s | 10s per symbol |
 | `raw:greeks` | `raw:greeks:SPY:2024-09-25` | Filtered greeks for expiry | 45s | 20s |
 | `raw:l2` | `raw:l2:SPY` | IBKR level-2 depth snapshot | 10s | 5s round-robin |
 | `raw:quotes` | `raw:quotes:SPY` | IBKR top-of-book quotes | 6s | 3s |
@@ -85,15 +85,15 @@ Default serialization via `orjson`; large payloads may leverage Redis Streams fo
 ES, MES, NQ, MNQ, RTY, CL, ZN, GC. Additional contracts can be configured in `config/symbols.yml` with cadence overrides.
 
 ### Alpha Vantage Cadence (600 cpm budget)
-- Realtime options chains: 17 symbols @ 12s cadence ⇒ ~85 req/min.
-- Technical indicators (VWAP/MACD/BBANDS): group by symbol, stagger at 60s ⇒ ~51 req/min.
+- Realtime options chains: 17 symbols @ 10s cadence ⇒ ~102 req/min.
+- Technical indicators (VWAP/MACD/BBANDS): sequential sweep every 30s ⇒ ~102 req/min across three endpoints.
 - Analytics Sliding Window (multi-symbol batches of 10) every 5m ⇒ ~2 req/min.
-- News & sentiment (equities only) every 10m ⇒ ~6 req/min.
+- News & sentiment (14 equities, no ETFs) every 10m ⇒ ~6 req/min.
 - Top gainers/losers every 2m ⇒ 0.5 req/min.
 - Macro series (GDP/CPI/Inflation) every 6h ⇒ negligible.
 - Shares outstanding & earnings estimates weekly at market close ⇒ negligible.
 - Earnings transcripts on-demand (triggered by schedule or upcoming events).
-Budget headroom > 400 req/min reserved for bursts and retries. Scheduler enforces per-endpoint cooldowns.
+Budget headroom ≈ 388 req/min reserved for bursts and retries. Scheduler enforces per-endpoint cooldowns.
 
 ### IBKR Cadence & Rotation
 - Level-2 market depth: rotate symbols in trios every 5s (five groups covering 15 symbols, remainder pair fills slot). Each subscription receives 15s of data before rotation; TTL 10s ensures freshness.

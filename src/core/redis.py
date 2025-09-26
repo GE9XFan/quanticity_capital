@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import json
 from typing import Any, Dict, Mapping
 
 import redis.asyncio as redis
@@ -41,7 +42,11 @@ async def set_heartbeat(
     """Record a lightweight heartbeat for ingestion health monitoring."""
     mapping: Dict[str, Any] = {"status": status, "timestamp": timestamp}
     if extra:
-        mapping.update(extra)
+        for field, value in extra.items():
+            if isinstance(value, (str, int, float)) or value is None:
+                mapping[field] = "" if value is None else value
+            else:
+                mapping[field] = json.dumps(value)
     await client.hset(name=key, mapping=mapping)
     LOGGER.info("redis.heartbeat", key=key, status=status)
 

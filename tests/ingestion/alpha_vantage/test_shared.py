@@ -36,30 +36,30 @@ def runner_env(monkeypatch: pytest.MonkeyPatch) -> Dict[str, Any]:
     fake_redis = FakeRedisClient()
     monkeypatch.setenv("ALPHAVANTAGE_API_KEY", "test-key")
 
+    runtime_config: dict[str, Any] = {}
+    endpoint_config: dict[str, Any] = {
+        "function": "TEST_FUNC",
+        "symbols": ["SPY", "QQQ"],
+        "params": {"interval": "1min"},
+        "cadence_seconds": 15,
+        "redis": {
+            "key_pattern": "raw:alpha_vantage:test_endpoint:{symbol}",
+            "ttl_seconds": 30,
+        },
+    }
+    alpha_config: dict[str, Any] = {
+        "defaults": {
+            "api_url": "https://example.com",
+            "request": {"max_attempts": 1, "backoff_seconds": [0]},
+            "redis": {
+                "key_prefix": "raw:alpha_vantage",
+                "heartbeat_prefix": "state:alpha_vantage",
+            },
+        },
+        "endpoints": {"test_endpoint": endpoint_config},
+    }
+
     def fake_load_configuration() -> tuple[dict[str, Any], dict[str, Any]]:
-        runtime_config: dict[str, Any] = {}
-        alpha_config: dict[str, Any] = {
-            "defaults": {
-                "api_url": "https://example.com",
-                "request": {"max_attempts": 1, "backoff_seconds": [0]},
-                "redis": {
-                    "key_prefix": "raw:alpha_vantage",
-                    "heartbeat_prefix": "state:alpha_vantage",
-                },
-            },
-            "endpoints": {
-                "test_endpoint": {
-                    "function": "TEST_FUNC",
-                    "symbols": ["SPY", "QQQ"],
-                    "params": {"interval": "1min"},
-                    "cadence_seconds": 15,
-                    "redis": {
-                        "key_pattern": "raw:alpha_vantage:test_endpoint:{symbol}",
-                        "ttl_seconds": 30,
-                    },
-                }
-            },
-        }
         return runtime_config, alpha_config
 
     monkeypatch.setattr(
@@ -136,6 +136,7 @@ def runner_env(monkeypatch: pytest.MonkeyPatch) -> Dict[str, Any]:
         "make_runner": make_runner,
         "writes": writes,
         "heartbeats": heartbeats,
+        "endpoint_config": endpoint_config,
     }
 
 
@@ -204,3 +205,43 @@ def test_runner_handles_validator_failure(runner_env: Dict[str, Any]) -> None:
     assert heartbeats[-1]["status"] == "error"
     assert heartbeats[-1]["extra"]["error"] == "validation-failed"
     assert heartbeats[-1]["extra"]["detail"] == "missing field"
+
+
+def test_runner_skips_symbol_when_disabled(runner_env: Dict[str, Any]) -> None:
+    runner_env["writes"].clear()
+    runner_env["heartbeats"].clear()
+    runner_env["endpoint_config"]["request"] = {"include_symbol": False}
+    runner_env["endpoint_config"]["symbols"] = ["MARKET"]
+    runner_env["endpoint_config"]["redis"] = {
+        "key_pattern": "raw:alpha_vantage:test_endpoint:{symbol}",
+        "ttl_seconds": 15,
+    }
+
+    capture = runner_env["set_response"]({"top_gainers": [1], "top_losers": [1], "most_actively_traded": [1], "metadata": "ok"})
+    runner = runner_env["make_runner"](lambda payload, symbol: payload)
+
+    asyncio.run(runner.run(["MARKET"]))
+
+    assert capture["params"] == [
+        {"function": "TEST_FUNC", "interval": "1min", "apikey": "test-key"}
+    ]
+
+    writes = runner_env["writes"]
+    assert len(writes) == 1
+    assert writes[0]["key"] == "raw:alpha_vantage:test_endpoint:MARKET"
+
+
+def test_runner_uses_custom_symbol_param(runner_env: Dict[str, Any]) -> None:
+    runner_env["writes"].clear()
+    runner_env["heartbeats"].clear()
+    runner_env["endpoint_config"]["request"] = {"include_symbol": True, "symbol_param": "tickers"}
+    runner_env["endpoint_config"]["symbols"] = ["AAPL"]
+
+    capture = runner_env["set_response"]({"feed": [{"ticker_sentiment": [], "title": "t", "url": "u", "time_published": "2025", "overall_sentiment_score": 0.0}]})
+    runner = runner_env["make_runner"](lambda payload, symbol: payload)
+
+    asyncio.run(runner.run(["AAPL"]))
+
+    assert capture["params"] == [
+        {"function": "TEST_FUNC", "interval": "1min", "tickers": "AAPL", "apikey": "test-key"}
+    ]

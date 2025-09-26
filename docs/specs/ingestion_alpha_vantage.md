@@ -26,8 +26,12 @@ Deliver a dependable Alpha Vantage pipeline by implementing one endpoint at a ti
        redis:
          key_pattern: "raw:alpha_vantage:realtime_options:{symbol}"
          ttl_seconds: 24
+        request:
+          include_symbol: true  # optional; set to false for endpoints without a symbol query param
      ```
    - Update `requirements.txt` if new dependencies are required.
+    - For aggregate endpoints (e.g., `TOP_GAINERS_LOSERS`) set `request.include_symbol: false` and use a placeholder symbol (such as `MARKET`) for Redis key grouping.
+    - For per-symbol endpoints with alternate parameter names (e.g., `NEWS_SENTIMENT`), set `request.symbol_param` to the required query parameter (such as `tickers`).
 3. **Implement**
    - Every endpoint module should stay thin and delegate to the shared runner in `src/ingestion/alpha_vantage/_shared.py`.
      - Instantiate `AlphaVantageIngestionRunner` with a validator that knows how to vet the payload for that endpoint.

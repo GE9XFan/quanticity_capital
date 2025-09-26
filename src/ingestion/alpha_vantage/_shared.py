@@ -192,7 +192,14 @@ class AlphaVantageIngestionRunner:
         http_client: httpx.AsyncClient,
         redis_client,
     ) -> None:
-        request_params: Dict[str, Any] = {"function": function_name, **base_params, "symbol": symbol}
+        include_symbol = bool(request_settings.get("include_symbol", True))
+        symbol_param_name = str(request_settings.get("symbol_param", "symbol"))
+
+        request_params: Dict[str, Any] = {"function": function_name, **base_params}
+        if include_symbol:
+            if symbol_param_name != "symbol" and "symbol" in request_params:
+                request_params.pop("symbol")
+            request_params[symbol_param_name] = symbol
         query_params = dict(request_params)
         query_params["apikey"] = api_key
 
@@ -206,7 +213,11 @@ class AlphaVantageIngestionRunner:
 
         now = datetime.now(timezone.utc)
         heartbeat_key = f"{redis_heartbeat_prefix}:{self._slug}:{symbol}"
-        redis_key = redis_key_pattern.format(symbol=symbol)
+        redis_key = (
+            redis_key_pattern.format(symbol=symbol)
+            if "{symbol}" in redis_key_pattern
+            else redis_key_pattern
+        )
 
         try:
             response = await request_with_backoff(
