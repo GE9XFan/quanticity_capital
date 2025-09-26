@@ -2,6 +2,16 @@
 
 from __future__ import annotations
 
+from .models import (
+    AnalyticsConfig,
+    AppConfig,
+    ObservabilityConfig,
+    RuntimeConfig,
+    ScheduleConfig,
+    SymbolsConfig,
+    WatchdogConfig,
+)
+
 import json
 import os
 import re
@@ -25,16 +35,6 @@ except ModuleNotFoundError as exc:  # pragma: no cover
         import yaml  # type: ignore
     else:
         raise exc
-
-from .models import (
-    AnalyticsConfig,
-    AppConfig,
-    ObservabilityConfig,
-    RuntimeConfig,
-    ScheduleConfig,
-    SymbolsConfig,
-    WatchdogConfig,
-)
 
 
 class ConfigError(RuntimeError):
@@ -203,8 +203,7 @@ def load_settings(
     }
 
     substituted = {
-        name: _resolve_placeholders(content, merged_env)
-        for name, content in payloads.items()
+        name: _resolve_placeholders(content, merged_env) for name, content in payloads.items()
     }
 
     _apply_env_overrides(substituted, env_values)
@@ -221,4 +220,3 @@ __all__ = [
     "MissingEnvironmentVariableError",
     "load_settings",
 ]
-

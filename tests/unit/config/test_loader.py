@@ -11,7 +11,7 @@ import pytest
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from quanticity_capital.config.loader import (
+from quanticity_capital.config.loader import (  # noqa: E402
     ConfigValidationError,
     MissingEnvironmentVariableError,
     load_settings,
@@ -70,4 +70,3 @@ def test_invalid_cron_validation(tmp_path: Path) -> None:
 
     with pytest.raises(ConfigValidationError):
         load_settings(config_dir=config_dir, env_path=env_path, reload=True)
-

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Literal, Mapping, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from croniter import croniter
+from croniter import croniter  # type: ignore[import-not-found,import-untyped]
 
 
 class IngestionModuleToggles(BaseModel):
@@ -267,4 +267,3 @@ __all__ = [
     "WatchdogNotificationsConfig",
     "WatchdogNotificationsTelegram",
 ]
-

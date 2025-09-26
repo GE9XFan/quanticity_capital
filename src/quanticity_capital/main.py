@@ -9,9 +9,7 @@ from __future__ import annotations
 
 def main() -> None:
     """Placeholder main until orchestrator implementation lands."""
-    raise NotImplementedError(
-        "Implement orchestrator bootstrap per docs/specs/orchestrator.md"
-    )
+    raise NotImplementedError("Implement orchestrator bootstrap per docs/specs/orchestrator.md")
 
 
 if __name__ == "__main__":

@@ -24,6 +24,8 @@ Add module-specific AGENTS/README files inside new directories so agents can gra
 - Formatting & linting: `make fmt`, `make lint` (Ruff handles formatting + lint). Keep line length ≤ 100.
 - Type checking: `make typecheck` (mypy).
 - Tests: `make test` (pytest). Use `pytest -m "not integration"` when external services unavailable.
+- Interpreter: use `.venv/bin/python` (Python 3.11.13). Verify with `which python` (returns
+  `.venv/bin/python` inside the repo) and `python --version` (`Python 3.11.13`).
 - Runtime entrypoint: `make run` → `uv run python3.11 src/main.py`.
 - Node tooling (dashboard): `cd dashboard/frontend && npm install && npm run dev` once scaffolded.
 
