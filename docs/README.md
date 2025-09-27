@@ -16,12 +16,12 @@ can navigate the project without chasing files across the repo.
 | Area | Document | Notes |
 |------|----------|-------|
 | Setup & Tooling | `docs/setup.md` | Bootstrap instructions plus verification commands for the repository skeleton. |
-| Planning | `docs/implementation_plan.md` | Near-term build order; Phase 1 (skeleton) is now complete. |
+| Planning | `docs/implementation_plan.md` | Near-term build order; Phases 0–2 are complete, Phase 3 (IBKR connectivity) is next. |
 | Planning | `docs/master_plan.md` | Long-term vision with explicit callouts for future phases. |
-| Data References | `docs/data_sources.md` | Draft capture of vendor feeds and payload contracts (aspirational). |
+| Data References | `docs/data_sources.md` | Live Alpha Vantage contracts from Phase 2 plus placeholders for upcoming modules. |
 | Modules | `docs/modules.md` | Outline of planned modules; implementation pending future phases. |
-| Operations | `docs/cli_operations.md` | Tracks CLI entry points and will host runbooks as functionality grows. |
-| Samples | `docs/samples/alpha_vantage/` | Source JSON captured from vendor endpoints, used for documentation and upcoming ingestion tests. |
+| Operations | `docs/cli_operations.md` | Tracks CLI entry points; Phase 2 covers the live Alpha Vantage runner and scheduler. |
+| Samples | `docs/samples/alpha_vantage/` | Source JSON captured from live endpoints, used for documentation and ingestion tests. |
 
 ## Maintenance Rules
 - Keep file names flat within `docs/` unless a new category absolutely requires nesting.

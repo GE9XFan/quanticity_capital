@@ -1,12 +1,12 @@
 # Quanticity Capital Options System – Master Plan
 
 ## Implementation Status (October 2025)
-- 🚧 **Current baseline:** documentation, sample payloads, and pinned dependencies only. No source
-  packages, configuration files, or tests exist yet.
-- 🗂️ **Short-term focus:** rebuild the repository skeleton (see `docs/implementation_plan.md`) before
-  writing ingestion code.
-- 📌 **Future phases:** Alpha Vantage ingestion, IBKR connectivity, analytics, signal engine, and
-  downstream modules remain aspirational until their prerequisites land.
+- ✅ **Baseline delivered:** documentation, Python package skeleton, configuration templates, smoke
+  tests, and a Redis-backed Alpha Vantage ingestion stack covering all planned endpoints.
+- 🚧 **Near-term focus:** scope and implement Phase 3 (Interactive Brokers connectivity) while
+  hardening Redis contracts and CLI ergonomics informed by Phase 2 learnings.
+- 📌 **Future phases:** analytics, signal engine, execution/risk, watchdog, social distribution, and
+  dashboards remain aspirational until IBKR connectivity unlocks their dependencies.
 
 > **A note on scope:** Everything that follows describes the desired end state. Treat the sections
 > below as design targets to revisit once the corresponding code and configuration files exist.
@@ -71,7 +71,7 @@ Key pattern: `scope:module:entity[:context]`. All keys store JSON unless noted. 
 | `raw:alpha_vantage:realtime_options:{symbol}` | `raw:alpha_vantage:realtime_options:SPY` | AV options chain payload | 30s | 10s per symbol |
 | `raw:alpha_vantage:time_series_intraday:{symbol}` | `raw:alpha_vantage:time_series_intraday:NVDA` | AV 1‑minute price feed | 60s | 30s |
 | `raw:alpha_vantage:top_gainers_losers` | `raw:alpha_vantage:top_gainers_losers` | Daily US market movers snapshot | 300s | 180s |
-| `raw:alpha_vantage:news_sentiment:{symbol}` | `raw:alpha_vantage:news_sentiment:AAPL` | AV news sentiment per equity | 900s | 600s |
+| `raw:alpha_vantage:news_sentiment:{symbol}` | `raw:alpha_vantage:news_sentiment:AAPL` | AV news sentiment per equity (no ETFs) | 900s | 600s |
 | `raw:ibkr:quotes:{symbol}` | `raw:ibkr:quotes:SPY` | IBKR top-of-book quotes | 6s | 3s |
 | `raw:ibkr:l2:{symbol}` | `raw:ibkr:l2:SPY` | IBKR level-2 depth snapshot | 10s | 5s rotation |
 | `raw:ibkr:account:summary` | `raw:ibkr:account:summary` | IBKR account metrics | 30s | 15s |
@@ -184,8 +184,9 @@ Budget headroom ≈ 388 req/min reserved for bursts and retries. Scheduler enfor
 - Focus on clarity over automation; automation added only when clearly useful.
 
 ## 17. Ingestion Reset (September 2025)
-- The initial Alpha Vantage implementation overreached (unsupported symbols, ad-hoc Redis tuning, multi-process orchestration). The code has been pared back to a clean baseline so we can rebuild deliberately.
-- New ingestion work must start from the existing specs, with explicit capability mapping (realtime ETFs vs. equity option-chain endpoints), first-class retry/backoff, and measured concurrency.
-- Redis stays simple until benchmarks demand otherwise; the health monitor remains the single source of freshness/back-pressure.
-- Next actions live in `docs/implementation_plan.md` and the intake tables inside
-  `docs/alpha_vantage_endpoints.md`; create new specs alongside the code when work restarts.
+- The initial Alpha Vantage implementation overreached (unsupported symbols, ad-hoc Redis tuning, multi-process orchestration). The code was pared back and rebuilt deliberately during Phase 2.
+- The live ingestion stack now adheres to explicit capability mapping (realtime ETFs vs. equity-only news), first-class retry/backoff, and measured concurrency informed by Redis TTL guardrails.
+- Redis remains intentionally simple until benchmarks demand otherwise; the health monitor continues as the single source of freshness/back-pressure.
+- Next actions focus on Phase 3—extend the same discipline to IBKR connectivity as outlined in
+  `docs/implementation_plan.md` and evolve intake tables in `docs/alpha_vantage_endpoints.md` and
+  forthcoming IBKR equivalents.

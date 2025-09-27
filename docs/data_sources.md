@@ -1,8 +1,8 @@
 # Data Sources & Storage Contracts
 
 This guide captures every external data feed, the exact API calls we make, and the Redis/Postgres
-contracts that store their outputs. Flesh out each subsection with the sanctioned specs and sample
-payloads before implementation resumes.
+contracts that store their outputs. Sections now reflect the live Phase 2 Alpha Vantage ingestion
+stack; future modules will append to this document as they come online.
 
 ### Environment Prefixes
 - All Redis keys are written with environment prefix (`dev:`, `staging:`, `prod:`). Example key
@@ -32,17 +32,23 @@ payloads before implementation resumes.
 
 ## Alpha Vantage
 
--### General Notes
+### General Notes
 - Base documentation: <https://www.alphavantage.co/documentation/>.
 - All requests include `apikey=<ALPHAVANTAGE_API_KEY>` from environment.
 - Retry policy: honor `Information` / `Note` throttling messages; shared ingestion runner handles
   exponential backoff `[1s, 3s, 7s]` and surfaces failures without writing stale payloads.
 - Redis payload envelope must follow the metadata schema defined at the top of this document.
-- Cadence and TTL values are intentionally left `tbd` until we finalize scheduling; populate columns
-  once rate plans are confirmed.
+- Redis TTL guardrails are defined in `config/settings.yaml` (`default_ttl_seconds`, `min_ttl_seconds`,
+  `max_ttl_seconds`). Ingestion writes clamp TTLs within that window and record the applied value
+  inside each payload envelope.
+- The CLI scheduler (`python -m quanticity_capital.main ingest alpha-vantage --schedule`) runs
+  during US trading hours and only refreshes jobs whose Redis TTL is within
+  `--refresh-guard-seconds` (default 120s), preventing unnecessary API calls.
+- All 19 endpoints listed below are active; NEWS_SENTIMENT is constrained to equities while the
+  remaining feeds cover the Techascope universe and macro/fundamental series as configured.
 - Symbol coverage:
   - Options/technical indicators operate on the full Techascope universe (equities + ETFs: SPY, QQQ, IWM included).
-  - News & sentiment excludes ETFs (no responses for SPY/QQQ/IWM).
+  - News & sentiment excludes ETFs (Alpha Vantage does not provide NEWS_SENTIMENT payloads for SPY/QQQ/IWM).
   - Macro endpoints are global and symbol agnostic.
   - Fundamentals cover equities only (exclude SPY/QQQ/IWM unless Alpha Vantage adds support); retain
     raw JSON in Redis with long TTLs rather than Postgres mirroring for now.
@@ -61,17 +67,17 @@ payloads before implementation resumes.
 ### News & Market Movers
 | Endpoint | Alpha Vantage doc | Required params | Sample payload | Redis key | Storage mode | Notes |
 |----------|-------------------|-----------------|----------------|-----------|--------------|-------|
-| TOP_GAINERS_LOSERS | [Top Gainers & Losers](https://www.alphavantage.co/documentation/#gainer-loser) | `function=TOP_GAINERS_LOSERS` | `docs/samples/alpha_vantage/top_gainers_losers/sample.json` | `raw:alpha_vantage:top_gainers_losers` | Overwrite | Aggregate response with sections `top_gainers`, `top_losers`, `most_actively_traded`; no symbol parameter. |
-| NEWS_SENTIMENT | [News & Sentiment](https://www.alphavantage.co/documentation/#news-sentiment) | `function=NEWS_SENTIMENT`, `tickers=<symbol>`, `limit=50`, `sort=LATEST` | `docs/samples/alpha_vantage/news_sentiment/sample.json` | `raw:alpha_vantage:news_sentiment:{symbol}` | Overwrite | Equities only (Alpha Vantage returns no data for SPY/QQQ/IWM). Payload includes `items`, `feed`, sentiment/relevance scores. Maintain array order for downstream analytics. |
+| TOP_GAINERS_LOSERS | [Top Gainers & Losers](https://www.alphavantage.co/documentation/#gainer-loser) | `function=TOP_GAINERS_LOSERS`, `market=<US\|TORONTO\|LONDON>` | `docs/samples/alpha_vantage/top_gainers_losers/US.json` | `raw:alpha_vantage:top_gainers_losers:{market}` | Overwrite | Capture US/Canada/UK snapshots separately; payload includes gainers, losers, most active segments. |
+| NEWS_SENTIMENT | [News & Sentiment](https://www.alphavantage.co/documentation/#news-sentiment) | `function=NEWS_SENTIMENT`, `tickers=<symbol>`, `limit=50`, `sort=LATEST` | `docs/samples/alpha_vantage/news_sentiment/sample.json` | `raw:alpha_vantage:news_sentiment:{symbol}` | Overwrite | Equities only (Alpha Vantage omits SPY/QQQ/IWM). Preserve `items`/`feed` ordering for downstream analytics. |
 
 ### Macro Series
 | Endpoint | Alpha Vantage doc | Required params | Sample payload | Redis key | Storage mode | Notes |
 |----------|-------------------|-----------------|----------------|-----------|--------------|-------|
-| REAL_GDP | [Real GDP](https://www.alphavantage.co/documentation/#real-gdp) | `function=REAL_GDP`, `interval=quarterly` | `docs/samples/alpha_vantage/macro/real_gdp.json` | `raw:alpha_vantage:macro:real_gdp` | Overwrite | Store entire `data` array; include unit info. |
-| CPI | [Consumer Price Index](https://www.alphavantage.co/documentation/#cpi) | `function=CPI`, `interval=monthly` | `docs/samples/alpha_vantage/macro/cpi.json` | `raw:alpha_vantage:macro:cpi` | Overwrite | Preserve `unit` for analytics normalization. |
+| REAL_GDP | [Real GDP](https://www.alphavantage.co/documentation/#real-gdp) | `function=REAL_GDP`, `interval=<quarterly\|annual>` | `docs/samples/alpha_vantage/macro/real_gdp_quarterly.json` | `raw:alpha_vantage:macro:real_gdp:{interval}` | Overwrite | Store entire `data` array; include unit info. Annual cadence augments quarterly base feed. |
+| CPI | [Consumer Price Index](https://www.alphavantage.co/documentation/#cpi) | `function=CPI`, `interval=<monthly\|semiannual>` | `docs/samples/alpha_vantage/macro/cpi_monthly.json` | `raw:alpha_vantage:macro:cpi:{interval}` | Overwrite | Preserve `unit` for analytics normalization; semiannual variant backstops long horizon dashboards. |
 | INFLATION | [Inflation](https://www.alphavantage.co/documentation/#inflation) | `function=INFLATION` | `docs/samples/alpha_vantage/macro/inflation.json` | `raw:alpha_vantage:macro:inflation` | Overwrite | Similar structure to CPI. |
-| TREASURY_YIELD | [Treasury Yield](https://www.alphavantage.co/documentation/#treasury-yield) | `function=TREASURY_YIELD`, `interval=weekly`, `maturity=10year` | `docs/samples/alpha_vantage/macro/treasury_yield_10year.json` | `raw:alpha_vantage:macro:treasury_yield:10year` | Overwrite | Capture `maturity` in key context. |
-| FEDERAL_FUNDS_RATE | [Federal Funds Rate](https://www.alphavantage.co/documentation/#interest-rate) | `function=FEDERAL_FUNDS_RATE`, `interval=monthly` | `docs/samples/alpha_vantage/macro/federal_funds_rate.json` | `raw:alpha_vantage:macro:federal_funds_rate` | Overwrite | Data array with monthly rate. |
+| TREASURY_YIELD | [Treasury Yield](https://www.alphavantage.co/documentation/#treasury-yield) | `function=TREASURY_YIELD`, `interval=<daily\|weekly\|monthly>`, `maturity=<2year\|10year\|30year>` | `docs/samples/alpha_vantage/macro/treasury_yield_weekly_10year.json` | `raw:alpha_vantage:macro:treasury_yield:{interval}:{maturity}` | Overwrite | Capture `interval` and `maturity` in key context so multiple tenors coexist. |
+| FEDERAL_FUNDS_RATE | [Federal Funds Rate](https://www.alphavantage.co/documentation/#interest-rate) | `function=FEDERAL_FUNDS_RATE`, `interval=<daily\|weekly\|monthly>` | `docs/samples/alpha_vantage/macro/federal_funds_rate_weekly.json` | `raw:alpha_vantage:macro:federal_funds_rate:{interval}` | Overwrite | Data array stored per interval; scheduler refreshes as TTL nears expiry. |
 
 ### Fundamentals
 | Endpoint | Alpha Vantage doc | Required params | Sample payload | Redis key | Storage mode | Notes |

@@ -140,7 +140,7 @@ subscribing and writing outputs.
   specify exchange per symbol (no SMART). If L2 data missing, fall back to quotes-only mode with
   degraded flag and note last rotation timestamp.
 
-#### VPIN / Order Flow Toxicity (Phase 2)
+#### VPIN / Order Flow Toxicity (Phase 4 target)
 - **Inputs:**
   - IBKR tick stream (`raw:ibkr:ticks:{symbol}`) providing trade prints with size, price, side if
     available.

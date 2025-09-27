@@ -1,7 +1,5 @@
-# Baseline configuration scaffold for the Quanticity Capital platform.
-# Duplicate this file to `config/settings.yaml` and tailor the sections below.
 runtime:
-  log_level: ${LOG_LEVEL:-INFO}
+  log_level: INFO
   data_dir: data/
   cache_dir: .cache/
 
@@ -17,7 +15,7 @@ services:
     max_ttl_seconds: 7776000
 
 features:
-  enable_mock_data: true
+  enable_mock_data: false
   enable_backtesting: false
 
 ingestion:
@@ -47,5 +45,13 @@ ingestion:
         contexts:
           - symbol: NVDA
             quarter: 2024Q3
+          - symbol: NVDA
+            quarter: 2024Q4
           - symbol: AAPL
-            quarter: 2024Q3
+            quarter: 2024Q4
+          - symbol: MSFT
+            quarter: 2024Q4
+          - symbol: TSLA
+            quarter: 2024Q4
+          - symbol: NVDA
+            quarter: 2025Q1

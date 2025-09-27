@@ -16,13 +16,17 @@ anchor future engineering work. Documentation remains the primary guide for phas
 - Wired pytest defaults in `pyproject.toml` and added `tests/test_imports.py` to ensure the package
   imports and the CLI exits cleanly.
 
-## Phase 2 – Alpha Vantage Ingestion (next)
-- Scope one endpoint at a time using `docs/alpha_vantage_endpoints.md` as the intake form.
-- Build a shared ingestion runner that handles retry/backoff and writes payload envelopes to Redis.
-- Capture verification samples alongside the implementation (store them under `docs/samples/`).
-- Document Redis key contracts in `docs/data_sources.md` as they become real.
+## Phase 2 – Alpha Vantage Ingestion (✅ complete)
+- Implemented the full 19-endpoint catalog with NEWS_SENTIMENT constrained to equities and stored
+  representative payloads under `docs/samples/`.
+- Delivered a shared ingestion runner with retry/backoff, metadata envelopes, and TTL guardrails
+  mastered in `config/settings.yaml`.
+- Wired runner, scheduler, and orchestrator tiers so CLI runs and scheduled jobs persist payloads to
+  Redis while emitting health metrics for tests.
+- Updated operational docs (`docs/data_sources.md`, `docs/cli_operations.md`) to mirror the live
+  contracts and controls.
 
-## Phase 3 – Interactive Brokers Connectivity (future)
+## Phase 3 – Interactive Brokers Connectivity (next)
 - Implement quotes, level-2 depth, account bundle, and executions using ib_insync.
 - Mirror each stream’s Redis contract in `docs/data_sources.md` and note operational runbooks in
   `docs/modules.md`.

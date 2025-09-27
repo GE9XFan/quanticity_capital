@@ -7,7 +7,8 @@ package in editable mode, and run the verification commands.
 ## Target Platform
 - macOS Sonoma (13/14+) on Apple Silicon or Intel.
 - Python 3.11.x from python.org or Homebrew.
-- Redis and PostgreSQL are still optional; keep notes handy for when ingestion work restarts.
+- Redis (local or remote) is required for the live Alpha Vantage ingestion runner; PostgreSQL remains
+  optional until analytics and execution modules land.
 
 ## First-Time Bootstrap
 1. **Install Python 3.11**
@@ -45,13 +46,15 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
 python -m pip install -e .[dev]
-pytest
+ pytest
 ```
 
 ## Verification Commands
 - `pytest` — runs the repository smoke suite (currently validates package import + CLI execution).
 - `python -m quanticity_capital.main --help` — prints CLI usage for manual checks.
 - `quanticity-capital --version` — exercises the console script entry point.
+- `python -m quanticity_capital.main ingest alpha-vantage --dry-run` — confirms job planning without
+  vendor calls once `ALPHAVANTAGE_API_KEY` and `REDIS_URL` are configured.
 
 ## Current Repository Layout
 - `src/quanticity_capital/` — Python package stub with logging bootstrap and CLI entrypoint.
@@ -76,6 +79,8 @@ regressions.
 ## Environment Variables
 - `.env.example` captures placeholders for Alpha Vantage, Redis, and IBKR credentials. Copy it to
   `.env` locally and replace the `changeme` values when secrets are issued.
+- At minimum set `ALPHAVANTAGE_API_KEY=<your key>` and `REDIS_URL=redis://localhost:6379/0` (or
+  equivalent) before running ingestion commands.
 - `config/settings.example.yaml` centralises runtime knobs (log level, cache directories, service
   endpoints). Duplicate it to `config/settings.yaml` and customise as modules come online.
 - Update this section whenever new variables or config blocks are introduced.

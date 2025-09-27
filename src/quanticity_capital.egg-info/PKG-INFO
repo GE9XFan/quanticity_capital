@@ -1,8 +1,23 @@
+Metadata-Version: 2.4
+Name: quanticity-capital
+Version: 0.1.0
+Summary: Core library and CLI scaffolding for the Quanticity Capital data platform.
+Author: Quanticity Capital Team
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: httpx==0.28.1
+Requires-Dist: redis==6.4.0
+Requires-Dist: pydantic==2.11.9
+Requires-Dist: python-dotenv==1.1.1
+Requires-Dist: structlog==25.4.0
+Requires-Dist: PyYAML==6.0.3
+Provides-Extra: dev
+Requires-Dist: pytest==8.4.2; extra == "dev"
+
 # Quanticity Capital
 
-Seed repository for the Quanticity Capital data platform. The current baseline ships a Python
-package skeleton, configuration templates, smoke tests, and a Redis-backed Alpha Vantage ingestion
-stack so future phases can build on a working foundation.
+Seed repository for the Quanticity Capital data platform. The current baseline ships a Python package
+skeleton, configuration templates, and smoke tests so future phases can build on a working foundation.
 
 ## Quick Start
 ```bash
@@ -19,15 +34,8 @@ quanticity-capital --help
 quanticity-capital --version
 ```
 
-Optional: exercise the ingestion runner after exporting `ALPHAVANTAGE_API_KEY` and pointing
-`REDIS_URL` at a local instance.
-```bash
-python -m quanticity_capital.main ingest alpha-vantage --dry-run
-python -m quanticity_capital.main ingest alpha-vantage --max-iterations 1
-```
-
 ## Repository Layout
-- `src/quanticity_capital/` — package with logging bootstrap, CLI entry point, and ingestion runner.
+- `src/quanticity_capital/` — package stub with logging bootstrap and CLI entry point.
 - `config/` — configuration templates ready to copy into runtime deployments.
 - `tests/` — smoke tests that ensure imports and CLI execution succeed.
 - `scripts/` — reserved for automation that will arrive in later phases.
@@ -36,9 +44,8 @@ python -m quanticity_capital.main ingest alpha-vantage --max-iterations 1
 - `requirements.txt` — pinned mirror for legacy installation workflows.
 
 ## Roadmap
-Implementation is tracked in `docs/implementation_plan.md`; Phase 2 (Alpha Vantage ingestion) is
-complete and Phase 3 (Interactive Brokers connectivity) is next. Refer to the documentation index
-(`docs/README.md`) for the full knowledge base.
+Implementation is tracked in `docs/implementation_plan.md`; Phase 2 focuses on Alpha Vantage
+ingestion. Refer to the documentation index (`docs/README.md`) for the full knowledge base.
 
 ## Contributing
 - Keep dependencies pinned in both `pyproject.toml` and `requirements.txt`.

@@ -1,0 +1,2 @@
+[console_scripts]
+quanticity-capital = quanticity_capital.main:main
