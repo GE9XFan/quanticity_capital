@@ -1,9 +1,7 @@
+.PHONY: install requirements clean-venv
 
-alerts-tail:
-	redis-cli XREAD BLOCK 0 STREAMS stream:alerts $ > /tmp/alerts.log
+install requirements:
+	python -m pip install -r requirements.txt
 
-alerts-last:
-	redis-cli --scan --pattern state:alerts:last:* | xargs -n1 -I{} sh -c 'echo {}; redis-cli GET {}' | jq .
-
-health:
-	uv run python -m src.observability.cli heartbeat | jq .
+clean-venv:
+	rm -rf .venv

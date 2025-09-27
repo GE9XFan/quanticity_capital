@@ -1,103 +1,92 @@
 # Local Environment & Tooling Guide
 
+The repository now ships a minimal Python package, configuration templates, and a smoke test suite to
+prove the build pipeline. Follow the steps below to spin up a virtual environment, install the
+package in editable mode, and run the verification commands.
+
 ## Target Platform
 - macOS Sonoma (13/14+) on Apple Silicon or Intel.
 - Python 3.11.x from python.org or Homebrew.
-- Redis (local service) reachable via `redis://127.0.0.1:6379/0`.
-- PostgreSQL 16 installed locally with superuser access.
+- Redis and PostgreSQL are still optional; keep notes handy for when ingestion work restarts.
 
 ## First-Time Bootstrap
 1. **Install Python 3.11**
    ```bash
    brew install python@3.11
    ```
-   or download the official installer from python.org and ensure `python3.11` is on PATH.
+   or download the installer from python.org and ensure `python3.11` is on PATH.
 
-2. **Create virtual environment at repo root**
+2. **Create and activate a virtual environment at the repo root**
    ```bash
    python3.11 -m venv .venv
    source .venv/bin/activate
    python -m pip install --upgrade pip setuptools wheel
    ```
 
-3. **Copy environment template**
+3. **Install the package (editable) plus dev extras**
+   ```bash
+   python -m pip install -e .[dev]
+   ```
+   This pulls the dependencies declared in `pyproject.toml` and the pytest extra. A pinned
+   `requirements.txt` remains for compatibility with older tooling; keep it in sync whenever
+   dependencies change.
+
+4. **Copy environment templates (optional today)**
    ```bash
    cp .env.example .env
+   cp config/settings.example.yaml config/settings.yaml
    ```
-   Fill in API keys and connection strings as they become available.
+   Populate the copied files with real credentials when upstream services are available.
 
-4. **Install base dependencies**
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
-
-## Bootstrap Command Reference (September 2025 Reset)
+### Quick Reference
 ```bash
 # From repo root
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
-cp .env.example .env  # now populated locally (ALPHAVANTAGE_API_KEY=demo, etc.)
-python -m pip install -r requirements.txt
-python --version      # expect Python 3.11.x inside venv
-which python          # should resolve to .venv/bin/python
+python -m pip install -e .[dev]
+pytest
 ```
 
-### Repository Layout (Phase 1)
-- `src/core/`: configuration, logging, Redis helpers.
-- `src/ingestion/`: schedulers and vendor ingestion modules (skeleton today).
-- `src/analytics/`: analytics configuration loader and future workers.
-- `config/`: runtime manifests (`runtime.yml`, `analytics.yml`, vendor configs as they arrive).
-- `tests/`: pytest suite covering configuration + scheduler scaffolding.
-- `docs/`: runbooks, setup notes, verification artefacts.
+## Verification Commands
+- `pytest` — runs the repository smoke suite (currently validates package import + CLI execution).
+- `python -m quanticity_capital.main --help` — prints CLI usage for manual checks.
+- `quanticity-capital --version` — exercises the console script entry point.
 
-Redis task queues currently live under `queue:analytics` (list). Enqueued payload schema:
-```json
-{
-  "job": {"name": "refresh_high_frequency", "type": "analytics.refresh.high_frequency", ...},
-  "queued_at": "2025-09-26T12:00:00Z",
-  "retry_count": 0
-}
-```
-Workers must pop from the queue, process analytics, and record status/metrics per the governance
-guide.
+## Current Repository Layout
+- `src/quanticity_capital/` — Python package stub with logging bootstrap and CLI entrypoint.
+- `config/` — configuration templates (`settings.example.yaml`) ready to copy into real deployments.
+- `tests/` — smoke tests that ensure the package imports and CLI returns successfully.
+- `scripts/` — reserved for future automation; contains a placeholder `.gitkeep` file today.
+- `docs/` — planning material, data source references, and operational notes.
+- `pyproject.toml` — project metadata, dependencies, and pytest configuration.
+- `requirements.txt` — pinned dependency mirror for pure `pip` workflows.
+- `Makefile` — convenience wrapper for dependency installation (unchanged).
 
 ## Daily Workflow
 ```bash
 cd /Users/michaelmerrick/quanticity_capital
 source .venv/bin/activate
-python -m pip install --upgrade pip  # optional weekly
-python -m pip install -r requirements.txt
+python -m pip install -e .[dev]
+pytest
 ```
+Run `pytest` after meaningful changes; the suite finishes in milliseconds and guards against import
+regressions.
 
-## Python Dependencies
-- Maintain a single `requirements.txt` with pinned versions (e.g., `httpx==0.27.0`).
-- When adding a library: install into the venv, run `pip freeze | grep <package>` to capture the exact version, update `requirements.txt`, and annotate purpose in-line using comments sparingly.
-- Reinstalling requirements should never downgrade unintentionally; review `pip` output for warnings.
+## Environment Variables
+- `.env.example` captures placeholders for Alpha Vantage, Redis, and IBKR credentials. Copy it to
+  `.env` locally and replace the `changeme` values when secrets are issued.
+- `config/settings.example.yaml` centralises runtime knobs (log level, cache directories, service
+  endpoints). Duplicate it to `config/settings.yaml` and customise as modules come online.
+- Update this section whenever new variables or config blocks are introduced.
 
 ## Tooling Norms
-- **Formatting/Linting:** Default to `ruff` if/when added; do not introduce `black` or `pre-commit` without prior agreement.
-- **Testing:** Use `pytest` for unit/integration tests. Invoke with `pytest -q` from repo root.
-- **Logging:** All scripts should rely on structured logging helpers once defined under `src/core/logging.py` (placeholder).
-- **CLI helpers:** document recurring commands in `docs/reference/cli_workflow.md` (to be created).
-
-## Redis & Postgres Expectations
-- Redis runs locally with persistence disabled (default configuration). Keys should include TTL metadata; see `docs/data_sources.md` for naming conventions.
-- PostgreSQL 16 local database `quanticity_capital` with user/password stored in `.env`. Future migrations handled via Alembic.
-
-### Environment Variables
-- `APP_ENV`: environment prefix (`dev`/`staging`/`prod`). Scheduler/workers will prepend this to
-  Redis keys once multi-env support is enabled.
-- `ANALYTICS_CONFIG_PATH`: override for `config/analytics.yml` when testing alternative manifests.
-- Maintain `.env.example` in lockstep with any new variables and document defaults/rationales here.
-
-## Verification Checklist
-- `python --version` → `Python 3.11.x` inside venv.
-- `redis-cli PING` → `PONG`.
-- `psql -d quanticity_capital -c '\dt'` → succeeds (empty list acceptable initially).
-- `pytest` passes (when tests exist).
+- Stick with `pip` + `venv` until we formalise broader tooling. Introducing `uv`, `poetry`, etc.
+  requires an update here.
+- Keep dependencies pinned in both `pyproject.toml` and `requirements.txt` to avoid drift.
+- Capture recurring operational scripts in `scripts/` once they exist.
 
 ## Ongoing Maintenance
-- Keep `.env.example` updated when new environment variables are required.
-- Run `pip list --outdated` monthly to plan dependency upgrades; bump deliberately with changelog review.
-- Capture troubleshooting notes (install errors, version conflicts) in `docs/setup.md` under new headings as they arise rather than scattering across other docs.
+- Refresh this guide when the repository layout or bootstrap flow evolves.
+- Log troubleshooting notes (install errors, version mismatches) in a new subsection so the next
+  developer can pick up quickly.

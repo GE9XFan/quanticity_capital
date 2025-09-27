@@ -1,0 +1,18 @@
+# Baseline configuration scaffold for the Quanticity Capital platform.
+# Duplicate this file to `config/settings.yaml` and tailor the sections below.
+runtime:
+  log_level: ${LOG_LEVEL:-INFO}
+  data_dir: data/
+  cache_dir: .cache/
+
+services:
+  alphavantage:
+    base_url: https://www.alphavantage.co
+    api_key_env: ALPHAVANTAGE_API_KEY
+  redis:
+    url_env: REDIS_URL
+    default_ttl_seconds: 3600
+
+features:
+  enable_mock_data: true
+  enable_backtesting: false

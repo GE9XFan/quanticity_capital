@@ -1,9 +1,15 @@
 # Quanticity Capital Options System – Master Plan
 
-## Implementation Status (September 2025)
-- ✅ **Phase 2 – Alpha Vantage ingestion**: realtime options, intraday base feed, top gainers/losers, news sentiment, macro series, and fundamentals (calendar, estimates, statements, cash flow, shares, transcripts) are live and verified (`config/alpha_vantage.yml`, `docs/alpha_vantage_endpoints.md`). Fresh captures dated 2025-09-26 reside under `docs/verification/`.
-- ✅ **Phase 3 – IBKR ingestion**: quotes, level-2 depth, account summary, positions, account/per-position PnL, and executions ingest via `config/ibkr.yml` + `src/ingestion/ibkr/`. Stream tracker (`docs/ibkr_streams.md`) lists all feeds as `done` with capture references.
-- 📌 **Next up**: Phase 4 analytics (per implementation plan). All ingestion prerequisites are satisfied; scope definition and `config/analytics.yml` are the immediate action items.
+## Implementation Status (October 2025)
+- 🚧 **Current baseline:** documentation, sample payloads, and pinned dependencies only. No source
+  packages, configuration files, or tests exist yet.
+- 🗂️ **Short-term focus:** rebuild the repository skeleton (see `docs/implementation_plan.md`) before
+  writing ingestion code.
+- 📌 **Future phases:** Alpha Vantage ingestion, IBKR connectivity, analytics, signal engine, and
+  downstream modules remain aspirational until their prerequisites land.
+
+> **A note on scope:** Everything that follows describes the desired end state. Treat the sections
+> below as design targets to revisit once the corresponding code and configuration files exist.
 
 ## 1. Purpose and Vision
 Build a MacBook-first automated options trading stack that ingests live data, performs institutional-grade analytics, generates and executes signals, and publishes outputs across trading and social channels. The system must remain understandable, modular, and redis-centric, with Redis acting as the data exchange hub between independently deployable modules orchestrated by a single `main.py` runtime.
@@ -181,4 +187,5 @@ Budget headroom ≈ 388 req/min reserved for bursts and retries. Scheduler enfor
 - The initial Alpha Vantage implementation overreached (unsupported symbols, ad-hoc Redis tuning, multi-process orchestration). The code has been pared back to a clean baseline so we can rebuild deliberately.
 - New ingestion work must start from the existing specs, with explicit capability mapping (realtime ETFs vs. equity option-chain endpoints), first-class retry/backoff, and measured concurrency.
 - Redis stays simple until benchmarks demand otherwise; the health monitor remains the single source of freshness/back-pressure.
-- Next actions live in `docs/specs/ingestion_alpha_vantage.md` and will drive the fresh implementation.
+- Next actions live in `docs/implementation_plan.md` and the intake tables inside
+  `docs/alpha_vantage_endpoints.md`; create new specs alongside the code when work restarts.
