@@ -1,0 +1,77 @@
+contract: order_state
+version: v1.0.0
+summary: Execution order status updates emitted by Layer 5 for consumption by risk, AI, and reporting services.
+owners:
+  - role: Execution Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required:
+    - order_id
+    - decision_id
+    - timestamp
+    - status
+    - instrument
+    - quantities
+  properties:
+    order_id:
+      type: string
+      description: Unique identifier assigned by OMS.
+    decision_id:
+      type: string
+      description: Reference to originating `trade_decision.decision_id`.
+    timestamp:
+      type: string
+      format: date-time
+      description: UTC timestamp of the status update.
+    status:
+      type: string
+      enum: [created, submitted, presubmitted, filled, partially_filled, cancelled, rejected, inactive]
+    instrument:
+      type: object
+      required: [symbol, expiry, strike, option_type]
+      properties:
+        symbol:
+          type: string
+        expiry:
+          type: string
+          format: date
+        strike:
+          type: number
+        option_type:
+          type: string
+          enum: [call, put]
+    quantities:
+      type: object
+      required: [requested, filled, remaining]
+      properties:
+        requested:
+          type: number
+        filled:
+          type: number
+        remaining:
+          type: number
+    price:
+      type: object
+      properties:
+        limit:
+          type: number
+        avg_fill:
+          type: number
+    exchange:
+      type: string
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: execution.order_state
+  retention: "30d hot storage, 7y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+    description: Validate order state payloads before release.
+  - name: lifecycle-integration
+    tool: pytest tests/layer5/test_order_state_pipeline.py
+    description: Ensure OMS events conform during simulated lifecycle.

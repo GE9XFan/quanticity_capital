@@ -1,0 +1,52 @@
+contract: liquidity_stress
+version: v1.0.0
+summary: Liquidity stress metrics produced by Layer 3 to inform signals, risk, and AI oversight.
+owners:
+  - role: Analytics Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [symbol, timestamp, stress_score, metrics]
+  properties:
+    symbol:
+      type: string
+    timestamp:
+      type: string
+      format: date-time
+    stress_score:
+      type: number
+      minimum: 0
+      maximum: 100
+      description: Composite liquidity stress index (0=calm, 100=severe).
+    metrics:
+      type: object
+      properties:
+        spread_bps:
+          type: number
+        depth_ratio:
+          type: number
+        ofi:
+          type: number
+        queue_depletion:
+          type: number
+        histogram_zscore:
+          type: number
+    alerts:
+      type: array
+      items:
+        type: string
+      description: Active alert codes triggered by stress conditions.
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: analytics.liquidity_stress
+  retention: "30d hot storage, 1y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: stress-backtest
+    tool: pytest tests/layer3/test_liquidity_stress_engine.py
+    description: Validate stress computations against historical DOM data.

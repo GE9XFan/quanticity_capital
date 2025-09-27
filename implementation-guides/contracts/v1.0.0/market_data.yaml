@@ -1,0 +1,66 @@
+contract: market_data
+version: v1.0.0
+summary: Underlying spot price and technical indicator stream consumed by analytics and risk layers.
+owners:
+  - role: Market Data Lead
+    contact: md-lead@example.com
+schema:
+  type: object
+  required: [symbol, timestamp, price, indicators]
+  properties:
+    symbol:
+      type: string
+      description: Underlying ticker symbol
+    timestamp:
+      type: string
+      format: date-time
+      description: UTC timestamp of the observation
+    price:
+      type: object
+      required: [last, bid, ask]
+      properties:
+        last:
+          type: number
+        bid:
+          type: number
+        ask:
+          type: number
+    indicators:
+      type: object
+      properties:
+        vwap:
+          type: number
+        macd:
+          type: object
+          properties:
+            macd:
+              type: number
+            signal:
+              type: number
+            histogram:
+              type: number
+        bbands:
+          type: object
+          properties:
+            upper:
+              type: number
+            middle:
+              type: number
+            lower:
+              type: number
+    quality_flags:
+      type: array
+      items:
+        type: string
+      description: List of applied data quality rules (e.g., DELAYED_FEED)
+transport:
+  format: json
+  topic: ingestion.marketdata.live
+  retention: "5d hot storage, 180d cold archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+    description: Enforce schema before publishing payloads.
+  - name: ingestion-latency-monitor
+    tool: observability dashboard
+    description: Ensure arrival-to-publish latency <= 250ms p95.

@@ -1,0 +1,51 @@
+contract: vpin_series
+version: v1.0.0
+summary: Volume-synchronized probability of informed trading (VPIN) outputs produced by Layer 3.
+owners:
+  - role: Analytics Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [symbol, timestamp, vpin, bucket_fill_pct]
+  properties:
+    symbol:
+      type: string
+    timestamp:
+      type: string
+      format: date-time
+    vpin:
+      type: number
+      description: Current VPIN value (0-1 typical range).
+    bucket_fill_pct:
+      type: number
+      description: Percentage completion of the active volume bucket.
+    imbalance:
+      type: number
+      description: Buy-sell volume imbalance for the completed bucket.
+    rolling_stats:
+      type: object
+      properties:
+        mean:
+          type: number
+        std:
+          type: number
+        zscore:
+          type: number
+    alerts:
+      type: array
+      items:
+        type: string
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: analytics.vpin
+  retention: "30d hot storage, 1y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: toxicity-simulation
+    tool: pytest tests/layer3/test_vpin_series.py
+    description: Confirm VPIN calculations align with reference implementation.

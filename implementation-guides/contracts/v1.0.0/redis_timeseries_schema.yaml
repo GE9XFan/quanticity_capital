@@ -1,0 +1,51 @@
+contract: redis_timeseries_schema
+version: v1.0.0
+summary: Canonical Redis TimeSeries key conventions and compaction rules for market data and analytics metrics.
+owners:
+  - role: Storage Lead
+    contact: storage@example.com
+schema:
+  key_pattern:
+    description: "{env}:{layer}:{symbol}:{metric}:{granularity}"
+    examples:
+      - "dev:ingestion:SPY:option_chain:1s"
+      - "prod:analytics:SPX:greeks:1m"
+  labels:
+    env: [dev, staging, prod]
+    layer: [ingestion, analytics, risk]
+    symbol: ticker symbol or asset identifier
+    metric: domain-specific metric name
+    granularity: [1s, 1m, 5m, 1h, 1d]
+  retention:
+    1s: "7d"
+    1m: "30d"
+    5m: "90d"
+    1h: "365d"
+    1d: "1825d"
+  duplicate_policy: last
+  chunk_size: "4KB"
+  compression: active
+rules:
+  - source: 1s
+    target: 1m
+    aggregation: avg
+    bucket: 60000
+  - source: 1m
+    target: 5m
+    aggregation: avg
+    bucket: 300000
+  - source: 5m
+    target: 1h
+    aggregation: avg
+    bucket: 3600000
+  - source: 1h
+    target: 1d
+    aggregation: avg
+    bucket: 86400000
+validation:
+  - name: bootstrap
+    tool: scripts/bootstrap_redis_timeseries.py
+    description: Ensure rule creation is idempotent across environments.
+  - name: monitoring
+    tool: appendices/monitoring-guide.md
+    description: Verify compaction metrics in observability dashboard.

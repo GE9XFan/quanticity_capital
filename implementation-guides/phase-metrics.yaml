@@ -1,0 +1,95 @@
+phases:
+  phase-1-data:
+    description: "Data ingestion + storage foundation"
+    metrics:
+      - name: ingestion-latency-ms
+        target: "p95 <= 350"
+        dashboard: "analytics.grafana/ingestion_overview"
+        runbook: "phase-1-data/layer-1-ingestion/runbooks/alphavantage-outage.md"
+        evidence: "scripts/stream_alpha.py output + Grafana snapshot"
+      - name: redis-uptime
+        target: ">= 99.5% during soak"
+        dashboard: "analytics.grafana/redis_health"
+        runbook: "phase-1-data/layer-2-storage/backup-strategy.md"
+        evidence: "Redis observability report"
+      - name: contract-coverage
+        target: "100% of published schemas documented"
+        dashboard: "implementation-guides/contracts/version-history.md"
+        runbook: "phase-1-data/layer-1-ingestion/runbooks/schema-drift.md"
+        evidence: "contracts/v1.0.0 updates"
+  phase-2-analytics:
+    description: "Analytics stack and signal generation readiness"
+    metrics:
+      - name: greeks-compute-latency-ms
+        target: "p95 <= 500 per batch"
+        dashboard: "analytics.grafana/greeks_performance"
+        runbook: "phase-3 TBD"
+        evidence: "analytics metrics dashboard"
+      - name: backtest-rigor
+        target: ">= 3 scenarios per strategy with documented results"
+        dashboard: "reports/performance/index"
+        runbook: "phase-4 TBD"
+        evidence: "reports/performance/"
+      - name: model-validation-notes
+        target: "Completed validation dossier for each live model"
+        dashboard: "ai_overseer/validation_status"
+        runbook: "phase-3 TBD"
+        evidence: "ai_overseer validation logs"
+  phase-3-execution:
+    description: "Execution + risk controls in production posture"
+    metrics:
+      - name: order-reject-rate
+        target: "< 0.5% non-user rejects"
+        dashboard: "execution.grafana/order_health"
+        runbook: "phase-3 TBD"
+        evidence: "execution metrics report"
+      - name: risk-breach-count
+        target: "0 critical limit violations during soak"
+        dashboard: "risk.grafana/limit_monitor"
+        runbook: "phase-3 TBD"
+        evidence: "risk_manager audit log"
+      - name: failover-drill-pass
+        target: ">= 1 successful failover test"
+        dashboard: "execution.grafana/failover"
+        runbook: "phase-3 TBD"
+        evidence: "runbooks/failover drill notes"
+  phase-4-ai-reporting:
+    description: "AI overseer, reporting, and social distribution"
+    metrics:
+      - name: ai-decision-sla
+        target: "p95 decision latency <= 3s"
+        dashboard: "ai.grafana/decision_queue"
+        runbook: "phase-4 TBD"
+        evidence: "AI metrics dashboard"
+      - name: report-automation-coverage
+        target: "All scheduled reports auto-generated twice consecutively"
+        dashboard: "reports/status_board"
+        runbook: "phase-4 TBD"
+        evidence: "reports/pdf"
+      - name: alert-delivery-success
+        target: ">= 99% delivery success per channel"
+        dashboard: "social.grafana/delivery"
+        runbook: "phase-4 TBD"
+        evidence: "social broadcast logs"
+  phase-5-observability:
+    description: "Monitoring dashboard and auxiliary analytics"
+    metrics:
+      - name: dashboard-coverage
+        target: "All critical metrics represented with freshness < 60s"
+        dashboard: "dashboard/front_end/status"
+        runbook: "appendices/monitoring-guide.md"
+        evidence: "React dashboard deployment"
+      - name: appendix-completeness
+        target: "All appendices cross-referenced by at least two guides"
+        dashboard: "implementation-guides/appendices/"
+        runbook: "VALIDATION_CHECKLIST.md"
+        evidence: "appendices/"
+      - name: knowledge-refresh-cadence
+        target: "Standing quarterly review scheduled and staffed"
+        dashboard: "timeline.yaml"
+        runbook: "VALIDATION_CHECKLIST.md"
+        evidence: "timeline.yaml milestone"
+review_board:
+  members:
+    - name: "Michael Merrick"
+      role: "Approver"

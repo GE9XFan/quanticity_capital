@@ -1,0 +1,52 @@
+contract: social_alert
+version: v1.0.0
+summary: Alert messages distributed to social and messaging channels by Layer 9.
+owners:
+  - role: Communications Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [alert_id, timestamp, channel, audience, content]
+  properties:
+    alert_id:
+      type: string
+    timestamp:
+      type: string
+      format: date-time
+    channel:
+      type: string
+      enum: [discord, telegram, email, twitter, reddit]
+    audience:
+      type: string
+      enum: [internal_ops, investors, premium_subscribers, public]
+    content:
+      type: string
+      description: Message body (markdown/plain text depending on channel).
+    attachments:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+          url:
+            type: string
+          description:
+            type: string
+    source_event:
+      type: string
+      description: Upstream event ID (trade, report, narrative).
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: social.alert
+  retention: "365d"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: delivery-test
+    tool: pytest tests/layer9/test_social_delivery.py
+    description: Ensure alerts map correctly to channel formatting rules.

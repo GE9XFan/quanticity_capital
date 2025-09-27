@@ -1,0 +1,155 @@
+layer_1_data_ingestion:
+  upstream: []
+  downstream:
+    - layer_2_storage
+    - layer_3_analytics
+    - layer_7_ai
+  contracts:
+    publishes:
+      - option_chain:v1.0.0
+      - market_data:v1.0.0
+      - technical_indicators:v1.0.0
+    consumes: []
+  breaking_changes: []
+
+layer_2_storage:
+  upstream:
+    - layer_1_data_ingestion
+  downstream:
+    - layer_3_analytics
+    - layer_4_signals
+    - layer_6_risk
+  contracts:
+    publishes:
+      - redis_timeseries_schema:v1.0.0
+    consumes:
+      - option_chain:v1.0.0
+      - market_data:v1.0.0
+  breaking_changes: []
+
+layer_3_analytics:
+  upstream:
+    - layer_1_data_ingestion
+    - layer_2_storage
+  downstream:
+    - layer_4_signals
+    - layer_5_execution
+    - layer_7_ai
+  contracts:
+    publishes:
+      - greeks:v1.0.0
+      - liquidity_stress:v1.0.0
+      - regime_state:v1.0.0
+      - vpin_series:v1.0.0
+    consumes:
+      - option_chain:v1.0.0
+      - market_data:v1.0.0
+      - redis_timeseries_schema:v1.0.0
+  breaking_changes: []
+
+layer_4_signals:
+  upstream:
+    - layer_3_analytics
+    - layer_2_storage
+  downstream:
+    - layer_5_execution
+    - layer_7_ai
+    - layer_8_reporting
+  contracts:
+    publishes:
+      - trade_decision:v1.0.0
+      - backtest_results:v1.0.0
+    consumes:
+      - greeks:v1.0.0
+      - liquidity_stress:v1.0.0
+      - regime_state:v1.0.0
+  breaking_changes: []
+
+layer_5_execution:
+  upstream:
+    - layer_4_signals
+    - layer_3_analytics
+  downstream:
+    - layer_6_risk
+    - layer_7_ai
+    - layer_8_reporting
+  contracts:
+    publishes:
+      - order_state:v1.0.0
+      - execution_fill:v1.0.0
+    consumes:
+      - trade_decision:v1.0.0
+      - risk_limit:v1.0.0
+  breaking_changes: []
+
+layer_6_risk:
+  upstream:
+    - layer_5_execution
+    - layer_3_analytics
+    - layer_2_storage
+  downstream:
+    - layer_5_execution
+    - layer_7_ai
+    - layer_8_reporting
+  contracts:
+    publishes:
+      - risk_limit:v1.0.0
+      - position_snapshot:v1.0.0
+    consumes:
+      - order_state:v1.0.0
+      - execution_fill:v1.0.0
+      - greeks:v1.0.0
+  breaking_changes: []
+
+layer_7_ai_overseer:
+  upstream:
+    - layer_3_analytics
+    - layer_4_signals
+    - layer_5_execution
+    - layer_6_risk
+  downstream:
+    - layer_5_execution
+    - layer_8_reporting
+    - layer_9_social
+  contracts:
+    publishes:
+      - ai_verdict:v1.0.0
+      - narrative_block:v1.0.0
+    consumes:
+      - trade_decision:v1.0.0
+      - risk_limit:v1.0.0
+      - position_snapshot:v1.0.0
+      - execution_fill:v1.0.0
+  breaking_changes: []
+
+layer_8_reporting:
+  upstream:
+    - layer_4_signals
+    - layer_5_execution
+    - layer_6_risk
+    - layer_7_ai_overseer
+  downstream:
+    - layer_9_social
+  contracts:
+    publishes:
+      - report_artifact:v1.0.0
+      - dashboard_asset:v1.0.0
+    consumes:
+      - trade_decision:v1.0.0
+      - ai_verdict:v1.0.0
+      - narrative_block:v1.0.0
+      - position_snapshot:v1.0.0
+  breaking_changes: []
+
+layer_9_social:
+  upstream:
+    - layer_8_reporting
+    - layer_7_ai_overseer
+  downstream: []
+  contracts:
+    publishes:
+      - social_alert:v1.0.0
+    consumes:
+      - report_artifact:v1.0.0
+      - narrative_block:v1.0.0
+  breaking_changes: []

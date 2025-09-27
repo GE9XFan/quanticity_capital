@@ -1,0 +1,43 @@
+contract: dashboard_asset
+version: v1.0.0
+summary: Packaged dashboard components (widgets, charts) generated for the monitoring UI and downstream consumers.
+owners:
+  - role: Reporting Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [asset_id, timestamp, widget_type, data_source]
+  properties:
+    asset_id:
+      type: string
+    timestamp:
+      type: string
+      format: date-time
+    widget_type:
+      type: string
+      description: Visualization type (e.g., line_chart, heatmap, table).
+    data_source:
+      type: string
+      description: Reference to underlying dataset or API endpoint.
+    parameters:
+      type: object
+      description: Render parameters (symbol, timeframe, thresholds).
+    refresh_interval_ms:
+      type: integer
+    storage_location:
+      type: string
+      description: Path/URL where the asset is stored or cached.
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: reporting.dashboard_asset
+  retention: "180d"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: render-test
+    tool: pytest tests/layer8/test_dashboard_assets.py
+    description: Ensure assets render with supplied parameters.

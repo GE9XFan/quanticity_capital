@@ -1,0 +1,53 @@
+contract: narrative_block
+version: v1.0.0
+summary: AI-generated narrative segments distributed to reporting and social layers.
+owners:
+  - role: AI Oversight Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [block_id, timestamp, section, audience, content]
+  properties:
+    block_id:
+      type: string
+      description: Unique identifier for the narrative block.
+    timestamp:
+      type: string
+      format: date-time
+    section:
+      type: string
+      description: Narrative section identifier (e.g., executive_summary, regime_update).
+    audience:
+      type: string
+      enum: [internal_ops, investors, premium_subscribers, public]
+    tone:
+      type: string
+      description: Tone profile applied (e.g., institutional, retail).
+    content:
+      type: string
+      description: Markdown-formatted narrative text.
+    sentiment_score:
+      type: number
+      description: Sentiment score associated with the content.
+    data_sources:
+      type: array
+      items:
+        type: string
+      description: Underlying data sources referenced by the AI model.
+    review_status:
+      type: string
+      enum: [auto_approved, pending_review, rejected]
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: ai.narrative_block
+  retention: "365d for compliance"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: moderation-test
+    tool: pytest tests/layer7/test_narrative_moderation.py
+    description: Ensure required review flags propagate correctly.

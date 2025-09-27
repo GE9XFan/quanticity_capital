@@ -1,0 +1,88 @@
+contract: position_snapshot
+version: v1.0.0
+summary: Real-time portfolio state emitted by Layer 6 and consumed by risk, AI, and reporting components.
+owners:
+  - role: Risk Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required:
+    - snapshot_id
+    - timestamp
+    - positions
+    - totals
+  properties:
+    snapshot_id:
+      type: string
+      description: Unique identifier for the snapshot event.
+    timestamp:
+      type: string
+      format: date-time
+    positions:
+      type: array
+      items:
+        type: object
+        required: [symbol, expiry, strike, option_type, quantity, cost_basis, market_price]
+        properties:
+          symbol:
+            type: string
+          expiry:
+            type: string
+            format: date
+          strike:
+            type: number
+          option_type:
+            type: string
+            enum: [call, put]
+          quantity:
+            type: number
+          cost_basis:
+            type: number
+          market_price:
+            type: number
+          greeks:
+            type: object
+            properties:
+              delta:
+                type: number
+              gamma:
+                type: number
+              vega:
+                type: number
+              theta:
+                type: number
+          unrealized_pnl:
+            type: number
+    totals:
+      type: object
+      required: [realized_pnl, unrealized_pnl, net_delta, net_vega, gross_exposure]
+      properties:
+        realized_pnl:
+          type: number
+        unrealized_pnl:
+          type: number
+        net_delta:
+          type: number
+        net_vega:
+          type: number
+        gross_exposure:
+          type: number
+    alerts:
+      type: array
+      items:
+        type: string
+      description: Active risk alerts tied to the snapshot.
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: positions.snapshot
+  retention: "365d primary, 7y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: reconciliation-test
+    tool: pytest tests/layer6/test_position_reconciliation.py
+    description: Ensure snapshot matches broker statements.

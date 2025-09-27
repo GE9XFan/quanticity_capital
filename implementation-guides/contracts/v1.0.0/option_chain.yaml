@@ -1,0 +1,79 @@
+contract: option_chain
+version: v1.0.0
+summary: Normalized option quote payload emitted by Layer 1 data ingestion services.
+owners:
+  - role: Data Engineering Lead
+    contact: data-lead@example.com
+schema:
+  type: object
+  required:
+    - symbol
+    - underlying
+    - expiry
+    - strike
+    - option_type
+    - timestamp
+    - quote
+  properties:
+    symbol:
+      type: string
+      description: Trading symbol for the option contract (e.g., SPY241018C00550000)
+    underlying:
+      type: string
+      description: Root symbol (e.g., SPY)
+    expiry:
+      type: string
+      format: date
+      description: Expiration date in YYYY-MM-DD
+    strike:
+      type: number
+      description: Option strike price
+    option_type:
+      type: string
+      enum: [call, put]
+    timestamp:
+      type: string
+      format: date-time
+      description: Exchange timestamp of the quote event (UTC)
+    quote:
+      type: object
+      required: [bid, ask, last, volume, open_interest]
+      properties:
+        bid:
+          type: number
+        ask:
+          type: number
+        last:
+          type: number
+        volume:
+          type: integer
+        open_interest:
+          type: integer
+    greeks:
+      type: object
+      description: Optional analytics placeholders populated by downstream layers.
+      properties:
+        delta:
+          type: number
+        gamma:
+          type: number
+        vega:
+          type: number
+        theta:
+          type: number
+        rho:
+          type: number
+    metadata:
+      type: object
+      description: Additional tags (tenor bucket, data source, quality flags).
+      additionalProperties: true
+transport:
+  format: json
+  topic: ingestion.quotes.alpha
+  retention: "7d hot storage, 90d cold archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+    description: Validate sample payloads before deployment.
+  - name: integration-test
+    tool: pytest tests/layer1/test_option_normalizer.py

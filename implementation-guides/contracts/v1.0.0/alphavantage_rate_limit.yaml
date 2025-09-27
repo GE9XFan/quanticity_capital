@@ -1,0 +1,38 @@
+contract: alphavantage_rate_limit
+version: v1.0.0
+summary: Configuration contract for AlphaVantage token bucket rate limiting shared across ingestion services.
+owners:
+  - role: Data Platform Lead
+    contact: platform@example.com
+schema:
+  type: object
+  required: [requests_per_minute, burst_size, refill_interval_ms, redis_namespace]
+  properties:
+    requests_per_minute:
+      type: integer
+      minimum: 1
+      description: Maximum average request rate allowed against AlphaVantage.
+    burst_size:
+      type: integer
+      minimum: 1
+      description: Additional tokens permitted for short bursts.
+    refill_interval_ms:
+      type: integer
+      description: Millisecond interval to refill tokens.
+    redis_namespace:
+      type: string
+      description: Key prefix used for shared bucket state.
+    jitter_ms:
+      type: object
+      properties:
+        min:
+          type: integer
+        max:
+          type: integer
+      description: Randomized backoff for retry scheduling.
+    metrics_namespace:
+      type: string
+      description: Telemetry namespace for emitted metrics.
+integration_notes:
+  - "Update config/trading_params.yaml::alpha_vantage.rate_limit to conform to this schema."
+  - "Scripts must validate configuration using scripts/validate_contract.py before deployment."

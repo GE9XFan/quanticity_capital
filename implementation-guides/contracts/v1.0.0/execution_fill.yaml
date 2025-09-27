@@ -1,0 +1,62 @@
+contract: execution_fill
+version: v1.0.0
+summary: Fill confirmations returned by broker integration and broadcast to risk, AI oversight, and reporting components.
+owners:
+  - role: Execution Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required:
+    - fill_id
+    - order_id
+    - decision_id
+    - timestamp
+    - quantity
+    - price
+    - execution_venue
+  properties:
+    fill_id:
+      type: string
+      description: Broker-provided execution identifier.
+    order_id:
+      type: string
+      description: OMS order ID linked to this fill.
+    decision_id:
+      type: string
+      description: `trade_decision.decision_id` reference.
+    timestamp:
+      type: string
+      format: date-time
+      description: Broker execution timestamp in UTC.
+    quantity:
+      type: number
+      description: Quantity filled in base units (contracts).
+    price:
+      type: number
+      description: Executed price.
+    side:
+      type: string
+      enum: [buy, sell]
+    commission:
+      type: number
+      description: Commission or fees applied to the fill.
+    execution_venue:
+      type: string
+      description: Exchange or venue identifier.
+    liquidity_flag:
+      type: string
+      description: Broker liquidity designation when available.
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: execution.fills
+  retention: "7y immutable archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: reconciliation-test
+    tool: pytest tests/layer5/test_execution_reconciliation.py
+    description: Verify fills reconcile with broker flex reports.

@@ -1,0 +1,86 @@
+contract: trade_decision
+version: v1.0.0
+summary: Signal engine trade decision payload provided to execution and AI overseer layers.
+owners:
+  - role: Signal Engineering Lead
+    contact: signals@example.com
+schema:
+  type: object
+  required:
+    - decision_id
+    - timestamp
+    - strategy
+    - action
+    - instrument
+    - rationale
+    - risk_checks
+  properties:
+    decision_id:
+      type: string
+      description: UUID identifying the decision
+    timestamp:
+      type: string
+      format: date-time
+    strategy:
+      type: string
+      description: Strategy identifier
+    action:
+      type: object
+      required: [side, quantity, order_type]
+      properties:
+        side:
+          type: string
+          enum: [buy, sell]
+        quantity:
+          type: number
+        order_type:
+          type: string
+          enum: [market, limit, stop, stop_limit]
+        limit_price:
+          type: number
+          description: Optional for limit/stop orders
+    instrument:
+      type: object
+      required: [symbol, expiry, strike, option_type]
+      properties:
+        symbol:
+          type: string
+        expiry:
+          type: string
+          format: date
+        strike:
+          type: number
+        option_type:
+          type: string
+          enum: [call, put]
+    rationale:
+      type: object
+      properties:
+        signals:
+          type: array
+          items:
+            type: string
+        probability:
+          type: number
+        expected_value:
+          type: number
+    risk_checks:
+      type: object
+      properties:
+        limit_status:
+          type: string
+          enum: [pass, warn, fail]
+        notes:
+          type: string
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: signals.trade_decision
+  retention: "30d for audit"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: dry-run-execution
+    tool: pytest tests/layer4/test_decision_pipeline.py

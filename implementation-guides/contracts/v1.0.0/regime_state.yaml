@@ -1,0 +1,46 @@
+contract: regime_state
+version: v1.0.0
+summary: Hidden Markov regime classifier output distributed by Layer 3 for signal scaling and AI narratives.
+owners:
+  - role: Analytics Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required: [timestamp, symbol, regime, posterior]
+  properties:
+    timestamp:
+      type: string
+      format: date-time
+    symbol:
+      type: string
+      description: Underlying or portfolio identifier.
+    regime:
+      type: string
+      description: Decoded state label (e.g., high_vol, low_liquidity).
+    posterior:
+      type: object
+      additionalProperties:
+        type: number
+      description: Probability distribution across regimes.
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: Highest posterior probability.
+    features:
+      type: object
+      description: Optional feature snapshot used for regime inference.
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: analytics.regime_state
+  retention: "90d hot storage, 1y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: regime-backtest
+    tool: pytest tests/layer3/test_regime_classifier.py
+    description: Ensure posterior probabilities sum to 1 and match historical labels.

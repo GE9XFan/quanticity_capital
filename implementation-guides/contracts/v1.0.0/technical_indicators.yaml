@@ -1,0 +1,50 @@
+contract: technical_indicators
+version: v1.0.0
+summary: Technical indicator series (MACD, VWAP, Bollinger Bands) emitted by Layer 1 for analytics enrichment.
+owners:
+  - role: Quant Research Lead
+    contact: quant-research@example.com
+schema:
+  type: object
+  required: [symbol, timestamp, indicators]
+  properties:
+    symbol:
+      type: string
+    timestamp:
+      type: string
+      format: date-time
+    indicators:
+      type: object
+      properties:
+        macd:
+          type: object
+          properties:
+            macd:
+              type: number
+            signal:
+              type: number
+            histogram:
+              type: number
+        vwap:
+          type: number
+        bbands:
+          type: object
+          properties:
+            upper:
+              type: number
+            middle:
+              type: number
+            lower:
+              type: number
+    source:
+      type: string
+      description: Upstream API identifier
+transport:
+  format: json
+  topic: ingestion.indicators.alpha
+  retention: "7d hot storage"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: analytics-integration
+    tool: pytest tests/layer3/test_indicator_cache.py

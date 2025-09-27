@@ -1,0 +1,71 @@
+contract: risk_limit
+version: v1.0.0
+summary: Risk limits and controls propagated from Layer 6 to execution, signals, and AI oversight modules.
+owners:
+  - role: Risk Lead
+    name: Michael Merrick
+    contact: michael.merrick@quanticitycapital.com
+schema:
+  type: object
+  required:
+    - limit_id
+    - timestamp
+    - scope
+    - constraints
+  properties:
+    limit_id:
+      type: string
+      description: Unique identifier for the risk control instance.
+    timestamp:
+      type: string
+      format: date-time
+      description: Time the limit snapshot was generated.
+    scope:
+      type: object
+      required: [level, symbol]
+      properties:
+        level:
+          type: string
+          enum: [portfolio, strategy, symbol, position]
+        symbol:
+          type: string
+        expiry:
+          type: string
+          format: date
+        strategy:
+          type: string
+    constraints:
+      type: array
+      items:
+        type: object
+        required: [metric, threshold, comparator]
+        properties:
+          metric:
+            type: string
+            description: Metric name (e.g., net_delta, max_position, var_95).
+          comparator:
+            type: string
+            enum: [<=, >=, <, >, ==]
+          threshold:
+            type: number
+          hard_limit:
+            type: boolean
+            default: false
+          notes:
+            type: string
+    status:
+      type: string
+      enum: [active, warning, breached]
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: risk.limits
+  retention: "90d operational, 7y archive"
+validation:
+  - name: schema-validation
+    tool: scripts/validate_contract.py
+  - name: enforcement-test
+    tool: pytest tests/layer6/test_risk_limit_enforcement.py
+    description: Confirm execution gating respects published limits.

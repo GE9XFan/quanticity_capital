@@ -1,0 +1,64 @@
+contract: ai_verdict
+version: v1.0.0
+summary: AI overseer verdict and rationale returned to execution, risk, and reporting layers.
+owners:
+  - role: AI Governance Lead
+    contact: ai-governance@example.com
+schema:
+  type: object
+  required:
+    - verdict_id
+    - timestamp
+    - decision_id
+    - verdict
+    - confidence
+    - rationale
+  properties:
+    verdict_id:
+      type: string
+      description: Unique identifier for the AI decision output
+    timestamp:
+      type: string
+      format: date-time
+    decision_id:
+      type: string
+      description: Reference to `trade_decision.decision_id`
+    verdict:
+      type: string
+      enum: [approve, reject, escalate]
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
+    rationale:
+      type: string
+      description: Natural language explanation or summary
+    required_actions:
+      type: array
+      items:
+        type: string
+    overrides:
+      type: object
+      description: Human override metadata if applicable
+      properties:
+        reviewer:
+          type: string
+        status:
+          type: string
+          enum: [pending, approved, declined]
+        notes:
+          type: string
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: ai.verdict
+  retention: "365d for compliance"
+validation:
+  - name: policy-check
+    tool: pytest tests/layer7/test_ai_policy.py
+    description: Ensure verdicts comply with governance policies.
+  - name: latency-monitor
+    tool: observability dashboard
+    description: Verify decisions return within SLA.

@@ -1,0 +1,68 @@
+contract: greeks
+version: v1.0.0
+summary: Greeks analytics payload produced by Layer 3 for consumption by signals, execution, and risk modules.
+owners:
+  - role: Quant Analytics Lead
+    contact: quant-lead@example.com
+schema:
+  type: object
+  required:
+    - symbol
+    - expiry
+    - strike
+    - option_type
+    - timestamp
+    - greeks
+  properties:
+    symbol:
+      type: string
+      description: Underlying ticker
+    expiry:
+      type: string
+      format: date
+    strike:
+      type: number
+    option_type:
+      type: string
+      enum: [call, put]
+    timestamp:
+      type: string
+      format: date-time
+    greeks:
+      type: object
+      required: [delta, gamma, vega, theta]
+      properties:
+        delta:
+          type: number
+        gamma:
+          type: number
+        vega:
+          type: number
+        theta:
+          type: number
+        rho:
+          type: number
+        vanna:
+          type: number
+        volga:
+          type: number
+    implied_volatility:
+      type: number
+      description: Implied volatility solved with BSM model.
+    data_source:
+      type: string
+      description: Analytics engine identifier (e.g., vollib_numba)
+    metadata:
+      type: object
+      additionalProperties: true
+transport:
+  format: json
+  topic: analytics.greeks
+  retention: "3d hot storage, archived with backtest artifacts"
+validation:
+  - name: deterministic-recalc
+    tool: pytest tests/layer3/test_greeks_engine.py
+    description: Ensure repeated calculations with same inputs produce identical outputs.
+  - name: sla-monitor
+    tool: observability dashboard
+    description: Confirm compute latency SLA (<=500ms p95) observed.
