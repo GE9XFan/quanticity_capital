@@ -36,23 +36,39 @@ step-by-step instructions as they are fleshed out.
 | IBKR executions stream | `stream:ibkr:executions` | append-only | `load_recent_executions` (planned) | Needed for realized volatility/VPIN. | Stream persists events; consumers track IDs for idempotency. |
 
 ### Configuration Files
-- `config/analytics.yml`: master enable flags, per-metric parameters, Redis key overrides, and
-  staleness tolerances. Example:
+- `config/analytics.yml`: scheduler-driven manifest of analytics jobs. Top-level `defaults`
+  provide shared `cadence_seconds` and `enabled` flags; each entry in `jobs` must define `name`,
+  `type`, `cadence_seconds`, `symbols`, and `metrics`. Example:
   ```yaml
-  sources:
-    realtime_options:
-      redis_key: raw:alpha_vantage:realtime_options:{symbol}
-      max_age_seconds: 45
-  metrics:
-    dealer_greeks:
-      enabled: true
-      output_ttl: 20
-      aggregation: dealer_assumption
-    volatility_regime:
-      enabled: false  # toggle once inputs validated
+  defaults:
+    cadence_seconds: 10
+    enabled: true
+  jobs:
+    - name: refresh_high_frequency
+      type: analytics.refresh.high_frequency
+      cadence_seconds: 10
+      symbols: ["SPY", "QQQ", "IWM"]
+      metrics: ["dealer_greeks", "liquidity_snapshot"]
+    - name: refresh_macro_daily
+      type: analytics.refresh.macro_daily
+      enabled: false
+      cadence_seconds: 3600
+      symbols: ["MACRO"]
+      metrics: ["macro_overview"]
   ```
 - `config/macros.yml`: enumerates macro series and mapping to symbol groups.
 - `config/weights.yml` (planned): risk summary weighting per metric/asset class.
+- Override paths by setting `ANALYTICS_CONFIG_PATH` in the environment; the scheduler reads that
+  value during bootstrap so staging experiments do not disturb the default manifest.
+
+Scheduler runtime emits job payloads into the Redis list `queue:analytics` (JSON objects with `job`
+metadata, `queued_at`, and `retry_count`). Future analytics workers should consume from that queue,
+acknowledge items explicitly, and persist completion status back to Redis/postgres per the
+governance spec.
+
+When `APP_ENV` is set, the orchestrator will prefix queue and key names (e.g.,
+`dev:queue:analytics`) to isolate environments; workers must respect that convention when
+subscribing and writing outputs.
 
 ### Runtime Flow
 1. Scheduler dispatches `analytics.refresh.high_frequency` every 10 seconds for symbols requiring

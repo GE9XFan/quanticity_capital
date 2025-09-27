@@ -1,0 +1,16 @@
+# Baseline runtime configuration. Environment variables override these defaults.
+runtime:
+  redis:
+    url: "${REDIS_URL:-redis://127.0.0.1:6379/0}"
+  logging:
+    level: "${LOG_LEVEL:-INFO}"
+  analytics:
+    enabled: false
+    config_path: "${ANALYTICS_CONFIG_PATH:-config/analytics.yml}"
+    max_workers: 4
+    task_queue_size: 64
+    stale_after_seconds: 45
+  features:
+    scheduler: true
+    health_monitor: true
+    analytics: false

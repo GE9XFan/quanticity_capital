@@ -31,6 +31,37 @@
    python -m pip install -r requirements.txt
    ```
 
+## Bootstrap Command Reference (September 2025 Reset)
+```bash
+# From repo root
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+cp .env.example .env  # now populated locally (ALPHAVANTAGE_API_KEY=demo, etc.)
+python -m pip install -r requirements.txt
+python --version      # expect Python 3.11.x inside venv
+which python          # should resolve to .venv/bin/python
+```
+
+### Repository Layout (Phase 1)
+- `src/core/`: configuration, logging, Redis helpers.
+- `src/ingestion/`: schedulers and vendor ingestion modules (skeleton today).
+- `src/analytics/`: analytics configuration loader and future workers.
+- `config/`: runtime manifests (`runtime.yml`, `analytics.yml`, vendor configs as they arrive).
+- `tests/`: pytest suite covering configuration + scheduler scaffolding.
+- `docs/`: runbooks, setup notes, verification artefacts.
+
+Redis task queues currently live under `queue:analytics` (list). Enqueued payload schema:
+```json
+{
+  "job": {"name": "refresh_high_frequency", "type": "analytics.refresh.high_frequency", ...},
+  "queued_at": "2025-09-26T12:00:00Z",
+  "retry_count": 0
+}
+```
+Workers must pop from the queue, process analytics, and record status/metrics per the governance
+guide.
+
 ## Daily Workflow
 ```bash
 cd /Users/michaelmerrick/quanticity_capital
@@ -53,6 +84,12 @@ python -m pip install -r requirements.txt
 ## Redis & Postgres Expectations
 - Redis runs locally with persistence disabled (default configuration). Keys should include TTL metadata; see `docs/data_sources.md` for naming conventions.
 - PostgreSQL 16 local database `quanticity_capital` with user/password stored in `.env`. Future migrations handled via Alembic.
+
+### Environment Variables
+- `APP_ENV`: environment prefix (`dev`/`staging`/`prod`). Scheduler/workers will prepend this to
+  Redis keys once multi-env support is enabled.
+- `ANALYTICS_CONFIG_PATH`: override for `config/analytics.yml` when testing alternative manifests.
+- Maintain `.env.example` in lockstep with any new variables and document defaults/rationales here.
 
 ## Verification Checklist
 - `python --version` → `Python 3.11.x` inside venv.
