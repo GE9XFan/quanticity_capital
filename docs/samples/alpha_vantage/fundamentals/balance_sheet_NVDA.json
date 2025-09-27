@@ -1,0 +1,19 @@
+{
+  "symbol": "NVDA",
+  "annualReports": [
+    {
+      "fiscalDateEnding": "2025-01-31",
+      "reportedCurrency": "USD",
+      "totalAssets": "120000000000",
+      "totalLiabilities": "30000000000"
+    }
+  ],
+  "quarterlyReports": [
+    {
+      "fiscalDateEnding": "2025-07-28",
+      "reportedCurrency": "USD",
+      "totalAssets": "125000000000",
+      "totalLiabilities": "31000000000"
+    }
+  ]
+}

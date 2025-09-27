@@ -1,0 +1,28 @@
+{
+  "items": "50",
+  "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+  "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+  "feed": [
+    {
+      "title": "How To Trade SPY, Top Tech Stocks Using Technical Analysis",
+      "url": "https://www.benzinga.com/Opinion/25/09/47887435/how-to-trade-spy-top-tech-stocks-using-technical-analysis-29",
+      "time_published": "20250926T125001",
+      "authors": ["RIPS"],
+      "summary": "Today's economic calendar for Friday, September 26, 2025, wraps up the week with several key releases.",
+      "banner_image": "https://www.benzinga.com/next-assets/images/schema-image-default.png",
+      "source": "Benzinga",
+      "category_within_source": "Trading",
+      "source_domain": "www.benzinga.com",
+      "topics": [
+        {"topic": "Economy - Monetary", "relevance_score": "0.451494"},
+        {"topic": "Financial Markets", "relevance_score": "0.214378"}
+      ],
+      "overall_sentiment_score": -0.009797,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {"ticker": "MSFT", "relevance_score": "0.109289", "ticker_sentiment_score": "-0.074284", "ticker_sentiment_label": "Neutral"},
+        {"ticker": "NVDA", "relevance_score": "0.145364", "ticker_sentiment_score": "0.031081", "ticker_sentiment_label": "Neutral"}
+      ]
+    }
+  ]
+}

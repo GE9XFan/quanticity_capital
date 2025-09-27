@@ -1,0 +1,28 @@
+{
+  "endpoint": "Realtime Options",
+  "message": "success",
+  "data": [
+    {
+      "contractID": "TSLA250926C00050000",
+      "symbol": "TSLA",
+      "expiration": "2025-09-26",
+      "strike": "50.00",
+      "type": "call",
+      "last": "377.19",
+      "mark": "374.95",
+      "bid": "372.05",
+      "bid_size": "54",
+      "ask": "377.85",
+      "ask_size": "15",
+      "volume": "2",
+      "open_interest": "15",
+      "date": "2025-09-25",
+      "implied_volatility": "9.99024",
+      "delta": "0.91899",
+      "gamma": "0.00000",
+      "theta": "-0.00908",
+      "vega": "0.00001",
+      "rho": "0.00137"
+    }
+  ]
+}

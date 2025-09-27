@@ -1,0 +1,10 @@
+{
+  "name": "Inflation Rate",
+  "interval": "monthly",
+  "unit": "percent",
+  "data": [
+    {"date": "2025-08-01", "value": "2.10"},
+    {"date": "2025-07-01", "value": "2.05"},
+    {"date": "2025-06-01", "value": "2.03"}
+  ]
+}

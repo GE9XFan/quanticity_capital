@@ -1,0 +1,31 @@
+{
+  "symbol": "NVDA",
+  "status": "success",
+  "data": [
+    {
+      "date": "2025-07-31",
+      "shares_outstanding_diluted": "24650000000",
+      "shares_outstanding_basic": "24610000000"
+    },
+    {
+      "date": "2025-04-30",
+      "shares_outstanding_diluted": "24640000000",
+      "shares_outstanding_basic": "24600000000"
+    },
+    {
+      "date": "2025-01-31",
+      "shares_outstanding_diluted": "24630000000",
+      "shares_outstanding_basic": "24590000000"
+    },
+    {
+      "date": "2024-10-31",
+      "shares_outstanding_diluted": "24620000000",
+      "shares_outstanding_basic": "24580000000"
+    },
+    {
+      "date": "2024-07-31",
+      "shares_outstanding_diluted": "24610000000",
+      "shares_outstanding_basic": "24570000000"
+    }
+  ]
+}
