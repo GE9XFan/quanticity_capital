@@ -1,60 +1,74 @@
 milestones:
+  - id: P0
+    name: "Phase 0 – Environment Foundations"
+    start: 2025-09-29
+    target_completion: 2025-10-03
+    owner: "Michael Merrick (Platform Engineering Lead)"
+    confidence: 0.75
+    dependencies: []
   - id: P1
     name: "Phase 1 – Data Foundation"
-    start: 2024-10-07
-    target_completion: 2024-11-01
+    start: 2025-10-06
+    target_completion: 2025-11-21
     owner: "Michael Merrick (Data Engineering Lead)"
-    confidence: 0.6
-    dependencies: []
+    confidence: 0.65
+    dependencies: [P0]
   - id: P2
     name: "Phase 2 – Analytics & Signals"
-    start: 2024-11-04
-    target_completion: 2024-12-13
+    start: 2025-11-24
+    target_completion: 2026-01-23
     owner: "Michael Merrick (Quant Lead)"
-    confidence: 0.5
+    confidence: 0.55
     dependencies: [P1]
   - id: P3
     name: "Phase 3 – Execution & Risk"
-    start: 2024-12-16
-    target_completion: 2025-01-31
+    start: 2026-01-26
+    target_completion: 2026-03-13
     owner: "Michael Merrick (Trading Systems Lead)"
-    confidence: 0.45
+    confidence: 0.5
     dependencies: [P2]
   - id: P4
     name: "Phase 4 – AI, Reporting, Social"
-    start: 2025-02-03
-    target_completion: 2025-03-14
+    start: 2026-03-16
+    target_completion: 2026-05-01
     owner: "Michael Merrick (AI Programs Lead)"
-    confidence: 0.4
+    confidence: 0.45
     dependencies: [P2]
   - id: P5
     name: "Phase 5 – Observability & Dashboards"
-    start: 2025-03-17
-    target_completion: 2025-04-18
+    start: 2026-05-04
+    target_completion: 2026-06-12
     owner: "Michael Merrick (Platform Ops Lead)"
-    confidence: 0.5
+    confidence: 0.55
     dependencies: [P1, P3]
 checkpoints:
-  - name: "Architecture alignment review"
-    due: 2024-10-18
+  - name: "Phase 0 readiness sign-off"
+    due: 2025-10-03
     owner: "Michael Merrick"
     deliverables:
-      - "Layer 1 & Layer 2 guides drafted"
+      - "Agents playbook acknowledgement recorded"
+      - "Phase 0 live API evidence archived"
+      - "Monitoring stack baseline running"
+  - name: "Architecture alignment review"
+    due: 2025-10-17
+    owner: "Michael Merrick"
+    deliverables:
+      - "Layer 1 & Layer 2 guides updated"
       - "Initial contracts approved"
   - name: "Pre-production readiness"
-    due: 2025-01-10
+    due: 2026-01-16
     owner: "Michael Merrick"
     deliverables:
       - "Execution failover drill report"
       - "Risk controls validation"
   - name: "AI oversight gate"
-    due: 2025-02-28
+    due: 2026-04-10
     owner: "Michael Merrick"
     deliverables:
       - "AI prompt audit"
       - "Reporting automation sign-off"
   - name: "Operational launch"
-    due: 2025-04-25
+    due: 2026-06-26
     owner: "Michael Merrick"
     deliverables:
       - "Dashboard sign-off"

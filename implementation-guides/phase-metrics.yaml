@@ -1,4 +1,27 @@
 phases:
+  phase-0-foundations:
+    description: "Environment, secrets, and telemetry baseline"
+    metrics:
+      - name: agents-acknowledged
+        target: "All onboarding participants sign agents playbook acknowledgement"
+        dashboard: "docs/evidence/phase0/agents_ack.md"
+        runbook: "agents.md"
+        evidence: "docs/evidence/phase0/agents_ack.md"
+      - name: live-api-checks
+        target: "AlphaVantage + IBKR ping scripts succeed within 1 run"
+        dashboard: "dashboards/environment_foundations.json"
+        runbook: "phase-0-foundations/README.md"
+        evidence: "docs/evidence/phase0/"
+      - name: monitoring-uptime
+        target: ">= 4h continuous uptime for Redis + monitoring stack"
+        dashboard: "analytics.grafana/environment_overview"
+        runbook: "phase-0-foundations/README.md"
+        evidence: "docker compose logs snapshot"
+      - name: secrets-audit
+        target: "Credentials checksums recorded in secrets manager"
+        dashboard: "docs/security/audit-log.md"
+        runbook: "phase-0-foundations/README.md"
+        evidence: "secrets manager entry reference"
   phase-1-data:
     description: "Data ingestion + storage foundation"
     metrics:

@@ -11,7 +11,7 @@
 Instrument Layer 1 ingestion with metrics, logs, and alerts aligned to the Monitoring Guide, ensuring dashboards surface key health signals.
 
 ## Success Criteria
-- [ ] Metrics emitted: `data_ingestion.rate_limit.*`, `data_ingestion.alpha_vantage.latency_ms`, `data_ingestion.ibkr.disconnects`
+- [ ] Metrics emitted: `data_ingestion.rate_limit.*`, `data_ingestion.alpha_vantage.latency_ms`, `data_ingestion.ibkr.disconnects`, `data_ingestion.indicators.cache_hit_rate`
 - [ ] Alerts configured with runbook links for AlphaVantage outage and IBKR reconnect
 - [ ] Dashboard panels created/updated in `analytics.grafana/ingestion_overview`
 - [ ] Test `pytest tests/layer1/test_stream_health_checks.py` validates heartbeat instrumentation

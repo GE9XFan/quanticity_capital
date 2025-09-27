@@ -11,11 +11,19 @@ Use this checklist before promoting any phase or layer to the next milestone. Ev
 - [ ] Security/credential rotation reviewed
 - [ ] Risks and open questions logged with owners
 
+## Phase 0 – Environment Foundations
+- [ ] Agents playbook (`agents.md`) reviewed and acknowledgement stored in `docs/evidence/phase0/agents_ack.md`
+- [ ] Live AlphaVantage and IBKR ping scripts executed with evidence stored in `docs/evidence/phase0/`
+- [ ] Redis + monitoring stack run for >= 4 consecutive hours (attach docker compose logs)
+- [ ] Credentials, secrets, and config templates updated and checked into repo without secrets leakage
+- [ ] Grafana `Environment Foundations` dashboard imported and referenced in `phase-0-foundations/README.md`
+
 ## Phase 1 – Data Foundation
-- [ ] AlphaVantage & IBKR ingestion guides in `phase-1-data/layer-1-ingestion/` finalized
+- [ ] AlphaVantage guides (`alphavantage-setup.md`, `time-series-intraday.md`, runbooks) finalized with live API evidence
+- [ ] IBKR ingestion guide updated with parity checks against AlphaVantage data
 - [ ] Redis TimeSeries storage patterns validated against retention requirements (CARD_003, CARD_007)
 - [ ] Schema registry (`schemas/`) populated and referenced by analytics consumers
-- [ ] Rate limiting and retry strategies tested against sandbox environments
+- [ ] Rate limiting, retry, and indicator cache strategies tested against live vendors (attach logs)
 
 ## Phase 2 – Analytics & Signals
 - [ ] Greeks engine benchmarks recorded and meet SLA
@@ -42,6 +50,9 @@ Use this checklist before promoting any phase or layer to the next milestone. Ev
 - [ ] Quarterly review calendar accepted by review board
 
 ## Contract & Build Card Mapping
+- **Phase 0 – Foundations**
+  - Artifacts: environment scripts, credentials templates, monitoring baseline
+  - Build Cards: `CARD_000`
 - **Layer 1 – Data Ingestion**
   - Contracts: `option_chain`, `market_data`, `technical_indicators`, `alphavantage_rate_limit`
   - Build Cards: `CARD_001`, `CARD_002`, `CARD_004`, `CARD_005`, `CARD_006`

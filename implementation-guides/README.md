@@ -16,7 +16,9 @@ phase-metrics.yaml         # Key success criteria per phase
 timeline.yaml              # Milestones, owners, and confidence bands
 VALIDATION_CHECKLIST.md    # Promotion checklist for phase exits
 LAYER_TEMPLATE.md          # Living doc template for any layer
+../agents.md               # Agent & automation governance playbook (must read first)
 
+phase-0-foundations/       # Environment & prerequisite checklist before Phase 1
 phase-1-data/              # Detailed guides for data acquisition & storage
 build-cards/               # Task-level build instructions
 contracts/                 # Canonical interface definitions
@@ -31,6 +33,8 @@ appendices/                # Shared references (config, monitoring, troubleshoot
 - **Repeatable Validation:** each Build Card must specify verification steps so QA can replay success criteria.
 
 ## Next Actions
-1. Populate the layer-specific READMEs under `phase-1-data/` using the template.
-2. Register initial Build Cards for the immediate ingestion and storage backlog.
-3. Fill in contract schemas in `contracts/v1.0.0/` and log lineage in the version history.
+1. Read `agents.md` to understand roles, escalation paths, and evidence requirements.
+2. Confirm `phase-0-foundations/README.md` is executed and evidenced before touching ingestion code.
+3. Populate the layer-specific READMEs under `phase-1-data/` using the template.
+4. Register build cards and keep them aligned with the architecture requirements (no ad-hoc scope drift).
+5. Fill in contract schemas in `contracts/v1.0.0/` and log lineage in the version history.

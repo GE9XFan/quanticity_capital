@@ -5,7 +5,7 @@
 status: PLANNING
 completion: 0
 blockers: []
-last_updated: 2024-10-07
+last_updated: 2025-09-27
 owner: Michael Merrick
 ```
 
@@ -29,6 +29,7 @@ owner: Michael Merrick
 - Key capabilities: premium AlphaVantage integration, concurrency-aware rate limiting, IBKR real-time feeds, DTO normalization, observability hooks.
 
 ## 3. Preconditions & Environment
+- Phase 0 environment baseline complete with evidence in `docs/evidence/phase0/`.
 - Redis Stack with TimeSeries module available for rate limiter state.
 - AlphaVantage premium credentials stored in secret manager.
 - IBKR TWS/Gateway sandbox or paper account accessible.
@@ -41,27 +42,31 @@ owner: Michael Merrick
 - Changes tracked via `dependencies.lock` entry `layer_1_data_ingestion`.
 
 ## 5. Implementation Plan
-- CARD_001 – AlphaVantage Rate Limiter (Redis token bucket).
-- CARD_002 – Option Chain Normalizer (DTO + validation).
-- CARD_003 – Redis TimeSeries Schema Definition (cross-layer dependency).
-- CARD_004 – IBKR Tick Stream Harmonization (TBD).
-- CARD_005 – Streaming Observability (TBD).
+- CARD_000 – Complete Phase 0 environment baseline before starting ingestion work.
+- CARD_001 – AlphaVantage Client Integration (real-time, historical, intraday helpers).
+- CARD_002 – Option Chain Normalizer (DTO + validation, Greeks handling).
+- CARD_004 – IBKR Tick Stream Harmonization (live + historical tick parity).
+- CARD_005 – Indicator & Intraday Cache Service (BBands, VWAP, MACD delivery).
+- CARD_006 – Ingestion Monitoring & Observability Wiring.
+- CARD_003 – Redis TimeSeries Schema Definition (hand-off to storage team).
 
 ## 6. Detailed Procedures
-- See `alphavantage-setup.md` for AlphaVantage client initialization.
+- See `alphavantage-setup.md` for AlphaVantage client initialization and configuration contracts.
+- Consult `time-series-intraday.md` for intraday polling cadence, indicator refresh, and cache wiring.
 - Use `ibkr-integration.md` for IBKR session management and streaming patterns.
 - Rate limiting and retries covered in `rate-limiting.md`.
 - Failure handling captured in `error-recovery.md` and runbooks.
 
 ## 7. Resilience & Observability
-- Instrument metrics `data_ingestion.rate_limit.*`, `data_ingestion.alphavantage.latency_ms`, `data_ingestion.ibkr.disconnects`.
+- Instrument metrics `data_ingestion.rate_limit.*`, `data_ingestion.alphavantage.latency_ms`, `data_ingestion.ibkr.disconnects`, `data_ingestion.indicators.cache_hit_rate`, `data_ingestion.indicators.refresh_latency_ms`.
 - Alert thresholds defined in `appendices/monitoring-guide.md`.
 - Mirror raw ticks to append-only storage for audit compliance.
 
 ## 8. Testing & Validation
-- Unit tests under `tests/` directory (e.g., `test_rate_limiter.py`, `test_option_normalizer.py`).
-- Integration soak tests with synthetic load generator `scripts/simulate_av_load.py`.
-- End-to-end streaming validation via `scripts/stream_alpha.py` and `scripts/stream_ibkr.py` (to be created).
+- Unit tests under `tests/` directory (e.g., `test_alphavantage_client.py`, `test_option_normalizer.py`, `test_indicator_service.py`).
+- Live API validation via `pytest tests/live/test_alpha_vantage_live.py` (skips when creds absent) and `scripts/stream_alpha.py` / `scripts/stream_alpha_indicators.py`.
+- IBKR parity testing with `scripts/stream_ibkr.py` to compare against AlphaVantage spot/option data.
+- Load testing using `scripts/simulate_av_load.py` once rate limiter and cache are in place.
 
 ## 9. Runbooks & Operations
 - Draft runbooks in `runbooks/` (reconnect procedures, credential rotation, failover steps).
@@ -79,4 +84,5 @@ owner: Michael Merrick
 ## 12. Revision History
 | Date       | Author | Change Summary |
 |------------|--------|----------------|
+| 2025-09-27 | Michael Merrick | Rebase Phase 1 plan, added Phase 0 prerequisites, live API validation |
 | 2024-10-07 | TBA    | Initial scaffold |

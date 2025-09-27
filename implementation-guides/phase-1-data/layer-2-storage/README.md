@@ -5,7 +5,7 @@
 status: PLANNING
 completion: 0
 blockers: []
-last_updated: 2024-10-07
+last_updated: 2025-09-27
 owner: Michael Merrick
 ```
 
@@ -33,8 +33,9 @@ owner: Michael Merrick
 
 ## Work Plan
 - CARD_003 – Redis TimeSeries Schema Definition.
-- CARD_006 – Backup Automation (TBD).
-- CARD_007 – Query API Helpers (TBD).
+- CARD_007 – Redis Bootstrap Script.
+- CARD_008 – Redis Backup Automation.
+- CARD_009 – Query Helper API.
 
 ## Reference Documents
 - `redis-timeseries.md`
@@ -60,4 +61,5 @@ owner: Michael Merrick
 ## Revision History
 | Date       | Author | Change Summary |
 |------------|--------|----------------|
+| 2025-09-27 | Michael Merrick | Updated timelines, linked Phase 0 prerequisite |
 | 2024-10-07 | TBA    | Initial scaffold |

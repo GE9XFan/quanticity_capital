@@ -86,7 +86,7 @@ quantum-trading-system/
 
 #### Ingestion Responsibilities
 - Wrap the official `alpha_vantage.options.Options` client inside `data_ingestion/alphavantage_client.py`.
-- Expose helpers for the core market-data calls: `Options.get_realtime_options` (full chain or specific contract), `Options.get_historical_options` (daily snapshot back to 2008-01-01), and `TimeSeries.get_intraday` for the underlying spot feed used in hedging and sanity checks.
+- Expose helpers for the core market-data calls: `Options.get_realtime_options` (full chain or specific contract, always with `requiredGreeks=True`), `Options.get_historical_options` (daily snapshot back to 2008-01-01), and `TimeSeries.get_intraday` for the underlying spot feed used in hedging and sanity checks.
 - Leverage `alpha_vantage.techindicators.TechIndicators` to stream Bollinger Bands (`get_bbands`), VWAP (`get_vwap`), and MACD (`get_macd`) for the configured symbols; cache these curve outputs per symbol so analytics can enrich signals without re-polling the API.
 - Normalize the AlphaVantage payload into internal DTOs—`OptionQuote` for options and `IndicatorSeries` for technicals—so downstream layers stay transport agnostic.
 
