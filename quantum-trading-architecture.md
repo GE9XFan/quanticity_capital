@@ -44,7 +44,7 @@ Instead of hardcoding every API endpoint, we use a **single generic fetcher** dr
 
 **Core Architecture:**
 - Generic fetcher class reads endpoint definitions from YAML
-- Config specifies: URL patterns, parameters, symbols, Redis keys, TTLs, fetch intervals
+- Config specifies: URL patterns, parameters, ticker/symbol lists, Redis keys, TTLs, fetch intervals
 - System automatically picks up config changes (hot-reload capable)
 - New data source = edit YAML, zero code changes
 - IBKR remains special (WebSocket-based, needs dedicated handler)
@@ -65,10 +65,10 @@ data_sources:
 
     endpoints:
       spot_gex:
-        path: "/stocks/{symbol}/spot-gex-exposures"
+        path: "/stock/{ticker}/spot-exposures"
         interval_seconds: 60
-        symbols: ["SPY", "QQQ", "IWM"]
-        redis_key: "raw:uw:spot_gex:{symbol}"
+        tickers: ["SPY", "QQQ", "IWM"]
+        redis_key: "raw:uw:spot_gex:{ticker}"
         ttl_seconds: 180
         params:
           date: "today"  # Dynamic replacement at runtime
@@ -79,6 +79,11 @@ data_sources:
         priority: "critical"  # For failure handling
         cost_per_call: 0.01  # Track API spend
 ```
+
+`/api/stock/{ticker}/spot-exposures` also accepts an optional `date` query string, so we default it to the current session while
+noting in comments that historical backfills can override it. Strike-level and expiry-level breakdowns live at
+`/api/stock/{ticker}/spot-exposures/strike` and `/api/stock/{ticker}/spot-exposures/expiry-strike`, respectively, which the
+config can add as additional endpoint blocks when those granular views are required.
 
 ### What We're Fetching
 
@@ -118,6 +123,47 @@ data_sources:
 - Account updates (event-driven)
 - Historical bars for technical indicators
 - Real-time P&L and position updates
+
+#### Key Unusual Whales REST Endpoints
+
+**Critical real-time (< 2 min)**
+
+| Dataset | Method & Path | Key Params | Suggested Redis key / TTL |
+| --- | --- | --- | --- |
+| Spot GEX per minute | `GET /api/stock/{ticker}/spot-exposures` | Optional `date` for historical sessions | `raw:uw:spot_gex:{ticker}` / 180s |
+| Flow Alerts | `GET /api/option-trades/flow-alerts` | `ticker_symbol`, `limit`, `older_than/newer_than`, premium & size filters | `raw:uw:flow_alerts:{ticker}` / 120s |
+| Call/Put Net Ticks | `GET /api/stock/{ticker}/net-prem-ticks` | Optional `date` to backfill prior days | `raw:uw:net_ticks:{ticker}` / 180s |
+| Greek Flow | `GET /api/stock/{ticker}/greek-flow` (+ `/{expiry}` variant) | Optional `date`; path `expiry` when drilling into a contract set | `raw:uw:greek_flow:{ticker}` / 180s |
+| Flow per strike intraday | `GET /api/stock/{ticker}/flow-per-strike-intraday` | Optional `date`, `filter` for strike/expiry scoping | `raw:uw:flow_intraday:{ticker}` / 240s |
+| Option Chains | `GET /api/stock/{ticker}/option-chains` | Optional `date` for historical chain snapshots | `raw:uw:chains:{ticker}` / 240s |
+
+**Market structure (5–15 min)**
+
+| Dataset | Method & Path | Key Params | Suggested Redis key / TTL |
+| --- | --- | --- | --- |
+| Greek Exposure By Strike | `GET /api/stock/{ticker}/greek-exposure/strike` | Optional `date` to pin a session | `raw:uw:gex_strike:{ticker}` / 600s |
+| Greek Exposure By Strike & Expiry | `GET /api/stock/{ticker}/greek-exposure/strike-expiry` | Required `expiry`, optional `date` | `raw:uw:gex_matrix:{ticker}` / 600s |
+| Off/Lit Price Levels | `GET /api/stock/{ticker}/stock-volume-price-levels` | Optional `date` for historical off-lit runs | `raw:uw:offlit:{ticker}` / 900s |
+| Darkpool Trades | `GET /api/darkpool/{ticker}` | Optional `date`, `older_than/newer_than`, premium & size filters | `raw:uw:darkpool:{ticker}` / 900s |
+| Max Pain | `GET /api/stock/{ticker}/max-pain` | Optional `date` for past expiry windows | `raw:uw:max_pain:{ticker}` / 1200s |
+| IV Rank & Term Structure | `GET /api/stock/{ticker}/iv-rank` + `GET /api/stock/{ticker}/volatility/term-structure` | Optional `date`, `timespan` (IV rank) | `raw:uw:iv:{ticker}` & `raw:uw:term_structure:{ticker}` / 1200s |
+| Historical Risk Reversal Skew | `GET /api/stock/{ticker}/historical-risk-reversal-skew` | Required `expiry` & `delta`, optional `date`, `timeframe` | `raw:uw:skew:{ticker}` / 1200s |
+
+**Slower moving (hourly +)**
+
+| Dataset | Method & Path | Key Params | Suggested Redis key / TTL |
+| --- | --- | --- | --- |
+| Congress Trades | `GET /api/congress/recent-trades` | Optional `date`, `ticker`, `limit` | `raw:uw:congress` / 7200s |
+| Insider Transactions | `GET /api/stock/{ticker}/insider-buy-sells` | Path `ticker` only | `raw:uw:insider:{ticker}` / 7200s |
+| After-Hours Earnings | `GET /api/earnings/afterhours` | Optional `date`, `limit`, `page` | `raw:uw:earnings:afterhours` / 7200s |
+| Pre-Market Earnings | `GET /api/earnings/premarket` | Optional `date`, `limit`, `page` | `raw:uw:earnings:premarket` / 7200s |
+| Historical Earnings | `GET /api/earnings/{ticker}` | Path `ticker` only | `raw:uw:earnings:{ticker}` / 86400s |
+
+**News & sentiment**
+
+| Dataset | Method & Path | Key Params | Suggested Redis key / TTL |
+| --- | --- | --- | --- |
+| News Headlines | `GET /api/news/headlines` | Optional `sources`, `search_term`, `major_only`, pagination | `raw:uw:news:headlines` / 900s |
 
 ### Redis Storage Pattern
 
@@ -193,6 +239,40 @@ aggregate:
   method: "merge_on_timestamp"
   redis_key: "aggregated:flow:{symbol}"
 ```
+
+### Unusual Whales Websocket Streams
+
+REST polling keeps the cache warm, but Unusual Whales now exposes high-volume WebSocket feeds that can collapse ingestion
+latency to near-zero. Establish a persistent connection with your API key:
+
+```bash
+websocat "wss://api.unusualwhales.com/socket?token=<UW_API_TOKEN>"
+{"channel":"flow-alerts","msg_type":"join"}
+```
+
+Each subscription responds with `["<channel>", {"status":"ok"}]`, after which the server streams `[channel, payload]` tuples.
+You can join multiple channels per socket by sending additional `{ "channel": "...", "msg_type": "join" }` frames. Personal
+websocket access requires the Advanced API plan per the spec, so production deployment must verify plan coverage before
+enabling these subscriptions.
+
+Key channels to wire into the same Redis namespaces as the REST fallback:
+
+- **`flow-alerts`** – payloads include `rule_id`, `ticker`, `total_premium`, `trade_ids`, and bid/ask volume breakdowns so we
+  can stream directly into `raw:uw:flow_alerts:{ticker}` with identical schema to the REST fetcher.
+- **`gex:<TICKER>` / `gex_strike:<TICKER>` / `gex_strike_expiry:<TICKER>`** – messages carry gamma/charm/vanna fields along with
+  the latest price, strike, and expiry context. Use them to refresh `raw:uw:spot_gex:{ticker}`, `raw:uw:gex_strike:{ticker}`, and
+  `raw:uw:gex_matrix:{ticker}` continuously, only falling back to `/spot-exposures*` when the stream is unavailable.
+- **`price:<TICKER>`** – emits `{ "close": "562.82", "time": 1726670327692, "vol": 6015555 }` for fast price validation that can
+  confirm UW vs. IBKR divergences.
+- **`option_trades` / `option_trades:<TICKER>`** – full trade events with `option_symbol`, `size`, `premium`, `greeks`, and exchange
+  metadata. Pipe these into `raw:uw:option_trades` (global) or `raw:uw:option_trades:{ticker}` to enrich flow analytics between
+  REST refreshes.
+- **`news` and `lit_trades`/`off_lit_trades`** – supplement the news and dark pool caches in near-real-time while keeping the REST
+  endpoints on slower cadences for reconciliation.
+
+Because websocket payloads mirror the REST schemas, downstream consumers can treat the Redis keys identically regardless of the
+upstream transport. Implement simple gap detection so a stream outage triggers the generic fetcher to resume polling until the
+socket reconnects.
 
 ### Interactive Brokers Integration Details
 
