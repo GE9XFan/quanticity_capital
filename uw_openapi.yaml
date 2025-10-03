@@ -904,12 +904,6 @@ components:
       example: true
       title: DynLimitAdlogzdrlanyiyprqmudddmvbxfgqcyhnsojqtussjqmdmksuzp
       type: boolean
-    DynLimitAitgckaflvcvijcpftzbilnmoxozbhfblsfeitmgenkagofgwak:
-      default: true
-      description: Boolean flag whether to return only intraday alerts.
-      example: true
-      title: DynLimitAitgckaflvcvijcpftzbilnmoxozbhfblsfeitmgenkagofgwak
-      type: boolean
     DynLimitAjiiemyriuzgfvryqagholueikvsbrjiknpwzzubrlgoderclnm:
       description: "The minimum volume on that alert's contract at the time of the alert. Min: 0."
       example: 125
@@ -945,6 +939,12 @@ components:
       description: Boolean flag whether a transaction is bid side.
       example: true
       title: DynLimitAmyxdsawfviizfqgpqyrzxhthwihzdekvmmkshostchftpcxzzo
+      type: boolean
+    DynLimitAolaeaamxpzqyfbfasugnkpyefpysxtkblvitmylbtkgwdpjywf:
+      default: true
+      description: Boolean flag whether to return only intraday alerts.
+      example: true
+      title: DynLimitAolaeaamxpzqyfbfasugnkpyefpysxtkblvitmylbtkgwdpjywf
       type: boolean
     DynLimitAqxqaigpyrptxmjsutpfwgsrlvzynnyrgflmtgidjyllwibsaxr:
       default: true
@@ -8615,7 +8615,7 @@ paths:
           name: intraday_only
           required: false
           schema:
-            $ref: '#/components/schemas/DynLimitAitgckaflvcvijcpftzbilnmoxozbhfblsfeitmgenkagofgwak'
+            $ref: '#/components/schemas/DynLimitAolaeaamxpzqyfbfasugnkpyefpysxtkblvitmylbtkgwdpjywf'
         - description: ''
           in: query
           name: config_ids[]
