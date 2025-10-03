@@ -128,7 +128,7 @@ Client ID usage mirrors governance in `docs/interactive_brokers.md`.
 
 ### 4.1 Intent Payload Schema
 
-Signals arrive via Kafka topic `signals.exec.intent` with schema:
+Signals arrive via Redis Stream `signals.exec.intent` (or equivalent in-memory queue) with schema:
 
 | Field | Description |
 |-------|-------------|
