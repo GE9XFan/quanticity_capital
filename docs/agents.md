@@ -12,16 +12,16 @@ This document tracks the primary agents/services in the automated options tradin
 > **Phase 0 status:** Repository scaffolding, FastAPI skeleton, Docker/compose stack, smoke tests, and runtime version documentation (`docs/runtime_environment.md`, `docs/runtime_versions.txt`) are complete. Implementation details below note pending work per phase.
 
 ### 1. Ingestion Service
-- **Scope:** Connects to Unusual Whales REST/WebSocket feeds and Interactive Brokers market data (L1, L2, 5-second bars).
-- **Responsibilities:**
-  - Maintain WebSocket subscriptions, enforce rate limits, and normalize payloads.
-  - Write latest snapshots to Redis Hashes/Streams for downstream consumers.
-  - Batch Insert structured events into Postgres firehose tables (flow alerts, option trades, GEX, news, prices).
-  - Handle TWS nightly restart by reconnecting and resubscribing.
+- **Scope:** Connects to Unusual Whales REST/WebSocket feeds (Phase 1) and, later, Interactive Brokers market data (Phase 2+).
+- **Responsibilities (current):**
+  - Maintain Unusual Whales WebSocket subscriptions (flow alerts, price, option trades, GEX, news), normalize payloads, and push to Redis/Postgres.
+  - Schedule confirmed Unusual Whales REST endpoints, archive raw JSON responses (`uw_rest_payloads`), and manage request cadences.
+  - Track raw payload fixtures/tests for drift detection; surface ingestion metrics (pending).
+- **Deferred Responsibilities:** IB market data ingestion and TWS restart handling arrive in Phase 2.
 - **Key Data Touchpoints:**
-  - Redis keys: `ingestion:*`, `latest:uw:*`, `ib:quotes:*` (exact namespaces TBD).
-  - Postgres tables: `uw_flow_alerts`, `uw_option_trades`, `uw_gex_*`, `uw_news`, `uw_prices`.
-- **Phase Notes:** Implementation begins in Phase 1; no adapters yet.
+  - Redis keys: `uw:flow_alerts`, `latest:uw:*`, `uw:price_ticks:*`, etc.
+  - Postgres tables: `uw_flow_alerts`, `uw_option_trades`, `uw_gex_*`, `uw_price_ticks`, `uw_news`, `uw_rest_payloads`.
+- **Phase Notes:** Phase 1 implementation complete for Unusual Whales; IB adapters remain TODO in Phase 2.
 
 ### 2. Analytics Workers
 - **Scope:** Transform raw ingestion data into enriched analytics and forward predictions.

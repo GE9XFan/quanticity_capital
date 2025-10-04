@@ -15,6 +15,20 @@ services:
       - redis
       - postgres
 
+  ingestion:
+    build: .
+    command: python -m ingestion
+    volumes:
+      - ./src:/app/src
+      - ./docs:/app/docs
+    environment:
+      - ENV_FILE=.env
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://$${POSTGRES_USER}:$${POSTGRES_PASSWORD}@postgres:5432/$${POSTGRES_DB}
+    depends_on:
+      - redis
+      - postgres
+
   redis:
     image: redis:7-alpine
     command: redis-server --appendonly yes

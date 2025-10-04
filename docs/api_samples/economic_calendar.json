@@ -1,0 +1,103 @@
+{
+  "status": 200,
+  "sample": {
+    "data": [
+      {
+        "type": "13F",
+        "time": "2025-11-14T23:00:00Z",
+        "prev": "",
+        "event": "13F Deadline",
+        "reported_period": "Q3",
+        "forecast": ""
+      },
+      {
+        "type": "13F",
+        "time": "2026-02-17T23:00:00Z",
+        "prev": "",
+        "event": "13F Deadline",
+        "reported_period": "Q4",
+        "forecast": ""
+      },
+      {
+        "type": "index-rebalance",
+        "time": "2025-12-19T21:00:00Z",
+        "prev": "",
+        "event": "S&P 400, 500, 600 Quarterly Rebalance ",
+        "reported_period": "",
+        "forecast": ""
+      },
+      {
+        "type": "index-rebalance",
+        "time": "2025-12-19T21:00:00Z",
+        "prev": "",
+        "event": "Nasdaq Index Rebalance",
+        "reported_period": "",
+        "forecast": ""
+      },
+      {
+        "type": "index-rebalance-announcement",
+        "time": "2025-12-12T21:00:00Z",
+        "prev": "",
+        "event": "Nasdaq Index Additions/Deletions Announced ",
+        "reported_period": "",
+        "forecast": ""
+      },
+      {
+        "type": "report",
+        "time": "2025-10-10T18:00:00Z",
+        "prev": "-170700000000",
+        "event": "Monthly U.S. federal budget",
+        "reported_period": "September",
+        "forecast": null
+      },
+      {
+        "type": "report",
+        "time": "2025-10-10T14:00:00Z",
+        "prev": "0.1%",
+        "event": "Consumer sentiment (prelim)",
+        "reported_period": "October",
+        "forecast": null
+      },
+      {
+        "type": "report",
+        "time": "2025-10-09T14:00:00Z",
+        "prev": "0.1%",
+        "event": "Wholesale inventories",
+        "reported_period": "August",
+        "forecast": null
+      },
+      {
+        "type": "report",
+        "time": "2025-10-09T12:30:00Z",
+        "prev": null,
+        "event": "Initial jobless claims",
+        "reported_period": "October",
+        "forecast": null
+      },
+      {
+        "type": "FOMC",
+        "time": "2025-10-08T18:00:00Z",
+        "prev": null,
+        "event": "Minutes of Fed's September FOMC meeting",
+        "reported_period": null,
+        "forecast": null
+      },
+      {
+        "type": "report",
+        "time": "2025-10-07T19:00:00Z",
+        "prev": "16000000000",
+        "event": "Consumer credit",
+        "reported_period": "August",
+        "forecast": null
+      },
+      {
+        "type": "report",
+        "time": "2025-10-07T12:30:00Z",
+        "prev": "-78300000000",
+        "event": "U.S. trade deficit",
+        "reported_period": "August",
+        "forecast": null
+      }
+    ]
+  }
+}

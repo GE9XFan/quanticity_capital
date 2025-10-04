@@ -1,0 +1,70 @@
+{
+  "status": 200,
+  "sample": {
+    "data": [
+      {
+        "date": "2025-10-03",
+        "days": 1,
+        "percentile": "0.267",
+        "volatility": "0.133",
+        "implied_move_perc": "0"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 5,
+        "percentile": "0.052",
+        "volatility": "0.08",
+        "implied_move_perc": "0.005"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 7,
+        "percentile": "0.046",
+        "volatility": "0.097",
+        "implied_move_perc": "0.008"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 14,
+        "percentile": "0.098",
+        "volatility": "0.11",
+        "implied_move_perc": "0.014"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 30,
+        "percentile": "0.325",
+        "volatility": "0.135",
+        "implied_move_perc": "0.026"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 60,
+        "percentile": "0.343",
+        "volatility": "0.143",
+        "implied_move_perc": "0.039"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 90,
+        "percentile": "0.308",
+        "volatility": "0.147",
+        "implied_move_perc": "0.049"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 180,
+        "percentile": "0.377",
+        "volatility": "0.162",
+        "implied_move_perc": "0.076"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 365,
+        "percentile": "0.569",
+        "volatility": "0.179",
+        "implied_move_perc": "0.121"
+      }
+    ]
+  }
+}

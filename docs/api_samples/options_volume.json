@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "sample": {
+    "data": [
+      {
+        "date": "2025-10-03",
+        "call_premium": "720216349.0000",
+        "call_volume": 3938511,
+        "call_volume_ask_side": 1846101,
+        "call_volume_bid_side": 1865731,
+        "put_premium": "801271511.00",
+        "put_volume": 5558715,
+        "put_volume_ask_side": 2574712,
+        "put_volume_bid_side": 2667917,
+        "net_call_premium": "-10561037.0000",
+        "net_put_premium": "21666827.00",
+        "avg_30_day_call_volume": "3754972.2667",
+        "avg_30_day_put_volume": "4440020.4667",
+        "avg_7_day_call_volume": "3849232.5714",
+        "avg_7_day_put_volume": "4990577.4286",
+        "bearish_premium": "694928109.0000",
+        "bullish_premium": "679784414.0000",
+        "avg_3_day_call_volume": "3722437.6667",
+        "avg_3_day_put_volume": "5096538.6667",
+        "call_open_interest": 4704647,
+        "put_open_interest": 12666621
+      }
+    ]
+  }
+}

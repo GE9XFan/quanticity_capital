@@ -34,10 +34,10 @@ Establish a baseline plan for building a SPY/QQQ/IWM automated options trading p
 - Pipeline:
   1. Async WebSocket consumers parse payloads and enqueue structured events.
   2. Redis Hashes/Streams maintain latest hot state for downstream modules.
-  3. Batched Postgres inserts (COPY or prepared statements) persist firehose data for history and analytics replay.
+  3. Batched Postgres inserts persist firehose data for history and analytics replay; REST responses are archived verbatim for later transformation.
 - Schema approach:
-  - Tables per channel family (e.g., `uw_flow_alerts`, `uw_option_trades`, `uw_gex_snapshot`, `uw_gex_strike`, `uw_gex_strike_expiry`, `uw_news`, `uw_prices`).
-  - Timestamp columns for source and ingestion times; numeric fields typed; raw payload preserved in JSONB.
+  - Tables per channel family (e.g., `uw_flow_alerts`, `uw_option_trades`, `uw_gex_snapshot`, `uw_gex_strike`, `uw_gex_strike_expiry`, `uw_news`, `uw_price_ticks`) plus `uw_rest_payloads` for raw REST JSON.
+  - Timestamp columns for source and ingestion times; numeric fields typed; raw payload preserved in JSONB for drift checks.
   - Native daily partitioning with retention pruning scripts; nightly exports of Redis trade/distribution logs into Postgres for 2-year retention.
 
 ### 5.2 Interactive Brokers (IB)
@@ -84,8 +84,8 @@ Establish a baseline plan for building a SPY/QQQ/IWM automated options trading p
 - Nightly jobs: Redis export to Postgres, log rotation, verification of TWS restart handshake.
 
 ## 13. Delivery Roadmap
-1. **Phase 0** – Scaffold repo, Dockerfiles/compose, base FastAPI skeleton, Redis/Postgres configs, SQL migration folder with manual scripts and runner.
-2. **Phase 1** – Implement Unusual Whales REST/WebSocket ingestion, Redis live cache, Postgres persistence, retention/export scripts.
+1. **Phase 0** – Scaffold repo, Dockerfiles/compose, base FastAPI skeleton, Redis/Postgres configs, SQL migration folder with manual scripts and runner. ✅
+2. **Phase 1** – Implement Unusual Whales REST/WebSocket ingestion, Redis live cache, Postgres persistence, retention/export scripts. ✅ (metrics exporter & REST classification to follow up)
 3. **Phase 2** – Integrate IB market data feeds with reconnect watchdog, unify data models across Redis/Postgres.
 4. **Phase 3** – Build analytics framework and initial metrics; define message schemas.
 5. **Phase 4** – Implement strategy-specific signal engines with explainability outputs.
@@ -96,7 +96,7 @@ Establish a baseline plan for building a SPY/QQQ/IWM automated options trading p
 10. **Phase 9** – Hardening, monitoring rules, Docker image polish, cloud deployment runbook, final documentation.
 
 ## 14. Open Decisions & Future Clarifications
-- Exact REST endpoints from Unusual Whales (to be finalized; storage choice Redis vs Postgres decided per payload needs once known).
+- Confirm classification of each Unusual Whales endpoint/channel as Redis snapshot, Postgres archive, or future derived table (Phase 2 follow-up).
 - Detailed risk formulas (capital allocation, stop logic) to be designed during Phase 5.
 - Alerting destination for monitoring (e.g., email, Telegram) to be chosen.
 - Any further documentation sources required; browser access will be used to fetch official API docs when necessary upon user request.

@@ -26,3 +26,6 @@ htmlcov/
 .vscode/
 .idea/
 .DS_Store
+
+# API example snapshots (sensitive data)
+docs/api_samples/
