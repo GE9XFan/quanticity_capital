@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    command: uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./src:/app/src
+      - ./docs:/app/docs
+    environment:
+      - ENV_FILE=.env
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://$${POSTGRES_USER}:$${POSTGRES_PASSWORD}@postgres:5432/$${POSTGRES_DB}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - postgres
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-quanticity}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-quanticity}
+      - POSTGRES_DB=${POSTGRES_DB:-trading}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  redis-data:
+  postgres-data:
