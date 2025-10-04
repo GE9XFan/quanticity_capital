@@ -25,6 +25,11 @@ class Settings(BaseSettings):
 
     # Target symbols
     target_symbols: str = Field(default="SPY,QQQ,IWM", description="Comma-separated list of tickers to fetch")
+    store_to_redis: bool = Field(default=True, description="Whether to upsert snapshots into Redis")
+    fetch_interval_seconds: float = Field(
+        default=0.0,
+        description="Loop interval in seconds (0 disables looping)",
+    )
 
     # Request configuration
     request_timeout_seconds: float = Field(default=30.0, description="HTTP request timeout in seconds")

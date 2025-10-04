@@ -21,15 +21,38 @@ src/
 
 ## Running the Fetcher
 
+### Latest Run Snapshot
+
+| Date (UTC) | Symbols | Requests | Success | Failures |
+|------------|---------|----------|---------|----------|
+| 2025-10-04 20:10 | SPY, QQQ, IWM | 81 | 81 | 0 |
+
+The table is updated after every verified live pull. Review the log files in `logs/` for detailed timing and retry behaviour.
+
 ### Basic Usage
 
 ```bash
-# Set your API token in .env
+# 1) Set your API token in .env
 echo "UNUSUAL_WHALES_API_TOKEN=your_token_here" >> .env
 
-# Run the fetcher
+# 2) (Optional) Opt into Redis snapshots and adjust loop interval
+# echo "STORE_TO_REDIS=true" >> .env
+# echo "FETCH_INTERVAL_SECONDS=0" >> .env
+
+# 3) Start Redis if snapshots are enabled
+redis-server &
+
+# 4) Run the fetcher once
 make uw-rest-fetch
+
+# 5) Run continuously (every 15 minutes)
+python -m src.cli.uw_rest_fetch --loop --interval 900
+
+# 6) Loop a fixed number of times (example: 3 iterations)
+python -m src.cli.uw_rest_fetch --loop --interval 900 --max-iterations 3
 ```
+
+Use `Ctrl+C` at any time to stop the loop gracefully; the CLI will close Redis connections before exiting.
 
 ### Configuration
 
@@ -39,6 +62,8 @@ All settings via environment variables or `.env` file:
 |----------|---------|-------------|
 | `UNUSUAL_WHALES_API_TOKEN` | (required) | Your API token |
 | `TARGET_SYMBOLS` | `SPY,QQQ,IWM` | Comma-separated ticker list |
+| `STORE_TO_REDIS` | `true` | Enable Redis snapshot writing |
+| `FETCH_INTERVAL_SECONDS` | `0` | Loop interval in seconds (`0` disables loop) |
 | `RATE_LIMIT_REQUESTS_PER_MINUTE` | `100` | Max API requests/minute |
 | `RATE_LIMIT_LEEWAY_SECONDS` | `0.5` | Extra safety delay |
 | `REQUEST_TIMEOUT_SECONDS` | `30.0` | HTTP request timeout |
@@ -77,6 +102,29 @@ Each JSON file contains:
   }
 }
 ```
+
+## Monitoring the Run
+
+- **Logs** (latest run):
+
+  ```bash
+  tail -f "$(ls -t logs/unusual_whales_rest_*.log | head -n 1)"
+  ```
+
+- **Disk outputs** (replace `<endpoint>` with e.g. `market_tide`):
+
+  ```bash
+  ls -lt data/unusual_whales/raw/<endpoint> | head
+  tail -n 5 data/unusual_whales/raw/<endpoint>/index.ndjson
+  ```
+
+- **Redis snapshots** (requires `STORE_TO_REDIS=true`):
+
+  ```bash
+  redis-cli KEYS 'uw:rest:*'
+  redis-cli HGETALL uw:rest:market_tide
+  redis-cli HGETALL uw:rest:flow_alerts:SPY
+  ```
 
 ## Endpoints Fetched
 

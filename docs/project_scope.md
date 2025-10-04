@@ -6,11 +6,12 @@ The project has been reset to the first milestone: prove that we can call the li
 
 1. **Ingest** – Call every REST endpoint listed in `docs/api_queries.md` using real credentials and capture the exact API responses.
 2. **Persist** – Save each payload to disk (JSON files under `data/unusual_whales/raw/`) along with metadata so we can replay or audit requests later.
-3. **Observe** – Emit structured logs and summary statistics for each run; highlight any failures (rate limits, network errors, unexpected payloads).
+3. **Snapshot** – Maintain the latest payload per endpoint in Redis, following the scheme defined in `docs/storage_plan.md`.
+4. **Observe** – Emit structured logs and summary statistics for each run; highlight any failures (rate limits, network errors, unexpected payloads).
 
 ## Out of Scope (for now)
 
-- Redis/Postgres storage
+- Postgres or long-term Redis history beyond the single snapshot hashes
 - WebSocket ingestion
 - Analytics, signals, risk, execution, distribution, reporting
 - FastAPI services, dashboards, or schedulers
@@ -22,7 +23,8 @@ The project has been reset to the first milestone: prove that we can call the li
 - Endpoint definitions are data-driven (`src/ingestion/uw_endpoints.py`) so additions/removals happen in one place.
 - `httpx` client with rate limiting (configurable, defaults to 100 req/min), retry/backoff for 429/5xx, and JSON normalisation.
 - Raw output directory structure with per-endpoint indexes to track fetch history.
-- Documentation in `docs/rest_ingestion.md` describing usage, configuration, and output format.
+- Redis snapshot plan defined in `docs/storage_plan.md` (Phase 1 implementation in progress).
+- Documentation in `docs/rest_ingestion.md` describing usage, configuration, monitoring, and output format.
 
 ## Configuration
 
