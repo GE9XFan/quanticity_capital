@@ -1,51 +1,20 @@
 services:
-  app:
+  uw-rest-fetch:
     build: .
-    command: uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000 --reload
+    command: python -m src.cli.uw_rest_fetch
+    environment:
+      - UNUSUAL_WHALES_API_TOKEN=${UNUSUAL_WHALES_API_TOKEN}
+      - TARGET_SYMBOLS=${TARGET_SYMBOLS:-SPY,QQQ,IWM}
+      - REQUEST_TIMEOUT_SECONDS=${REQUEST_TIMEOUT_SECONDS:-30.0}
+      - RATE_LIMIT_REQUESTS_PER_MINUTE=${RATE_LIMIT_REQUESTS_PER_MINUTE:-100}
+      - RATE_LIMIT_LEEWAY_SECONDS=${RATE_LIMIT_LEEWAY_SECONDS:-0.5}
     volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
       - ./src:/app/src
       - ./docs:/app/docs
-    environment:
-      - ENV_FILE=.env
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql://$${POSTGRES_USER}:$${POSTGRES_PASSWORD}@postgres:5432/$${POSTGRES_DB}
-    ports:
-      - "8000:8000"
-    depends_on:
-      - redis
-      - postgres
+    tty: true
+    stdin_open: true
 
-  ingestion:
-    build: .
-    command: python -m ingestion
-    volumes:
-      - ./src:/app/src
-      - ./docs:/app/docs
-    environment:
-      - ENV_FILE=.env
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql://$${POSTGRES_USER}:$${POSTGRES_PASSWORD}@postgres:5432/$${POSTGRES_DB}
-    depends_on:
-      - redis
-      - postgres
-
-  redis:
-    image: redis:7-alpine
-    command: redis-server --appendonly yes
-    volumes:
-      - redis-data:/data
-
-  postgres:
-    image: postgres:15
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER:-quanticity}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-quanticity}
-      - POSTGRES_DB=${POSTGRES_DB:-trading}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-volumes:
-  redis-data:
-  postgres-data:
+# Usage:
+#   UNUSUAL_WHALES_API_TOKEN=... docker compose run --rm uw-rest-fetch

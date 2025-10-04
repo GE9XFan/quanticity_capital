@@ -1,0 +1,95 @@
+2025-10-04 15:45:10,800 - __main__ - INFO - Logging initialized. Log file: logs/unusual_whales_rest_20251004_194510.log
+2025-10-04 15:45:10,801 - __main__ - INFO - Configuration loaded successfully:
+2025-10-04 15:45:10,801 - __main__ - INFO -   Environment: development
+2025-10-04 15:45:10,801 - __main__ - INFO -   Target symbols: SPY, QQQ, IWM
+2025-10-04 15:45:10,801 - __main__ - INFO -   Rate limit: 100 req/min
+2025-10-04 15:45:10,801 - __main__ - INFO -   Request timeout: 30.0s
+2025-10-04 15:45:10,801 - src.ingestion.rest_runner - INFO - Starting REST ingestion run at 2025-10-04 19:45:10.801758
+2025-10-04 15:45:10,801 - src.ingestion.rest_runner - INFO - Target symbols: ['SPY', 'QQQ', 'IWM']
+2025-10-04 15:45:10,837 - src.ingestion.rest_runner - INFO - Fetching 6 global endpoints...
+2025-10-04 15:45:11,018 - src.ingestion.rest_runner - INFO - ✓ economic_calendar → data/unusual_whales/raw/economic_calendar/2025-10-04T19-45-11-017832.json
+2025-10-04 15:45:12,189 - src.ingestion.rest_runner - INFO - ✓ market_tide → data/unusual_whales/raw/market_tide/2025-10-04T19-45-12-189377.json
+2025-10-04 15:45:13,402 - src.ingestion.rest_runner - INFO - ✓ market_oi_change → data/unusual_whales/raw/market_oi_change/2025-10-04T19-45-13-400694.json
+2025-10-04 15:45:14,652 - src.ingestion.rest_runner - INFO - ✓ market_top_net_impact → data/unusual_whales/raw/market_top_net_impact/2025-10-04T19-45-14-651816.json
+2025-10-04 15:45:15,829 - src.ingestion.rest_runner - INFO - ✓ market_total_options_volume → data/unusual_whales/raw/market_total_options_volume/2025-10-04T19-45-15-828571.json
+2025-10-04 15:45:17,013 - src.ingestion.rest_runner - INFO - ✓ net_flow_expiry → data/unusual_whales/raw/net_flow_expiry/2025-10-04T19-45-17-011246.json
+2025-10-04 15:45:17,013 - src.ingestion.rest_runner - INFO - Fetching 25 endpoints for 3 symbols...
+2025-10-04 15:45:17,013 - src.ingestion.rest_runner - INFO - Processing symbol: SPY
+2025-10-04 15:45:18,201 - src.ingestion.rest_runner - INFO - ✓ darkpool:SPY → data/unusual_whales/raw/darkpool/SPY_2025-10-04T19-45-18-195399.json
+2025-10-04 15:45:19,369 - src.ingestion.rest_runner - INFO - ✓ etf_exposure:SPY → data/unusual_whales/raw/etf_exposure/SPY_2025-10-04T19-45-19-368534.json
+2025-10-04 15:45:20,826 - src.ingestion.rest_runner - INFO - ✓ etf_inoutflow:SPY → data/unusual_whales/raw/etf_inoutflow/SPY_2025-10-04T19-45-20-804895.json
+2025-10-04 15:45:21,995 - src.ingestion.rest_runner - INFO - ✓ etf_tide:SPY → data/unusual_whales/raw/etf_tide/SPY_2025-10-04T19-45-21-993245.json
+2025-10-04 15:45:23,171 - src.ingestion.rest_runner - INFO - ✓ flow_alerts:SPY → data/unusual_whales/raw/flow_alerts/SPY_2025-10-04T19-45-23-169738.json
+2025-10-04 15:45:24,341 - src.ingestion.rest_runner - INFO - ✓ flow_per_expiry:SPY → data/unusual_whales/raw/flow_per_expiry/SPY_2025-10-04T19-45-24-340414.json
+2025-10-04 15:45:25,555 - src.ingestion.rest_runner - INFO - ✓ greek_exposure:SPY → data/unusual_whales/raw/greek_exposure/SPY_2025-10-04T19-45-25-553893.json
+2025-10-04 15:45:26,726 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_expiry:SPY → data/unusual_whales/raw/greek_exposure_expiry/SPY_2025-10-04T19-45-26-725057.json
+2025-10-04 15:45:27,942 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_strike:SPY → data/unusual_whales/raw/greek_exposure_strike/SPY_2025-10-04T19-45-27-939720.json
+2025-10-04 15:45:29,206 - src.ingestion.rest_runner - INFO - ✓ greek_flow:SPY → data/unusual_whales/raw/greek_flow/SPY_2025-10-04T19-45-29-202316.json
+2025-10-04 15:45:30,373 - src.ingestion.rest_runner - INFO - ✓ interpolated_iv:SPY → data/unusual_whales/raw/interpolated_iv/SPY_2025-10-04T19-45-30-371991.json
+2025-10-04 15:45:31,546 - src.ingestion.rest_runner - INFO - ✓ iv_rank:SPY → data/unusual_whales/raw/iv_rank/SPY_2025-10-04T19-45-31-546261.json
+2025-10-04 15:45:32,719 - src.ingestion.rest_runner - INFO - ✓ volatility_term_structure:SPY → data/unusual_whales/raw/volatility_term_structure/SPY_2025-10-04T19-45-32-719400.json
+2025-10-04 15:45:33,892 - src.ingestion.rest_runner - INFO - ✓ max_pain:SPY → data/unusual_whales/raw/max_pain/SPY_2025-10-04T19-45-33-891644.json
+2025-10-04 15:45:35,111 - src.ingestion.rest_runner - INFO - ✓ net_prem_ticks:SPY → data/unusual_whales/raw/net_prem_ticks/SPY_2025-10-04T19-45-35-108172.json
+2025-10-04 15:45:36,350 - src.ingestion.rest_runner - INFO - ✓ nope:SPY → data/unusual_whales/raw/nope/SPY_2025-10-04T19-45-36-346417.json
+2025-10-04 15:45:37,541 - src.ingestion.rest_runner - INFO - ✓ oi_change:SPY → data/unusual_whales/raw/oi_change/SPY_2025-10-04T19-45-37-540864.json
+2025-10-04 15:45:38,791 - src.ingestion.rest_runner - INFO - ✓ option_chains:SPY → data/unusual_whales/raw/option_chains/SPY_2025-10-04T19-45-38-788165.json
+2025-10-04 15:45:40,080 - src.ingestion.rest_runner - INFO - ✓ option_stock_price_levels:SPY → data/unusual_whales/raw/option_stock_price_levels/SPY_2025-10-04T19-45-40-064134.json
+2025-10-04 15:45:41,243 - src.ingestion.rest_runner - INFO - ✓ options_volume:SPY → data/unusual_whales/raw/options_volume/SPY_2025-10-04T19-45-41-243049.json
+2025-10-04 15:45:42,803 - src.ingestion.rest_runner - INFO - ✓ ohlc_1m:SPY → data/unusual_whales/raw/ohlc_1m/SPY_2025-10-04T19-45-42-799186.json
+2025-10-04 15:45:44,089 - src.ingestion.rest_runner - INFO - ✓ spot_exposures:SPY → data/unusual_whales/raw/spot_exposures/SPY_2025-10-04T19-45-44-084864.json
+2025-10-04 15:45:45,311 - src.ingestion.rest_runner - INFO - ✓ spot_exposures_strike:SPY → data/unusual_whales/raw/spot_exposures_strike/SPY_2025-10-04T19-45-45-308087.json
+2025-10-04 15:45:46,476 - src.ingestion.rest_runner - INFO - ✓ stock_state:SPY → data/unusual_whales/raw/stock_state/SPY_2025-10-04T19-45-46-476192.json
+2025-10-04 15:45:47,960 - src.ingestion.rest_runner - INFO - ✓ stock_volume_price_levels:SPY → data/unusual_whales/raw/stock_volume_price_levels/SPY_2025-10-04T19-45-47-897164.json
+2025-10-04 15:45:47,961 - src.ingestion.rest_runner - INFO - Processing symbol: QQQ
+2025-10-04 15:45:49,087 - src.ingestion.rest_runner - INFO - ✓ darkpool:QQQ → data/unusual_whales/raw/darkpool/QQQ_2025-10-04T19-45-49-078510.json
+2025-10-04 15:45:50,251 - src.ingestion.rest_runner - INFO - ✓ etf_exposure:QQQ → data/unusual_whales/raw/etf_exposure/QQQ_2025-10-04T19-45-50-249362.json
+2025-10-04 15:45:51,592 - src.ingestion.rest_runner - INFO - ✓ etf_inoutflow:QQQ → data/unusual_whales/raw/etf_inoutflow/QQQ_2025-10-04T19-45-51-574118.json
+2025-10-04 15:45:52,754 - src.ingestion.rest_runner - INFO - ✓ etf_tide:QQQ → data/unusual_whales/raw/etf_tide/QQQ_2025-10-04T19-45-52-751834.json
+2025-10-04 15:45:53,933 - src.ingestion.rest_runner - INFO - ✓ flow_alerts:QQQ → data/unusual_whales/raw/flow_alerts/QQQ_2025-10-04T19-45-53-930083.json
+2025-10-04 15:45:55,104 - src.ingestion.rest_runner - INFO - ✓ flow_per_expiry:QQQ → data/unusual_whales/raw/flow_per_expiry/QQQ_2025-10-04T19-45-55-101520.json
+2025-10-04 15:45:56,319 - src.ingestion.rest_runner - INFO - ✓ greek_exposure:QQQ → data/unusual_whales/raw/greek_exposure/QQQ_2025-10-04T19-45-56-315030.json
+2025-10-04 15:45:57,487 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_expiry:QQQ → data/unusual_whales/raw/greek_exposure_expiry/QQQ_2025-10-04T19-45-57-486375.json
+2025-10-04 15:45:58,703 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_strike:QQQ → data/unusual_whales/raw/greek_exposure_strike/QQQ_2025-10-04T19-45-58-700947.json
+2025-10-04 15:45:59,960 - src.ingestion.rest_runner - INFO - ✓ greek_flow:QQQ → data/unusual_whales/raw/greek_flow/QQQ_2025-10-04T19-45-59-956599.json
+2025-10-04 15:46:01,125 - src.ingestion.rest_runner - INFO - ✓ interpolated_iv:QQQ → data/unusual_whales/raw/interpolated_iv/QQQ_2025-10-04T19-46-01-125296.json
+2025-10-04 15:46:02,298 - src.ingestion.rest_runner - INFO - ✓ iv_rank:QQQ → data/unusual_whales/raw/iv_rank/QQQ_2025-10-04T19-46-02-297535.json
+2025-10-04 15:46:03,466 - src.ingestion.rest_runner - INFO - ✓ volatility_term_structure:QQQ → data/unusual_whales/raw/volatility_term_structure/QQQ_2025-10-04T19-46-03-466271.json
+2025-10-04 15:46:04,637 - src.ingestion.rest_runner - INFO - ✓ max_pain:QQQ → data/unusual_whales/raw/max_pain/QQQ_2025-10-04T19-46-04-636311.json
+2025-10-04 15:46:05,856 - src.ingestion.rest_runner - INFO - ✓ net_prem_ticks:QQQ → data/unusual_whales/raw/net_prem_ticks/QQQ_2025-10-04T19-46-05-852217.json
+2025-10-04 15:46:07,090 - src.ingestion.rest_runner - INFO - ✓ nope:QQQ → data/unusual_whales/raw/nope/QQQ_2025-10-04T19-46-07-086853.json
+2025-10-04 15:46:08,266 - src.ingestion.rest_runner - INFO - ✓ oi_change:QQQ → data/unusual_whales/raw/oi_change/QQQ_2025-10-04T19-46-08-265345.json
+2025-10-04 15:46:09,509 - src.ingestion.rest_runner - INFO - ✓ option_chains:QQQ → data/unusual_whales/raw/option_chains/QQQ_2025-10-04T19-46-09-507353.json
+2025-10-04 15:46:10,762 - src.ingestion.rest_runner - INFO - ✓ option_stock_price_levels:QQQ → data/unusual_whales/raw/option_stock_price_levels/QQQ_2025-10-04T19-46-10-748685.json
+2025-10-04 15:46:11,915 - src.ingestion.rest_runner - INFO - ✓ options_volume:QQQ → data/unusual_whales/raw/options_volume/QQQ_2025-10-04T19-46-11-915213.json
+2025-10-04 15:46:13,570 - src.ingestion.rest_runner - INFO - ✓ ohlc_1m:QQQ → data/unusual_whales/raw/ohlc_1m/QQQ_2025-10-04T19-46-13-567084.json
+2025-10-04 15:46:14,847 - src.ingestion.rest_runner - INFO - ✓ spot_exposures:QQQ → data/unusual_whales/raw/spot_exposures/QQQ_2025-10-04T19-46-14-842595.json
+2025-10-04 15:46:16,070 - src.ingestion.rest_runner - INFO - ✓ spot_exposures_strike:QQQ → data/unusual_whales/raw/spot_exposures_strike/QQQ_2025-10-04T19-46-16-069229.json
+2025-10-04 15:46:17,238 - src.ingestion.rest_runner - INFO - ✓ stock_state:QQQ → data/unusual_whales/raw/stock_state/QQQ_2025-10-04T19-46-17-238066.json
+2025-10-04 15:46:18,713 - src.ingestion.rest_runner - INFO - ✓ stock_volume_price_levels:QQQ → data/unusual_whales/raw/stock_volume_price_levels/QQQ_2025-10-04T19-46-18-653366.json
+2025-10-04 15:46:18,713 - src.ingestion.rest_runner - INFO - Processing symbol: IWM
+2025-10-04 15:46:19,872 - src.ingestion.rest_runner - INFO - ✓ darkpool:IWM → data/unusual_whales/raw/darkpool/IWM_2025-10-04T19-46-19-867852.json
+2025-10-04 15:46:21,041 - src.ingestion.rest_runner - INFO - ✓ etf_exposure:IWM → data/unusual_whales/raw/etf_exposure/IWM_2025-10-04T19-46-21-040074.json
+2025-10-04 15:46:22,550 - src.ingestion.rest_runner - INFO - ✓ etf_inoutflow:IWM → data/unusual_whales/raw/etf_inoutflow/IWM_2025-10-04T19-46-22-522067.json
+2025-10-04 15:46:23,699 - src.ingestion.rest_runner - INFO - ✓ etf_tide:IWM → data/unusual_whales/raw/etf_tide/IWM_2025-10-04T19-46-23-697691.json
+2025-10-04 15:46:24,877 - src.ingestion.rest_runner - INFO - ✓ flow_alerts:IWM → data/unusual_whales/raw/flow_alerts/IWM_2025-10-04T19-46-24-874464.json
+2025-10-04 15:46:26,047 - src.ingestion.rest_runner - INFO - ✓ flow_per_expiry:IWM → data/unusual_whales/raw/flow_per_expiry/IWM_2025-10-04T19-46-26-046088.json
+2025-10-04 15:46:27,284 - src.ingestion.rest_runner - INFO - ✓ greek_exposure:IWM → data/unusual_whales/raw/greek_exposure/IWM_2025-10-04T19-46-27-282431.json
+2025-10-04 15:46:28,457 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_expiry:IWM → data/unusual_whales/raw/greek_exposure_expiry/IWM_2025-10-04T19-46-28-456674.json
+2025-10-04 15:46:29,630 - src.ingestion.rest_runner - INFO - ✓ greek_exposure_strike:IWM → data/unusual_whales/raw/greek_exposure_strike/IWM_2025-10-04T19-46-29-629798.json
+2025-10-04 15:46:30,899 - src.ingestion.rest_runner - INFO - ✓ greek_flow:IWM → data/unusual_whales/raw/greek_flow/IWM_2025-10-04T19-46-30-896448.json
+2025-10-04 15:46:32,067 - src.ingestion.rest_runner - INFO - ✓ interpolated_iv:IWM → data/unusual_whales/raw/interpolated_iv/IWM_2025-10-04T19-46-32-066076.json
+2025-10-04 15:46:33,239 - src.ingestion.rest_runner - INFO - ✓ iv_rank:IWM → data/unusual_whales/raw/iv_rank/IWM_2025-10-04T19-46-33-238757.json
+2025-10-04 15:46:34,411 - src.ingestion.rest_runner - INFO - ✓ volatility_term_structure:IWM → data/unusual_whales/raw/volatility_term_structure/IWM_2025-10-04T19-46-34-410497.json
+2025-10-04 15:46:35,581 - src.ingestion.rest_runner - INFO - ✓ max_pain:IWM → data/unusual_whales/raw/max_pain/IWM_2025-10-04T19-46-35-580766.json
+2025-10-04 15:46:36,807 - src.ingestion.rest_runner - INFO - ✓ net_prem_ticks:IWM → data/unusual_whales/raw/net_prem_ticks/IWM_2025-10-04T19-46-36-803834.json
+2025-10-04 15:46:38,038 - src.ingestion.rest_runner - INFO - ✓ nope:IWM → data/unusual_whales/raw/nope/IWM_2025-10-04T19-46-38-036140.json
+2025-10-04 15:46:39,213 - src.ingestion.rest_runner - INFO - ✓ oi_change:IWM → data/unusual_whales/raw/oi_change/IWM_2025-10-04T19-46-39-211931.json
+2025-10-04 15:46:40,440 - src.ingestion.rest_runner - INFO - ✓ option_chains:IWM → data/unusual_whales/raw/option_chains/IWM_2025-10-04T19-46-40-439709.json
+2025-10-04 15:46:41,633 - src.ingestion.rest_runner - INFO - ✓ option_stock_price_levels:IWM → data/unusual_whales/raw/option_stock_price_levels/IWM_2025-10-04T19-46-41-627830.json
+2025-10-04 15:46:42,797 - src.ingestion.rest_runner - INFO - ✓ options_volume:IWM → data/unusual_whales/raw/options_volume/IWM_2025-10-04T19-46-42-797240.json
+2025-10-04 15:46:44,412 - src.ingestion.rest_runner - INFO - ✓ ohlc_1m:IWM → data/unusual_whales/raw/ohlc_1m/IWM_2025-10-04T19-46-44-410034.json
+2025-10-04 15:46:45,697 - src.ingestion.rest_runner - INFO - ✓ spot_exposures:IWM → data/unusual_whales/raw/spot_exposures/IWM_2025-10-04T19-46-45-693868.json
+2025-10-04 15:46:46,877 - src.ingestion.rest_runner - INFO - ✓ spot_exposures_strike:IWM → data/unusual_whales/raw/spot_exposures_strike/IWM_2025-10-04T19-46-46-875906.json
+2025-10-04 15:46:48,047 - src.ingestion.rest_runner - INFO - ✓ stock_state:IWM → data/unusual_whales/raw/stock_state/IWM_2025-10-04T19-46-48-046774.json
+2025-10-04 15:46:49,367 - src.ingestion.rest_runner - INFO - ✓ stock_volume_price_levels:IWM → data/unusual_whales/raw/stock_volume_price_levels/IWM_2025-10-04T19-46-49-338044.json
+2025-10-04 15:46:49,367 - src.ingestion.rest_runner - INFO - Ingestion completed in 98.57s. Success: 81, Failed: 0, Total: 81

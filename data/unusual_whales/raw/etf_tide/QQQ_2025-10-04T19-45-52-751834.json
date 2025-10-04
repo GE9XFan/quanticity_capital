@@ -1,0 +1,3135 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561735.107863416,
+    "endpoint": "etf_tide",
+    "ticker": "QQQ",
+    "saved_at": "2025-10-04T19:45:52.751864",
+    "endpoint_key": "etf_tide"
+  },
+  "data": {
+    "data": [
+      {
+        "timestamp": "2025-10-03T13:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.72",
+        "net_call_premium": "-5097879.00",
+        "net_put_premium": "-1084589.00",
+        "net_volume": "-10824"
+      },
+      {
+        "timestamp": "2025-10-03T13:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.07",
+        "net_call_premium": "-737286.0000",
+        "net_put_premium": "-3950474.00",
+        "net_volume": "-6595"
+      },
+      {
+        "timestamp": "2025-10-03T13:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.88",
+        "net_call_premium": "-5293341.0000",
+        "net_put_premium": "-4768354.00",
+        "net_volume": "-6790"
+      },
+      {
+        "timestamp": "2025-10-03T13:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.83",
+        "net_call_premium": "-10144621.0000",
+        "net_put_premium": "-3023692.0000",
+        "net_volume": "-19669"
+      },
+      {
+        "timestamp": "2025-10-03T13:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.85",
+        "net_call_premium": "-11997747.0000",
+        "net_put_premium": "-3966558.0000",
+        "net_volume": "-25388"
+      },
+      {
+        "timestamp": "2025-10-03T13:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.66",
+        "net_call_premium": "-11706262.0000",
+        "net_put_premium": "-3718905.0000",
+        "net_volume": "-30495"
+      },
+      {
+        "timestamp": "2025-10-03T13:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.78",
+        "net_call_premium": "-14307728.0000",
+        "net_put_premium": "-4553170.0000",
+        "net_volume": "-37907"
+      },
+      {
+        "timestamp": "2025-10-03T13:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.92",
+        "net_call_premium": "-13581643.0000",
+        "net_put_premium": "-5539249.0000",
+        "net_volume": "-26341"
+      },
+      {
+        "timestamp": "2025-10-03T13:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.1199",
+        "net_call_premium": "-11071339.0000",
+        "net_put_premium": "-5677344.0000",
+        "net_volume": "-21259"
+      },
+      {
+        "timestamp": "2025-10-03T13:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.115",
+        "net_call_premium": "-16279974.0000",
+        "net_put_premium": "-5669342.0000",
+        "net_volume": "-30547"
+      },
+      {
+        "timestamp": "2025-10-03T13:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.13",
+        "net_call_premium": "-21338587.0000",
+        "net_put_premium": "-4218777.0000",
+        "net_volume": "-44704"
+      },
+      {
+        "timestamp": "2025-10-03T13:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.26",
+        "net_call_premium": "-40714557.0000",
+        "net_put_premium": "154116.0000",
+        "net_volume": "-81468"
+      },
+      {
+        "timestamp": "2025-10-03T13:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.26",
+        "net_call_premium": "-46377217.0000",
+        "net_put_premium": "55434.0000",
+        "net_volume": "-93896"
+      },
+      {
+        "timestamp": "2025-10-03T13:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.42",
+        "net_call_premium": "-47553455.0000",
+        "net_put_premium": "-2246032.0000",
+        "net_volume": "-90809"
+      },
+      {
+        "timestamp": "2025-10-03T13:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.6",
+        "net_call_premium": "-47409950.0000",
+        "net_put_premium": "-1184437.0000",
+        "net_volume": "-92319"
+      },
+      {
+        "timestamp": "2025-10-03T13:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.63",
+        "net_call_premium": "-49348640.0000",
+        "net_put_premium": "-3193091.0000",
+        "net_volume": "-98902"
+      },
+      {
+        "timestamp": "2025-10-03T13:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.73",
+        "net_call_premium": "-49425238.0000",
+        "net_put_premium": "-3389977.0000",
+        "net_volume": "-95525"
+      },
+      {
+        "timestamp": "2025-10-03T13:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.98",
+        "net_call_premium": "-51239614.0000",
+        "net_put_premium": "-4773500.0000",
+        "net_volume": "-92021"
+      },
+      {
+        "timestamp": "2025-10-03T13:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.95",
+        "net_call_premium": "-49990697.0000",
+        "net_put_premium": "-5080790.0000",
+        "net_volume": "-85596"
+      },
+      {
+        "timestamp": "2025-10-03T13:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.925",
+        "net_call_premium": "-51063094.0000",
+        "net_put_premium": "-5749205.0000",
+        "net_volume": "-74576"
+      },
+      {
+        "timestamp": "2025-10-03T13:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8399",
+        "net_call_premium": "-51475914.0000",
+        "net_put_premium": "-4782657.0000",
+        "net_volume": "-73853"
+      },
+      {
+        "timestamp": "2025-10-03T13:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.0651",
+        "net_call_premium": "-48906689.0000",
+        "net_put_premium": "-7099473.0000",
+        "net_volume": "-73547"
+      },
+      {
+        "timestamp": "2025-10-03T13:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.16",
+        "net_call_premium": "-48796102.0000",
+        "net_put_premium": "-6780061.0000",
+        "net_volume": "-70147"
+      },
+      {
+        "timestamp": "2025-10-03T13:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "607.0844",
+        "net_call_premium": "-49536648.0000",
+        "net_put_premium": "-7014406.0000",
+        "net_volume": "-66127"
+      },
+      {
+        "timestamp": "2025-10-03T13:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.6413",
+        "net_call_premium": "-51757875.0000",
+        "net_put_premium": "-6218831.0000",
+        "net_volume": "-74406"
+      },
+      {
+        "timestamp": "2025-10-03T13:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.15",
+        "net_call_premium": "-55199570.0000",
+        "net_put_premium": "-4326533.0000",
+        "net_volume": "-91344"
+      },
+      {
+        "timestamp": "2025-10-03T13:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.86",
+        "net_call_premium": "-56932153.0000",
+        "net_put_premium": "-3609902.0000",
+        "net_volume": "-101134"
+      },
+      {
+        "timestamp": "2025-10-03T13:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.05",
+        "net_call_premium": "-57432182.0000",
+        "net_put_premium": "-4592578.0000",
+        "net_volume": "-104501"
+      },
+      {
+        "timestamp": "2025-10-03T13:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.76",
+        "net_call_premium": "-63930732.0000",
+        "net_put_premium": "-364119.0000",
+        "net_volume": "-129366"
+      },
+      {
+        "timestamp": "2025-10-03T13:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.83",
+        "net_call_premium": "-66153503.0000",
+        "net_put_premium": "-894253.0000",
+        "net_volume": "-140141"
+      },
+      {
+        "timestamp": "2025-10-03T14:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.375",
+        "net_call_premium": "-68043632.0000",
+        "net_put_premium": "1828947.0000",
+        "net_volume": "-168239"
+      },
+      {
+        "timestamp": "2025-10-03T14:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.19",
+        "net_call_premium": "-72250713.0000",
+        "net_put_premium": "4413915.0000",
+        "net_volume": "-185537"
+      },
+      {
+        "timestamp": "2025-10-03T14:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.07",
+        "net_call_premium": "-75104510.0000",
+        "net_put_premium": "5947013.0000",
+        "net_volume": "-205051"
+      },
+      {
+        "timestamp": "2025-10-03T14:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.09",
+        "net_call_premium": "-77531554.0000",
+        "net_put_premium": "6809629.0000",
+        "net_volume": "-213115"
+      },
+      {
+        "timestamp": "2025-10-03T14:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.3",
+        "net_call_premium": "-78083545.0000",
+        "net_put_premium": "6355368.0000",
+        "net_volume": "-207653"
+      },
+      {
+        "timestamp": "2025-10-03T14:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.26",
+        "net_call_premium": "-78961200.0000",
+        "net_put_premium": "7147693.0000",
+        "net_volume": "-212863"
+      },
+      {
+        "timestamp": "2025-10-03T14:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.21",
+        "net_call_premium": "-81410825.0000",
+        "net_put_premium": "6114408.0000",
+        "net_volume": "-211025"
+      },
+      {
+        "timestamp": "2025-10-03T14:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.27",
+        "net_call_premium": "-81878125.0000",
+        "net_put_premium": "5987132.0000",
+        "net_volume": "-208542"
+      },
+      {
+        "timestamp": "2025-10-03T14:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.7544",
+        "net_call_premium": "-88785645.0000",
+        "net_put_premium": "11468747.0000",
+        "net_volume": "-225225"
+      },
+      {
+        "timestamp": "2025-10-03T14:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.0499",
+        "net_call_premium": "-87324170.0000",
+        "net_put_premium": "11014577.0000",
+        "net_volume": "-233577"
+      },
+      {
+        "timestamp": "2025-10-03T14:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.05",
+        "net_call_premium": "-88951310.0000",
+        "net_put_premium": "12786534.0000",
+        "net_volume": "-236412"
+      },
+      {
+        "timestamp": "2025-10-03T14:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.89",
+        "net_call_premium": "-96103364.0000",
+        "net_put_premium": "14421574.0000",
+        "net_volume": "-243404"
+      },
+      {
+        "timestamp": "2025-10-03T14:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.17",
+        "net_call_premium": "-96587982.0000",
+        "net_put_premium": "12015125.0000",
+        "net_volume": "-230407"
+      },
+      {
+        "timestamp": "2025-10-03T14:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.2",
+        "net_call_premium": "-100040938.0000",
+        "net_put_premium": "11786622.0000",
+        "net_volume": "-232737"
+      },
+      {
+        "timestamp": "2025-10-03T14:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.12",
+        "net_call_premium": "-97514684.0000",
+        "net_put_premium": "10266694.0000",
+        "net_volume": "-243660"
+      },
+      {
+        "timestamp": "2025-10-03T14:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.24",
+        "net_call_premium": "-95591433.0000",
+        "net_put_premium": "8697461.0000",
+        "net_volume": "-240861"
+      },
+      {
+        "timestamp": "2025-10-03T14:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.6554",
+        "net_call_premium": "-93834440.0000",
+        "net_put_premium": "6817517.0000",
+        "net_volume": "-227517"
+      },
+      {
+        "timestamp": "2025-10-03T14:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.51",
+        "net_call_premium": "-94532103.0000",
+        "net_put_premium": "6721541.0000",
+        "net_volume": "-225493"
+      },
+      {
+        "timestamp": "2025-10-03T14:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.27",
+        "net_call_premium": "-94926228.0000",
+        "net_put_premium": "7413725.0000",
+        "net_volume": "-230586"
+      },
+      {
+        "timestamp": "2025-10-03T14:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.07",
+        "net_call_premium": "-94253367.0000",
+        "net_put_premium": "9104948.0000",
+        "net_volume": "-234191"
+      },
+      {
+        "timestamp": "2025-10-03T14:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.19",
+        "net_call_premium": "-94605156.0000",
+        "net_put_premium": "9843471.0000",
+        "net_volume": "-242645"
+      },
+      {
+        "timestamp": "2025-10-03T14:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.05",
+        "net_call_premium": "-93551317.0000",
+        "net_put_premium": "9298694.0000",
+        "net_volume": "-243680"
+      },
+      {
+        "timestamp": "2025-10-03T14:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.1399",
+        "net_call_premium": "-99546901.0000",
+        "net_put_premium": "11494764.0000",
+        "net_volume": "-278405"
+      },
+      {
+        "timestamp": "2025-10-03T14:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.74",
+        "net_call_premium": "-106850753.0000",
+        "net_put_premium": "14075470.0000",
+        "net_volume": "-292422"
+      },
+      {
+        "timestamp": "2025-10-03T14:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.2",
+        "net_call_premium": "-108365308.0000",
+        "net_put_premium": "13208992.0000",
+        "net_volume": "-296017"
+      },
+      {
+        "timestamp": "2025-10-03T14:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.32",
+        "net_call_premium": "-104924486.0000",
+        "net_put_premium": "12902033.0000",
+        "net_volume": "-299403"
+      },
+      {
+        "timestamp": "2025-10-03T14:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.54",
+        "net_call_premium": "-107055268.0000",
+        "net_put_premium": "12942960.0000",
+        "net_volume": "-299993"
+      },
+      {
+        "timestamp": "2025-10-03T14:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.21",
+        "net_call_premium": "-110009896.0000",
+        "net_put_premium": "15706691.0000",
+        "net_volume": "-300561"
+      },
+      {
+        "timestamp": "2025-10-03T14:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.32",
+        "net_call_premium": "-113963748.0000",
+        "net_put_premium": "17092391.0000",
+        "net_volume": "-305870"
+      },
+      {
+        "timestamp": "2025-10-03T14:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.4799",
+        "net_call_premium": "-112739866.0000",
+        "net_put_premium": "16779972.0000",
+        "net_volume": "-306169"
+      },
+      {
+        "timestamp": "2025-10-03T14:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.45",
+        "net_call_premium": "-112360295.0000",
+        "net_put_premium": "17127194.0000",
+        "net_volume": "-309095"
+      },
+      {
+        "timestamp": "2025-10-03T14:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.61",
+        "net_call_premium": "-114279542.0000",
+        "net_put_premium": "17121350.0000",
+        "net_volume": "-308222"
+      },
+      {
+        "timestamp": "2025-10-03T14:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.25",
+        "net_call_premium": "-124174498.0000",
+        "net_put_premium": "18479587.0000",
+        "net_volume": "-321599"
+      },
+      {
+        "timestamp": "2025-10-03T14:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.4",
+        "net_call_premium": "-122558125.0000",
+        "net_put_premium": "17600222.0000",
+        "net_volume": "-340711"
+      },
+      {
+        "timestamp": "2025-10-03T14:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.55",
+        "net_call_premium": "-117114903.0000",
+        "net_put_premium": "14874887.0000",
+        "net_volume": "-345369"
+      },
+      {
+        "timestamp": "2025-10-03T14:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.56",
+        "net_call_premium": "-116488784.0000",
+        "net_put_premium": "13559666.0000",
+        "net_volume": "-336399"
+      },
+      {
+        "timestamp": "2025-10-03T14:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.57",
+        "net_call_premium": "-124218837.0000",
+        "net_put_premium": "11855885.0000",
+        "net_volume": "-332932"
+      },
+      {
+        "timestamp": "2025-10-03T14:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.94",
+        "net_call_premium": "-119584380.0000",
+        "net_put_premium": "8670249.0000",
+        "net_volume": "-317316"
+      },
+      {
+        "timestamp": "2025-10-03T14:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.02",
+        "net_call_premium": "-122356463.0000",
+        "net_put_premium": "7732003.0000",
+        "net_volume": "-312836"
+      },
+      {
+        "timestamp": "2025-10-03T14:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.92",
+        "net_call_premium": "-122049077.0000",
+        "net_put_premium": "6874404.0000",
+        "net_volume": "-305228"
+      },
+      {
+        "timestamp": "2025-10-03T14:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.14",
+        "net_call_premium": "-125053033.0000",
+        "net_put_premium": "9387096.0000",
+        "net_volume": "-301316"
+      },
+      {
+        "timestamp": "2025-10-03T14:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.23",
+        "net_call_premium": "-130461121.0000",
+        "net_put_premium": "9239367.0000",
+        "net_volume": "-313266"
+      },
+      {
+        "timestamp": "2025-10-03T14:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.105",
+        "net_call_premium": "-134057661.0000",
+        "net_put_premium": "9956533.0000",
+        "net_volume": "-320980"
+      },
+      {
+        "timestamp": "2025-10-03T14:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.84",
+        "net_call_premium": "-136510402.0000",
+        "net_put_premium": "12036886.0000",
+        "net_volume": "-324808"
+      },
+      {
+        "timestamp": "2025-10-03T14:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.955",
+        "net_call_premium": "-137993882.0000",
+        "net_put_premium": "13912456.0000",
+        "net_volume": "-325239"
+      },
+      {
+        "timestamp": "2025-10-03T14:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.09",
+        "net_call_premium": "-139052090.0000",
+        "net_put_premium": "13886913.0000",
+        "net_volume": "-325245"
+      },
+      {
+        "timestamp": "2025-10-03T14:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.981",
+        "net_call_premium": "-137345358.0000",
+        "net_put_premium": "15303380.0000",
+        "net_volume": "-323142"
+      },
+      {
+        "timestamp": "2025-10-03T14:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.03",
+        "net_call_premium": "-142467568.0000",
+        "net_put_premium": "16991176.0000",
+        "net_volume": "-325307"
+      },
+      {
+        "timestamp": "2025-10-03T14:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.86",
+        "net_call_premium": "-143583601.0000",
+        "net_put_premium": "19278388.0000",
+        "net_volume": "-334501"
+      },
+      {
+        "timestamp": "2025-10-03T14:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.6841",
+        "net_call_premium": "-144033265.0000",
+        "net_put_premium": "18927402.0000",
+        "net_volume": "-342464"
+      },
+      {
+        "timestamp": "2025-10-03T14:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.65",
+        "net_call_premium": "-148400114.0000",
+        "net_put_premium": "17434504.0000",
+        "net_volume": "-341215"
+      },
+      {
+        "timestamp": "2025-10-03T14:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.895",
+        "net_call_premium": "-146534500.0000",
+        "net_put_premium": "17488582.0000",
+        "net_volume": "-339042"
+      },
+      {
+        "timestamp": "2025-10-03T14:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.035",
+        "net_call_premium": "-144355816.0000",
+        "net_put_premium": "18227379.0000",
+        "net_volume": "-334811"
+      },
+      {
+        "timestamp": "2025-10-03T14:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.02",
+        "net_call_premium": "-142762317.0000",
+        "net_put_premium": "16670918.0000",
+        "net_volume": "-331939"
+      },
+      {
+        "timestamp": "2025-10-03T14:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1899",
+        "net_call_premium": "-142080047.0000",
+        "net_put_premium": "15244631.0000",
+        "net_volume": "-327345"
+      },
+      {
+        "timestamp": "2025-10-03T14:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.215",
+        "net_call_premium": "-138852145.0000",
+        "net_put_premium": "16121158.0000",
+        "net_volume": "-323337"
+      },
+      {
+        "timestamp": "2025-10-03T14:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.145",
+        "net_call_premium": "-139211983.0000",
+        "net_put_premium": "15328415.0000",
+        "net_volume": "-323420"
+      },
+      {
+        "timestamp": "2025-10-03T14:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1",
+        "net_call_premium": "-139427909.0000",
+        "net_put_premium": "14695117.0000",
+        "net_volume": "-314928"
+      },
+      {
+        "timestamp": "2025-10-03T14:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.06",
+        "net_call_premium": "-136610074.0000",
+        "net_put_premium": "13621630.0000",
+        "net_volume": "-309969"
+      },
+      {
+        "timestamp": "2025-10-03T14:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1",
+        "net_call_premium": "-134647923.0000",
+        "net_put_premium": "14659502.0000",
+        "net_volume": "-309721"
+      },
+      {
+        "timestamp": "2025-10-03T15:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.99",
+        "net_call_premium": "-135779249.0000",
+        "net_put_premium": "15179853.0000",
+        "net_volume": "-310970"
+      },
+      {
+        "timestamp": "2025-10-03T15:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.95",
+        "net_call_premium": "-137226930.0000",
+        "net_put_premium": "14349204.0000",
+        "net_volume": "-311824"
+      },
+      {
+        "timestamp": "2025-10-03T15:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.8222",
+        "net_call_premium": "-136639584.0000",
+        "net_put_premium": "14974739.0000",
+        "net_volume": "-313403"
+      },
+      {
+        "timestamp": "2025-10-03T15:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.78",
+        "net_call_premium": "-137443082.0000",
+        "net_put_premium": "15555383.0000",
+        "net_volume": "-315021"
+      },
+      {
+        "timestamp": "2025-10-03T15:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.88",
+        "net_call_premium": "-138797201.0000",
+        "net_put_premium": "15478112.0000",
+        "net_volume": "-274402"
+      },
+      {
+        "timestamp": "2025-10-03T15:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.119",
+        "net_call_premium": "-140537568.0000",
+        "net_put_premium": "14355937.0000",
+        "net_volume": "-274218"
+      },
+      {
+        "timestamp": "2025-10-03T15:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.12",
+        "net_call_premium": "-136075857.0000",
+        "net_put_premium": "14360738.0000",
+        "net_volume": "-274250"
+      },
+      {
+        "timestamp": "2025-10-03T15:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.19",
+        "net_call_premium": "-133062914.0000",
+        "net_put_premium": "13538518.0000",
+        "net_volume": "-269423"
+      },
+      {
+        "timestamp": "2025-10-03T15:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.9615",
+        "net_call_premium": "-133976656.0000",
+        "net_put_premium": "13320714.0000",
+        "net_volume": "-267256"
+      },
+      {
+        "timestamp": "2025-10-03T15:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.94",
+        "net_call_premium": "-133666073.0000",
+        "net_put_premium": "13293401.0000",
+        "net_volume": "-268995"
+      },
+      {
+        "timestamp": "2025-10-03T15:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.76",
+        "net_call_premium": "-133260020.0000",
+        "net_put_premium": "13571190.0000",
+        "net_volume": "-269551"
+      },
+      {
+        "timestamp": "2025-10-03T15:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.04",
+        "net_call_premium": "-130213586.0000",
+        "net_put_premium": "12672752.0000",
+        "net_volume": "-264272"
+      },
+      {
+        "timestamp": "2025-10-03T15:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.17",
+        "net_call_premium": "-128501341.0000",
+        "net_put_premium": "11510034.0000",
+        "net_volume": "-263068"
+      },
+      {
+        "timestamp": "2025-10-03T15:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.205",
+        "net_call_premium": "-131052677.0000",
+        "net_put_premium": "10758437.0000",
+        "net_volume": "-267286"
+      },
+      {
+        "timestamp": "2025-10-03T15:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.28",
+        "net_call_premium": "-130857583.0000",
+        "net_put_premium": "11680570.0000",
+        "net_volume": "-264419"
+      },
+      {
+        "timestamp": "2025-10-03T15:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.3444",
+        "net_call_premium": "-128726087.0000",
+        "net_put_premium": "11956450.0000",
+        "net_volume": "-259255"
+      },
+      {
+        "timestamp": "2025-10-03T15:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.3739",
+        "net_call_premium": "-124847723.0000",
+        "net_put_premium": "16422078.0000",
+        "net_volume": "-259678"
+      },
+      {
+        "timestamp": "2025-10-03T15:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.41",
+        "net_call_premium": "-124482940.0000",
+        "net_put_premium": "18049743.0000",
+        "net_volume": "-255121"
+      },
+      {
+        "timestamp": "2025-10-03T15:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.28",
+        "net_call_premium": "-124116383.0000",
+        "net_put_premium": "19147944.0000",
+        "net_volume": "-254195"
+      },
+      {
+        "timestamp": "2025-10-03T15:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.41",
+        "net_call_premium": "-123967762.0000",
+        "net_put_premium": "19785306.0000",
+        "net_volume": "-250000"
+      },
+      {
+        "timestamp": "2025-10-03T15:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.3901",
+        "net_call_premium": "-119304870.0000",
+        "net_put_premium": "20059260.0000",
+        "net_volume": "-250435"
+      },
+      {
+        "timestamp": "2025-10-03T15:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.6",
+        "net_call_premium": "-116892997.0000",
+        "net_put_premium": "16978747.0000",
+        "net_volume": "-243724"
+      },
+      {
+        "timestamp": "2025-10-03T15:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.58",
+        "net_call_premium": "-116322747.0000",
+        "net_put_premium": "16784450.0000",
+        "net_volume": "-238168"
+      },
+      {
+        "timestamp": "2025-10-03T15:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.58",
+        "net_call_premium": "-117704495.0000",
+        "net_put_premium": "16042790.0000",
+        "net_volume": "-233664"
+      },
+      {
+        "timestamp": "2025-10-03T15:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.7",
+        "net_call_premium": "-116520351.0000",
+        "net_put_premium": "14930149.0000",
+        "net_volume": "-232690"
+      },
+      {
+        "timestamp": "2025-10-03T15:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.63",
+        "net_call_premium": "-113518242.0000",
+        "net_put_premium": "14752728.0000",
+        "net_volume": "-228861"
+      },
+      {
+        "timestamp": "2025-10-03T15:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.66",
+        "net_call_premium": "-110424300.0000",
+        "net_put_premium": "15356770.0000",
+        "net_volume": "-226187"
+      },
+      {
+        "timestamp": "2025-10-03T15:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.48",
+        "net_call_premium": "-110566179.0000",
+        "net_put_premium": "15453918.0000",
+        "net_volume": "-228251"
+      },
+      {
+        "timestamp": "2025-10-03T15:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.375",
+        "net_call_premium": "-112281378.0000",
+        "net_put_premium": "16333016.0000",
+        "net_volume": "-233157"
+      },
+      {
+        "timestamp": "2025-10-03T15:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.4901",
+        "net_call_premium": "-112217194.0000",
+        "net_put_premium": "16545899.0000",
+        "net_volume": "-236496"
+      },
+      {
+        "timestamp": "2025-10-03T15:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.44",
+        "net_call_premium": "-110932191.0000",
+        "net_put_premium": "16443615.0000",
+        "net_volume": "-238685"
+      },
+      {
+        "timestamp": "2025-10-03T15:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.5058",
+        "net_call_premium": "-109500924.0000",
+        "net_put_premium": "15187567.0000",
+        "net_volume": "-232615"
+      },
+      {
+        "timestamp": "2025-10-03T15:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.44",
+        "net_call_premium": "-113609262.0000",
+        "net_put_premium": "15576064.0000",
+        "net_volume": "-236220"
+      },
+      {
+        "timestamp": "2025-10-03T15:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.35",
+        "net_call_premium": "-116547629.0000",
+        "net_put_premium": "16636046.0000",
+        "net_volume": "-238854"
+      },
+      {
+        "timestamp": "2025-10-03T15:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.37",
+        "net_call_premium": "-119843698.0000",
+        "net_put_premium": "15727488.0000",
+        "net_volume": "-233000"
+      },
+      {
+        "timestamp": "2025-10-03T15:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.58",
+        "net_call_premium": "-118345259.0000",
+        "net_put_premium": "15332882.0000",
+        "net_volume": "-229902"
+      },
+      {
+        "timestamp": "2025-10-03T15:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.455",
+        "net_call_premium": "-119502364.0000",
+        "net_put_premium": "14729222.0000",
+        "net_volume": "-238286"
+      },
+      {
+        "timestamp": "2025-10-03T15:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.3001",
+        "net_call_premium": "-119337314.0000",
+        "net_put_premium": "14339124.0000",
+        "net_volume": "-239092"
+      },
+      {
+        "timestamp": "2025-10-03T15:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.34",
+        "net_call_premium": "-119064212.0000",
+        "net_put_premium": "14911981.0000",
+        "net_volume": "-244388"
+      },
+      {
+        "timestamp": "2025-10-03T15:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.16",
+        "net_call_premium": "-115978451.0000",
+        "net_put_premium": "15613972.0000",
+        "net_volume": "-240015"
+      },
+      {
+        "timestamp": "2025-10-03T15:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.0191",
+        "net_call_premium": "-119361745.0000",
+        "net_put_premium": "18779769.0000",
+        "net_volume": "-251620"
+      },
+      {
+        "timestamp": "2025-10-03T15:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.05",
+        "net_call_premium": "-118105817.0000",
+        "net_put_premium": "19723384.0000",
+        "net_volume": "-255035"
+      },
+      {
+        "timestamp": "2025-10-03T15:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.935",
+        "net_call_premium": "-120760746.0000",
+        "net_put_premium": "21317123.0000",
+        "net_volume": "-260622"
+      },
+      {
+        "timestamp": "2025-10-03T15:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.08",
+        "net_call_premium": "-121147868.0000",
+        "net_put_premium": "20848361.0000",
+        "net_volume": "-260677"
+      },
+      {
+        "timestamp": "2025-10-03T15:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.18",
+        "net_call_premium": "-119998553.0000",
+        "net_put_premium": "20255573.0000",
+        "net_volume": "-258633"
+      },
+      {
+        "timestamp": "2025-10-03T15:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.151",
+        "net_call_premium": "-119300224.0000",
+        "net_put_premium": "20060715.0000",
+        "net_volume": "-259879"
+      },
+      {
+        "timestamp": "2025-10-03T15:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.32",
+        "net_call_premium": "-119737705.0000",
+        "net_put_premium": "20014179.0000",
+        "net_volume": "-256083"
+      },
+      {
+        "timestamp": "2025-10-03T15:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1493",
+        "net_call_premium": "-121191944.0000",
+        "net_put_premium": "21534445.0000",
+        "net_volume": "-261631"
+      },
+      {
+        "timestamp": "2025-10-03T15:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.2",
+        "net_call_premium": "-119756944.0000",
+        "net_put_premium": "21522510.0000",
+        "net_volume": "-260515"
+      },
+      {
+        "timestamp": "2025-10-03T15:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.3001",
+        "net_call_premium": "-119411747.0000",
+        "net_put_premium": "21078251.0000",
+        "net_volume": "-262369"
+      },
+      {
+        "timestamp": "2025-10-03T15:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.36",
+        "net_call_premium": "-116847088.0000",
+        "net_put_premium": "20316464.0000",
+        "net_volume": "-261210"
+      },
+      {
+        "timestamp": "2025-10-03T15:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.44",
+        "net_call_premium": "-116124050.0000",
+        "net_put_premium": "22052084.0000",
+        "net_volume": "-262435"
+      },
+      {
+        "timestamp": "2025-10-03T15:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.39",
+        "net_call_premium": "-116467475.0000",
+        "net_put_premium": "20893813.0000",
+        "net_volume": "-260956"
+      },
+      {
+        "timestamp": "2025-10-03T15:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.5251",
+        "net_call_premium": "-120494825.0000",
+        "net_put_premium": "22101857.0000",
+        "net_volume": "-283497"
+      },
+      {
+        "timestamp": "2025-10-03T15:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.57",
+        "net_call_premium": "-123046332.0000",
+        "net_put_premium": "22238729.0000",
+        "net_volume": "-300169"
+      },
+      {
+        "timestamp": "2025-10-03T15:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.56",
+        "net_call_premium": "-125001854.0000",
+        "net_put_premium": "22954048.0000",
+        "net_volume": "-309484"
+      },
+      {
+        "timestamp": "2025-10-03T15:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.79",
+        "net_call_premium": "-123912320.0000",
+        "net_put_premium": "22455253.0000",
+        "net_volume": "-301985"
+      },
+      {
+        "timestamp": "2025-10-03T15:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8201",
+        "net_call_premium": "-122070252.0000",
+        "net_put_premium": "23068223.0000",
+        "net_volume": "-293510"
+      },
+      {
+        "timestamp": "2025-10-03T15:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.7356",
+        "net_call_premium": "-122153391.0000",
+        "net_put_premium": "23488465.0000",
+        "net_volume": "-295930"
+      },
+      {
+        "timestamp": "2025-10-03T15:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.775",
+        "net_call_premium": "-122344251.0000",
+        "net_put_premium": "23401763.0000",
+        "net_volume": "-297797"
+      },
+      {
+        "timestamp": "2025-10-03T16:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.75",
+        "net_call_premium": "-124168587.0000",
+        "net_put_premium": "22977882.0000",
+        "net_volume": "-303807"
+      },
+      {
+        "timestamp": "2025-10-03T16:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.84",
+        "net_call_premium": "-121463817.0000",
+        "net_put_premium": "21672934.0000",
+        "net_volume": "-301218"
+      },
+      {
+        "timestamp": "2025-10-03T16:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.84",
+        "net_call_premium": "-121825815.0000",
+        "net_put_premium": "22256395.0000",
+        "net_volume": "-303882"
+      },
+      {
+        "timestamp": "2025-10-03T16:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.82",
+        "net_call_premium": "-121531775.0000",
+        "net_put_premium": "22270991.0000",
+        "net_volume": "-300578"
+      },
+      {
+        "timestamp": "2025-10-03T16:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8499",
+        "net_call_premium": "-121881623.0000",
+        "net_put_premium": "22297133.0000",
+        "net_volume": "-302922"
+      },
+      {
+        "timestamp": "2025-10-03T16:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8713",
+        "net_call_premium": "-120646297.0000",
+        "net_put_premium": "21919645.0000",
+        "net_volume": "-300381"
+      },
+      {
+        "timestamp": "2025-10-03T16:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.93",
+        "net_call_premium": "-119053891.0000",
+        "net_put_premium": "21554997.0000",
+        "net_volume": "-297543"
+      },
+      {
+        "timestamp": "2025-10-03T16:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8906",
+        "net_call_premium": "-118380006.0000",
+        "net_put_premium": "23065312.0000",
+        "net_volume": "-304100"
+      },
+      {
+        "timestamp": "2025-10-03T16:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.85",
+        "net_call_premium": "-119915708.0000",
+        "net_put_premium": "23897938.0000",
+        "net_volume": "-311517"
+      },
+      {
+        "timestamp": "2025-10-03T16:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.74",
+        "net_call_premium": "-118221866.0000",
+        "net_put_premium": "23991486.0000",
+        "net_volume": "-311360"
+      },
+      {
+        "timestamp": "2025-10-03T16:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.65",
+        "net_call_premium": "-123836568.0000",
+        "net_put_premium": "25169395.0000",
+        "net_volume": "-327030"
+      },
+      {
+        "timestamp": "2025-10-03T16:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.582",
+        "net_call_premium": "-125045953.0000",
+        "net_put_premium": "26579529.0000",
+        "net_volume": "-329257"
+      },
+      {
+        "timestamp": "2025-10-03T16:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.63",
+        "net_call_premium": "-126163058.0000",
+        "net_put_premium": "26090061.0000",
+        "net_volume": "-343061"
+      },
+      {
+        "timestamp": "2025-10-03T16:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.71",
+        "net_call_premium": "-126093433.0000",
+        "net_put_premium": "26126722.0000",
+        "net_volume": "-342796"
+      },
+      {
+        "timestamp": "2025-10-03T16:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.72",
+        "net_call_premium": "-123654672.0000",
+        "net_put_premium": "26436131.0000",
+        "net_volume": "-342361"
+      },
+      {
+        "timestamp": "2025-10-03T16:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.71",
+        "net_call_premium": "-126394513.0000",
+        "net_put_premium": "27402748.0000",
+        "net_volume": "-352052"
+      },
+      {
+        "timestamp": "2025-10-03T16:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.84",
+        "net_call_premium": "-125848714.0000",
+        "net_put_premium": "27092849.0000",
+        "net_volume": "-349082"
+      },
+      {
+        "timestamp": "2025-10-03T16:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.738",
+        "net_call_premium": "-124720022.0000",
+        "net_put_premium": "24933074.0000",
+        "net_volume": "-348325"
+      },
+      {
+        "timestamp": "2025-10-03T16:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.7844",
+        "net_call_premium": "-125286122.0000",
+        "net_put_premium": "24015862.0000",
+        "net_volume": "-347187"
+      },
+      {
+        "timestamp": "2025-10-03T16:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.8801",
+        "net_call_premium": "-124759492.0000",
+        "net_put_premium": "23619303.0000",
+        "net_volume": "-342724"
+      },
+      {
+        "timestamp": "2025-10-03T16:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.815",
+        "net_call_premium": "-123633711.0000",
+        "net_put_premium": "23824462.0000",
+        "net_volume": "-343077"
+      },
+      {
+        "timestamp": "2025-10-03T16:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.785",
+        "net_call_premium": "-124503717.0000",
+        "net_put_premium": "23827346.0000",
+        "net_volume": "-346726"
+      },
+      {
+        "timestamp": "2025-10-03T16:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.6806",
+        "net_call_premium": "-123727081.0000",
+        "net_put_premium": "24035227.0000",
+        "net_volume": "-342610"
+      },
+      {
+        "timestamp": "2025-10-03T16:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.62",
+        "net_call_premium": "-126136367.0000",
+        "net_put_premium": "24585704.0000",
+        "net_volume": "-348810"
+      },
+      {
+        "timestamp": "2025-10-03T16:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.57",
+        "net_call_premium": "-127282627.0000",
+        "net_put_premium": "25107020.0000",
+        "net_volume": "-358926"
+      },
+      {
+        "timestamp": "2025-10-03T16:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.52",
+        "net_call_premium": "-126653436.0000",
+        "net_put_premium": "26070971.0000",
+        "net_volume": "-360021"
+      },
+      {
+        "timestamp": "2025-10-03T16:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.365",
+        "net_call_premium": "-130678949.0000",
+        "net_put_premium": "28008840.0000",
+        "net_volume": "-364624"
+      },
+      {
+        "timestamp": "2025-10-03T16:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.5999",
+        "net_call_premium": "-134114420.0000",
+        "net_put_premium": "28405854.0000",
+        "net_volume": "-382438"
+      },
+      {
+        "timestamp": "2025-10-03T16:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.76",
+        "net_call_premium": "-131071606.0000",
+        "net_put_premium": "27720463.0000",
+        "net_volume": "-361367"
+      },
+      {
+        "timestamp": "2025-10-03T16:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.72",
+        "net_call_premium": "-132281943.0000",
+        "net_put_premium": "27900210.0000",
+        "net_volume": "-350580"
+      },
+      {
+        "timestamp": "2025-10-03T16:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.67",
+        "net_call_premium": "-133082679.0000",
+        "net_put_premium": "28164537.0000",
+        "net_volume": "-350249"
+      },
+      {
+        "timestamp": "2025-10-03T16:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.7483",
+        "net_call_premium": "-132053870.0000",
+        "net_put_premium": "27627721.0000",
+        "net_volume": "-348548"
+      },
+      {
+        "timestamp": "2025-10-03T16:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.69",
+        "net_call_premium": "-132877004.0000",
+        "net_put_premium": "27702379.0000",
+        "net_volume": "-348560"
+      },
+      {
+        "timestamp": "2025-10-03T16:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.695",
+        "net_call_premium": "-130899435.0000",
+        "net_put_premium": "27431522.0000",
+        "net_volume": "-354746"
+      },
+      {
+        "timestamp": "2025-10-03T16:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.7299",
+        "net_call_premium": "-130318216.0000",
+        "net_put_premium": "27220017.0000",
+        "net_volume": "-354382"
+      },
+      {
+        "timestamp": "2025-10-03T16:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.61",
+        "net_call_premium": "-131384368.0000",
+        "net_put_premium": "29662062.0000",
+        "net_volume": "-375126"
+      },
+      {
+        "timestamp": "2025-10-03T16:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.465",
+        "net_call_premium": "-132296643.0000",
+        "net_put_premium": "29904907.0000",
+        "net_volume": "-386610"
+      },
+      {
+        "timestamp": "2025-10-03T16:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.495",
+        "net_call_premium": "-131480565.0000",
+        "net_put_premium": "29660685.0000",
+        "net_volume": "-387877"
+      },
+      {
+        "timestamp": "2025-10-03T16:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.4",
+        "net_call_premium": "-131389686.0000",
+        "net_put_premium": "30303356.0000",
+        "net_volume": "-388754"
+      },
+      {
+        "timestamp": "2025-10-03T16:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.35",
+        "net_call_premium": "-134118111.0000",
+        "net_put_premium": "30033089.0000",
+        "net_volume": "-397613"
+      },
+      {
+        "timestamp": "2025-10-03T16:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.195",
+        "net_call_premium": "-140389966.0000",
+        "net_put_premium": "31022563.0000",
+        "net_volume": "-412262"
+      },
+      {
+        "timestamp": "2025-10-03T16:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.27",
+        "net_call_premium": "-141387398.0000",
+        "net_put_premium": "30962606.0000",
+        "net_volume": "-415911"
+      },
+      {
+        "timestamp": "2025-10-03T16:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.24",
+        "net_call_premium": "-145048084.0000",
+        "net_put_premium": "30907686.0000",
+        "net_volume": "-415252"
+      },
+      {
+        "timestamp": "2025-10-03T16:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1801",
+        "net_call_premium": "-145676979.0000",
+        "net_put_premium": "30632002.0000",
+        "net_volume": "-420598"
+      },
+      {
+        "timestamp": "2025-10-03T16:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.15",
+        "net_call_premium": "-150225584.0000",
+        "net_put_premium": "30115375.0000",
+        "net_volume": "-432639"
+      },
+      {
+        "timestamp": "2025-10-03T16:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.29",
+        "net_call_premium": "-149306116.0000",
+        "net_put_premium": "29944349.0000",
+        "net_volume": "-430778"
+      },
+      {
+        "timestamp": "2025-10-03T16:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.142",
+        "net_call_premium": "-151495628.0000",
+        "net_put_premium": "31034947.0000",
+        "net_volume": "-430663"
+      },
+      {
+        "timestamp": "2025-10-03T16:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.14",
+        "net_call_premium": "-154963785.0000",
+        "net_put_premium": "32375355.0000",
+        "net_volume": "-436969"
+      },
+      {
+        "timestamp": "2025-10-03T16:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.18",
+        "net_call_premium": "-158441492.0000",
+        "net_put_premium": "33026468.0000",
+        "net_volume": "-438266"
+      },
+      {
+        "timestamp": "2025-10-03T16:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.165",
+        "net_call_premium": "-160834614.0000",
+        "net_put_premium": "33656788.0000",
+        "net_volume": "-444026"
+      },
+      {
+        "timestamp": "2025-10-03T16:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.88",
+        "net_call_premium": "-166115969.0000",
+        "net_put_premium": "35945794.0000",
+        "net_volume": "-454531"
+      },
+      {
+        "timestamp": "2025-10-03T16:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.19",
+        "net_call_premium": "-171551384.0000",
+        "net_put_premium": "37132063.0000",
+        "net_volume": "-465889"
+      },
+      {
+        "timestamp": "2025-10-03T16:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.17",
+        "net_call_premium": "-171779092.0000",
+        "net_put_premium": "36437960.0000",
+        "net_volume": "-465636"
+      },
+      {
+        "timestamp": "2025-10-03T16:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1699",
+        "net_call_premium": "-171293416.0000",
+        "net_put_premium": "36841508.0000",
+        "net_volume": "-471873"
+      },
+      {
+        "timestamp": "2025-10-03T16:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.15",
+        "net_call_premium": "-173755851.0000",
+        "net_put_premium": "36371577.0000",
+        "net_volume": "-469624"
+      },
+      {
+        "timestamp": "2025-10-03T16:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.22",
+        "net_call_premium": "-173008355.0000",
+        "net_put_premium": "34153341.0000",
+        "net_volume": "-467283"
+      },
+      {
+        "timestamp": "2025-10-03T16:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.04",
+        "net_call_premium": "-172923397.0000",
+        "net_put_premium": "34889915.0000",
+        "net_volume": "-472499"
+      },
+      {
+        "timestamp": "2025-10-03T16:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1599",
+        "net_call_premium": "-169769792.0000",
+        "net_put_premium": "34444891.0000",
+        "net_volume": "-470895"
+      },
+      {
+        "timestamp": "2025-10-03T16:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.195",
+        "net_call_premium": "-170066157.0000",
+        "net_put_premium": "35551207.0000",
+        "net_volume": "-475083"
+      },
+      {
+        "timestamp": "2025-10-03T16:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "606.1",
+        "net_call_premium": "-169675752.0000",
+        "net_put_premium": "36011867.0000",
+        "net_volume": "-493657"
+      },
+      {
+        "timestamp": "2025-10-03T17:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.52",
+        "net_call_premium": "-178218383.0000",
+        "net_put_premium": "40929800.0000",
+        "net_volume": "-520570"
+      },
+      {
+        "timestamp": "2025-10-03T17:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.3599",
+        "net_call_premium": "-181274267.0000",
+        "net_put_premium": "42835133.0000",
+        "net_volume": "-530322"
+      },
+      {
+        "timestamp": "2025-10-03T17:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.96",
+        "net_call_premium": "-184653702.0000",
+        "net_put_premium": "46160390.0000",
+        "net_volume": "-550923"
+      },
+      {
+        "timestamp": "2025-10-03T17:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.54",
+        "net_call_premium": "-190092390.0000",
+        "net_put_premium": "48038035.0000",
+        "net_volume": "-570780"
+      },
+      {
+        "timestamp": "2025-10-03T17:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.42",
+        "net_call_premium": "-192891418.0000",
+        "net_put_premium": "49711431.0000",
+        "net_volume": "-585761"
+      },
+      {
+        "timestamp": "2025-10-03T17:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.05",
+        "net_call_premium": "-197160863.0000",
+        "net_put_premium": "52092521.0000",
+        "net_volume": "-606168"
+      },
+      {
+        "timestamp": "2025-10-03T17:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.04",
+        "net_call_premium": "-196407113.0000",
+        "net_put_premium": "53052387.0000",
+        "net_volume": "-614648"
+      },
+      {
+        "timestamp": "2025-10-03T17:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.56",
+        "net_call_premium": "-194339413.0000",
+        "net_put_premium": "51723178.0000",
+        "net_volume": "-618154"
+      },
+      {
+        "timestamp": "2025-10-03T17:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.78",
+        "net_call_premium": "-193275211.0000",
+        "net_put_premium": "50340179.0000",
+        "net_volume": "-618555"
+      },
+      {
+        "timestamp": "2025-10-03T17:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.8593",
+        "net_call_premium": "-199203967.0000",
+        "net_put_premium": "48686056.0000",
+        "net_volume": "-622757"
+      },
+      {
+        "timestamp": "2025-10-03T17:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.86",
+        "net_call_premium": "-199665600.0000",
+        "net_put_premium": "48383022.0000",
+        "net_volume": "-619604"
+      },
+      {
+        "timestamp": "2025-10-03T17:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.145",
+        "net_call_premium": "-202935135.0000",
+        "net_put_premium": "46530942.0000",
+        "net_volume": "-613859"
+      },
+      {
+        "timestamp": "2025-10-03T17:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.4",
+        "net_call_premium": "-203571515.0000",
+        "net_put_premium": "45802844.0000",
+        "net_volume": "-611773"
+      },
+      {
+        "timestamp": "2025-10-03T17:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.33",
+        "net_call_premium": "-207448200.0000",
+        "net_put_premium": "45960883.0000",
+        "net_volume": "-612370"
+      },
+      {
+        "timestamp": "2025-10-03T17:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "605.18",
+        "net_call_premium": "-205957058.0000",
+        "net_put_premium": "45257401.0000",
+        "net_volume": "-609566"
+      },
+      {
+        "timestamp": "2025-10-03T17:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.78",
+        "net_call_premium": "-207556613.0000",
+        "net_put_premium": "45958613.0000",
+        "net_volume": "-613568"
+      },
+      {
+        "timestamp": "2025-10-03T17:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.95",
+        "net_call_premium": "-208637403.0000",
+        "net_put_premium": "46439805.0000",
+        "net_volume": "-615516"
+      },
+      {
+        "timestamp": "2025-10-03T17:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.825",
+        "net_call_premium": "-210960609.0000",
+        "net_put_premium": "46310143.0000",
+        "net_volume": "-616231"
+      },
+      {
+        "timestamp": "2025-10-03T17:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.55",
+        "net_call_premium": "-212570686.0000",
+        "net_put_premium": "47676771.0000",
+        "net_volume": "-621801"
+      },
+      {
+        "timestamp": "2025-10-03T17:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.36",
+        "net_call_premium": "-214260452.0000",
+        "net_put_premium": "48761983.0000",
+        "net_volume": "-626753"
+      },
+      {
+        "timestamp": "2025-10-03T17:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.29",
+        "net_call_premium": "-217003463.0000",
+        "net_put_premium": "49664268.0000",
+        "net_volume": "-634534"
+      },
+      {
+        "timestamp": "2025-10-03T17:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.1212",
+        "net_call_premium": "-220626612.0000",
+        "net_put_premium": "52112239.0000",
+        "net_volume": "-648217"
+      },
+      {
+        "timestamp": "2025-10-03T17:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.3656",
+        "net_call_premium": "-220918922.0000",
+        "net_put_premium": "52206835.0000",
+        "net_volume": "-641624"
+      },
+      {
+        "timestamp": "2025-10-03T17:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.38",
+        "net_call_premium": "-221647421.0000",
+        "net_put_premium": "52092670.0000",
+        "net_volume": "-641800"
+      },
+      {
+        "timestamp": "2025-10-03T17:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.07",
+        "net_call_premium": "-224325318.0000",
+        "net_put_premium": "52935446.0000",
+        "net_volume": "-649300"
+      },
+      {
+        "timestamp": "2025-10-03T17:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.12",
+        "net_call_premium": "-226195715.0000",
+        "net_put_premium": "54375294.0000",
+        "net_volume": "-663431"
+      },
+      {
+        "timestamp": "2025-10-03T17:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.21",
+        "net_call_premium": "-226837634.0000",
+        "net_put_premium": "54738117.0000",
+        "net_volume": "-663428"
+      },
+      {
+        "timestamp": "2025-10-03T17:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.05",
+        "net_call_premium": "-230249211.0000",
+        "net_put_premium": "56323293.0000",
+        "net_volume": "-670963"
+      },
+      {
+        "timestamp": "2025-10-03T17:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.1",
+        "net_call_premium": "-231340051.0000",
+        "net_put_premium": "55993088.0000",
+        "net_volume": "-674659"
+      },
+      {
+        "timestamp": "2025-10-03T17:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.9",
+        "net_call_premium": "-232961410.0000",
+        "net_put_premium": "57185710.0000",
+        "net_volume": "-675941"
+      },
+      {
+        "timestamp": "2025-10-03T17:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.85",
+        "net_call_premium": "-236000090.0000",
+        "net_put_premium": "57927674.0000",
+        "net_volume": "-686423"
+      },
+      {
+        "timestamp": "2025-10-03T17:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.05",
+        "net_call_premium": "-235027179.0000",
+        "net_put_premium": "56651485.0000",
+        "net_volume": "-681797"
+      },
+      {
+        "timestamp": "2025-10-03T17:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.4691",
+        "net_call_premium": "-235236737.0000",
+        "net_put_premium": "55491290.0000",
+        "net_volume": "-681714"
+      },
+      {
+        "timestamp": "2025-10-03T17:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.39",
+        "net_call_premium": "-242907292.0000",
+        "net_put_premium": "55909663.0000",
+        "net_volume": "-689679"
+      },
+      {
+        "timestamp": "2025-10-03T17:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.18",
+        "net_call_premium": "-244846151.0000",
+        "net_put_premium": "56358384.0000",
+        "net_volume": "-695287"
+      },
+      {
+        "timestamp": "2025-10-03T17:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.15",
+        "net_call_premium": "-251445392.0000",
+        "net_put_premium": "55459324.0000",
+        "net_volume": "-698942"
+      },
+      {
+        "timestamp": "2025-10-03T17:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.11",
+        "net_call_premium": "-254133079.0000",
+        "net_put_premium": "55075010.0000",
+        "net_volume": "-706341"
+      },
+      {
+        "timestamp": "2025-10-03T17:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.0401",
+        "net_call_premium": "-256943386.0000",
+        "net_put_premium": "55293238.0000",
+        "net_volume": "-711892"
+      },
+      {
+        "timestamp": "2025-10-03T17:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.22",
+        "net_call_premium": "-257149903.0000",
+        "net_put_premium": "54314567.0000",
+        "net_volume": "-710318"
+      },
+      {
+        "timestamp": "2025-10-03T17:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.1956",
+        "net_call_premium": "-257464969.0000",
+        "net_put_premium": "54785825.0000",
+        "net_volume": "-709457"
+      },
+      {
+        "timestamp": "2025-10-03T17:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.97",
+        "net_call_premium": "-259624342.0000",
+        "net_put_premium": "56400697.0000",
+        "net_volume": "-727868"
+      },
+      {
+        "timestamp": "2025-10-03T17:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.6",
+        "net_call_premium": "-263341910.0000",
+        "net_put_premium": "58872437.0000",
+        "net_volume": "-746634"
+      },
+      {
+        "timestamp": "2025-10-03T17:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.5299",
+        "net_call_premium": "-264640385.0000",
+        "net_put_premium": "62011471.0000",
+        "net_volume": "-759900"
+      },
+      {
+        "timestamp": "2025-10-03T17:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.58",
+        "net_call_premium": "-267183837.0000",
+        "net_put_premium": "62013073.0000",
+        "net_volume": "-767879"
+      },
+      {
+        "timestamp": "2025-10-03T17:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.445",
+        "net_call_premium": "-270403896.0000",
+        "net_put_premium": "63331426.0000",
+        "net_volume": "-779081"
+      },
+      {
+        "timestamp": "2025-10-03T17:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.48",
+        "net_call_premium": "-270966851.0000",
+        "net_put_premium": "62923204.0000",
+        "net_volume": "-784220"
+      },
+      {
+        "timestamp": "2025-10-03T17:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.91",
+        "net_call_premium": "-278463895.0000",
+        "net_put_premium": "64849041.0000",
+        "net_volume": "-791302"
+      },
+      {
+        "timestamp": "2025-10-03T17:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.12",
+        "net_call_premium": "-279549001.0000",
+        "net_put_premium": "63468084.0000",
+        "net_volume": "-789965"
+      },
+      {
+        "timestamp": "2025-10-03T17:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.95",
+        "net_call_premium": "-282616021.0000",
+        "net_put_premium": "62772918.0000",
+        "net_volume": "-790505"
+      },
+      {
+        "timestamp": "2025-10-03T17:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.98",
+        "net_call_premium": "-284242435.0000",
+        "net_put_premium": "62657213.0000",
+        "net_volume": "-796731"
+      },
+      {
+        "timestamp": "2025-10-03T17:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.67",
+        "net_call_premium": "-287793013.0000",
+        "net_put_premium": "63043539.0000",
+        "net_volume": "-804155"
+      },
+      {
+        "timestamp": "2025-10-03T17:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.22",
+        "net_call_premium": "-292400987.0000",
+        "net_put_premium": "67766097.0000",
+        "net_volume": "-824224"
+      },
+      {
+        "timestamp": "2025-10-03T17:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.0905",
+        "net_call_premium": "-295726320.0000",
+        "net_put_premium": "68478388.0000",
+        "net_volume": "-828364"
+      },
+      {
+        "timestamp": "2025-10-03T17:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.83",
+        "net_call_premium": "-300778474.0000",
+        "net_put_premium": "71251237.0000",
+        "net_volume": "-848551"
+      },
+      {
+        "timestamp": "2025-10-03T17:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.4499",
+        "net_call_premium": "-304271389.0000",
+        "net_put_premium": "70743069.0000",
+        "net_volume": "-860993"
+      },
+      {
+        "timestamp": "2025-10-03T17:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.35",
+        "net_call_premium": "-305913794.0000",
+        "net_put_premium": "63883847.0000",
+        "net_volume": "-847600"
+      },
+      {
+        "timestamp": "2025-10-03T17:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.53",
+        "net_call_premium": "-305462574.0000",
+        "net_put_premium": "62038909.0000",
+        "net_volume": "-842421"
+      },
+      {
+        "timestamp": "2025-10-03T17:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.48",
+        "net_call_premium": "-304161578.0000",
+        "net_put_premium": "61935003.0000",
+        "net_volume": "-835931"
+      },
+      {
+        "timestamp": "2025-10-03T17:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.58",
+        "net_call_premium": "-309274742.0000",
+        "net_put_premium": "61189191.0000",
+        "net_volume": "-838000"
+      },
+      {
+        "timestamp": "2025-10-03T17:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.6",
+        "net_call_premium": "-309213163.0000",
+        "net_put_premium": "60544724.0000",
+        "net_volume": "-837947"
+      },
+      {
+        "timestamp": "2025-10-03T18:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.15",
+        "net_call_premium": "-312058381.0000",
+        "net_put_premium": "60893191.0000",
+        "net_volume": "-843226"
+      },
+      {
+        "timestamp": "2025-10-03T18:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.46",
+        "net_call_premium": "-310825678.0000",
+        "net_put_premium": "58230250.0000",
+        "net_volume": "-839778"
+      },
+      {
+        "timestamp": "2025-10-03T18:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.4701",
+        "net_call_premium": "-310039135.0000",
+        "net_put_premium": "58597005.0000",
+        "net_volume": "-839084"
+      },
+      {
+        "timestamp": "2025-10-03T18:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.225",
+        "net_call_premium": "-312931155.0000",
+        "net_put_premium": "59651577.0000",
+        "net_volume": "-846816"
+      },
+      {
+        "timestamp": "2025-10-03T18:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.78",
+        "net_call_premium": "-315421681.0000",
+        "net_put_premium": "61324420.0000",
+        "net_volume": "-852087"
+      },
+      {
+        "timestamp": "2025-10-03T18:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.83",
+        "net_call_premium": "-317241955.0000",
+        "net_put_premium": "62706560.0000",
+        "net_volume": "-853233"
+      },
+      {
+        "timestamp": "2025-10-03T18:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.605",
+        "net_call_premium": "-319338337.0000",
+        "net_put_premium": "64596060.0000",
+        "net_volume": "-859672"
+      },
+      {
+        "timestamp": "2025-10-03T18:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.505",
+        "net_call_premium": "-319658741.0000",
+        "net_put_premium": "65227662.0000",
+        "net_volume": "-861775"
+      },
+      {
+        "timestamp": "2025-10-03T18:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.96",
+        "net_call_premium": "-320452238.0000",
+        "net_put_premium": "66103306.0000",
+        "net_volume": "-866974"
+      },
+      {
+        "timestamp": "2025-10-03T18:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "601.9",
+        "net_call_premium": "-320563940.0000",
+        "net_put_premium": "65955977.0000",
+        "net_volume": "-865826"
+      },
+      {
+        "timestamp": "2025-10-03T18:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.495",
+        "net_call_premium": "-318686876.0000",
+        "net_put_premium": "64221051.0000",
+        "net_volume": "-856226"
+      },
+      {
+        "timestamp": "2025-10-03T18:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.78",
+        "net_call_premium": "-318655359.0000",
+        "net_put_premium": "63505927.0000",
+        "net_volume": "-850913"
+      },
+      {
+        "timestamp": "2025-10-03T18:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.73",
+        "net_call_premium": "-320523994.0000",
+        "net_put_premium": "64498850.0000",
+        "net_volume": "-842655"
+      },
+      {
+        "timestamp": "2025-10-03T18:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.655",
+        "net_call_premium": "-319917941.0000",
+        "net_put_premium": "65352522.0000",
+        "net_volume": "-840012"
+      },
+      {
+        "timestamp": "2025-10-03T18:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.605",
+        "net_call_premium": "-318061222.0000",
+        "net_put_premium": "65148274.0000",
+        "net_volume": "-839026"
+      },
+      {
+        "timestamp": "2025-10-03T18:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.76",
+        "net_call_premium": "-316922339.0000",
+        "net_put_premium": "64312166.0000",
+        "net_volume": "-832589"
+      },
+      {
+        "timestamp": "2025-10-03T18:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.8",
+        "net_call_premium": "-318002904.0000",
+        "net_put_premium": "64143887.0000",
+        "net_volume": "-831751"
+      },
+      {
+        "timestamp": "2025-10-03T18:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.15",
+        "net_call_premium": "-316287896.0000",
+        "net_put_premium": "63482184.0000",
+        "net_volume": "-824638"
+      },
+      {
+        "timestamp": "2025-10-03T18:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.16",
+        "net_call_premium": "-315744945.0000",
+        "net_put_premium": "62820506.0000",
+        "net_volume": "-818084"
+      },
+      {
+        "timestamp": "2025-10-03T18:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.3896",
+        "net_call_premium": "-317641120.0000",
+        "net_put_premium": "60725741.0000",
+        "net_volume": "-816121"
+      },
+      {
+        "timestamp": "2025-10-03T18:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.1499",
+        "net_call_premium": "-314831381.0000",
+        "net_put_premium": "61068047.0000",
+        "net_volume": "-818168"
+      },
+      {
+        "timestamp": "2025-10-03T18:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.38",
+        "net_call_premium": "-314012112.0000",
+        "net_put_premium": "61161685.0000",
+        "net_volume": "-813086"
+      },
+      {
+        "timestamp": "2025-10-03T18:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.615",
+        "net_call_premium": "-312216454.0000",
+        "net_put_premium": "60310726.0000",
+        "net_volume": "-806758"
+      },
+      {
+        "timestamp": "2025-10-03T18:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.56",
+        "net_call_premium": "-313097197.0000",
+        "net_put_premium": "60103582.0000",
+        "net_volume": "-805646"
+      },
+      {
+        "timestamp": "2025-10-03T18:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.72",
+        "net_call_premium": "-312830493.0000",
+        "net_put_premium": "59931176.0000",
+        "net_volume": "-796407"
+      },
+      {
+        "timestamp": "2025-10-03T18:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.75",
+        "net_call_premium": "-312030720.0000",
+        "net_put_premium": "60110551.0000",
+        "net_volume": "-792513"
+      },
+      {
+        "timestamp": "2025-10-03T18:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.17",
+        "net_call_premium": "-313301871.0000",
+        "net_put_premium": "60897577.0000",
+        "net_volume": "-788676"
+      },
+      {
+        "timestamp": "2025-10-03T18:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.13",
+        "net_call_premium": "-314316292.0000",
+        "net_put_premium": "60530273.0000",
+        "net_volume": "-785853"
+      },
+      {
+        "timestamp": "2025-10-03T18:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.0807",
+        "net_call_premium": "-312463300.0000",
+        "net_put_premium": "60475772.0000",
+        "net_volume": "-779128"
+      },
+      {
+        "timestamp": "2025-10-03T18:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.1301",
+        "net_call_premium": "-312029324.0000",
+        "net_put_premium": "60699751.0000",
+        "net_volume": "-774534"
+      },
+      {
+        "timestamp": "2025-10-03T18:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "604.04",
+        "net_call_premium": "-311635124.0000",
+        "net_put_premium": "60615690.0000",
+        "net_volume": "-772169"
+      },
+      {
+        "timestamp": "2025-10-03T18:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.87",
+        "net_call_premium": "-314591594.0000",
+        "net_put_premium": "61550918.0000",
+        "net_volume": "-778034"
+      },
+      {
+        "timestamp": "2025-10-03T18:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.345",
+        "net_call_premium": "-314247590.0000",
+        "net_put_premium": "63050494.0000",
+        "net_volume": "-781683"
+      },
+      {
+        "timestamp": "2025-10-03T18:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.2899",
+        "net_call_premium": "-314370721.0000",
+        "net_put_premium": "63062581.0000",
+        "net_volume": "-782626"
+      },
+      {
+        "timestamp": "2025-10-03T18:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.5499",
+        "net_call_premium": "-312417924.0000",
+        "net_put_premium": "62186803.0000",
+        "net_volume": "-781639"
+      },
+      {
+        "timestamp": "2025-10-03T18:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.31",
+        "net_call_premium": "-311984218.0000",
+        "net_put_premium": "62577705.0000",
+        "net_volume": "-782580"
+      },
+      {
+        "timestamp": "2025-10-03T18:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.505",
+        "net_call_premium": "-312717988.0000",
+        "net_put_premium": "61597853.0000",
+        "net_volume": "-783647"
+      },
+      {
+        "timestamp": "2025-10-03T18:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.5647",
+        "net_call_premium": "-318998687.0000",
+        "net_put_premium": "62484073.0000",
+        "net_volume": "-780576"
+      },
+      {
+        "timestamp": "2025-10-03T18:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.54",
+        "net_call_premium": "-319013391.0000",
+        "net_put_premium": "62006070.0000",
+        "net_volume": "-780409"
+      },
+      {
+        "timestamp": "2025-10-03T18:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.46",
+        "net_call_premium": "-319944210.0000",
+        "net_put_premium": "62776220.0000",
+        "net_volume": "-777817"
+      },
+      {
+        "timestamp": "2025-10-03T18:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.56",
+        "net_call_premium": "-323264845.0000",
+        "net_put_premium": "65063906.0000",
+        "net_volume": "-773680"
+      },
+      {
+        "timestamp": "2025-10-03T18:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.37",
+        "net_call_premium": "-323441347.0000",
+        "net_put_premium": "64779893.0000",
+        "net_volume": "-768895"
+      },
+      {
+        "timestamp": "2025-10-03T18:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.5899",
+        "net_call_premium": "-321947452.0000",
+        "net_put_premium": "63603115.0000",
+        "net_volume": "-766929"
+      },
+      {
+        "timestamp": "2025-10-03T18:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.59",
+        "net_call_premium": "-322026506.0000",
+        "net_put_premium": "63713163.0000",
+        "net_volume": "-765253"
+      },
+      {
+        "timestamp": "2025-10-03T18:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.545",
+        "net_call_premium": "-323238052.0000",
+        "net_put_premium": "63263540.0000",
+        "net_volume": "-765114"
+      },
+      {
+        "timestamp": "2025-10-03T18:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.365",
+        "net_call_premium": "-323213202.0000",
+        "net_put_premium": "65117933.0000",
+        "net_volume": "-766659"
+      },
+      {
+        "timestamp": "2025-10-03T18:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.38",
+        "net_call_premium": "-322795253.0000",
+        "net_put_premium": "66911682.0000",
+        "net_volume": "-770079"
+      },
+      {
+        "timestamp": "2025-10-03T18:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.45",
+        "net_call_premium": "-322301695.0000",
+        "net_put_premium": "66221998.0000",
+        "net_volume": "-769557"
+      },
+      {
+        "timestamp": "2025-10-03T18:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.27",
+        "net_call_premium": "-323726516.0000",
+        "net_put_premium": "65012725.0000",
+        "net_volume": "-765064"
+      },
+      {
+        "timestamp": "2025-10-03T18:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.94",
+        "net_call_premium": "-326266751.0000",
+        "net_put_premium": "66409416.0000",
+        "net_volume": "-771440"
+      },
+      {
+        "timestamp": "2025-10-03T18:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603",
+        "net_call_premium": "-327091071.0000",
+        "net_put_premium": "67135393.0000",
+        "net_volume": "-790618"
+      },
+      {
+        "timestamp": "2025-10-03T18:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.1",
+        "net_call_premium": "-328838494.0000",
+        "net_put_premium": "67839645.0000",
+        "net_volume": "-793608"
+      },
+      {
+        "timestamp": "2025-10-03T18:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.8806",
+        "net_call_premium": "-330457819.0000",
+        "net_put_premium": "67432426.0000",
+        "net_volume": "-795151"
+      },
+      {
+        "timestamp": "2025-10-03T18:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.89",
+        "net_call_premium": "-333077851.0000",
+        "net_put_premium": "66611902.0000",
+        "net_volume": "-797103"
+      },
+      {
+        "timestamp": "2025-10-03T18:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.14",
+        "net_call_premium": "-336186167.0000",
+        "net_put_premium": "65464073.0000",
+        "net_volume": "-794703"
+      },
+      {
+        "timestamp": "2025-10-03T18:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.2361",
+        "net_call_premium": "-336723836.0000",
+        "net_put_premium": "64505326.0000",
+        "net_volume": "-794279"
+      },
+      {
+        "timestamp": "2025-10-03T18:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.42",
+        "net_call_premium": "-335844397.0000",
+        "net_put_premium": "62488807.0000",
+        "net_volume": "-790348"
+      },
+      {
+        "timestamp": "2025-10-03T18:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.4",
+        "net_call_premium": "-336172555.0000",
+        "net_put_premium": "62618782.0000",
+        "net_volume": "-788435"
+      },
+      {
+        "timestamp": "2025-10-03T18:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.41",
+        "net_call_premium": "-335495328.0000",
+        "net_put_premium": "61740210.0000",
+        "net_volume": "-783921"
+      },
+      {
+        "timestamp": "2025-10-03T18:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.455",
+        "net_call_premium": "-335939285.0000",
+        "net_put_premium": "61390011.0000",
+        "net_volume": "-785623"
+      },
+      {
+        "timestamp": "2025-10-03T19:00:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.54",
+        "net_call_premium": "-336114830.0000",
+        "net_put_premium": "60353068.0000",
+        "net_volume": "-784715"
+      },
+      {
+        "timestamp": "2025-10-03T19:01:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.32",
+        "net_call_premium": "-336286208.0000",
+        "net_put_premium": "60697953.0000",
+        "net_volume": "-784516"
+      },
+      {
+        "timestamp": "2025-10-03T19:02:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.21",
+        "net_call_premium": "-336421818.0000",
+        "net_put_premium": "60530637.0000",
+        "net_volume": "-785995"
+      },
+      {
+        "timestamp": "2025-10-03T19:03:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.2899",
+        "net_call_premium": "-338135296.0000",
+        "net_put_premium": "60412490.0000",
+        "net_volume": "-787319"
+      },
+      {
+        "timestamp": "2025-10-03T19:04:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.33",
+        "net_call_premium": "-338245760.0000",
+        "net_put_premium": "60995044.0000",
+        "net_volume": "-788589"
+      },
+      {
+        "timestamp": "2025-10-03T19:05:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.495",
+        "net_call_premium": "-336259635.0000",
+        "net_put_premium": "60240195.0000",
+        "net_volume": "-784245"
+      },
+      {
+        "timestamp": "2025-10-03T19:06:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.4",
+        "net_call_premium": "-335712840.0000",
+        "net_put_premium": "59640332.0000",
+        "net_volume": "-782084"
+      },
+      {
+        "timestamp": "2025-10-03T19:07:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.44",
+        "net_call_premium": "-334932031.0000",
+        "net_put_premium": "57482863.0000",
+        "net_volume": "-779217"
+      },
+      {
+        "timestamp": "2025-10-03T19:08:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.285",
+        "net_call_premium": "-335104592.0000",
+        "net_put_premium": "58234698.0000",
+        "net_volume": "-787515"
+      },
+      {
+        "timestamp": "2025-10-03T19:09:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.485",
+        "net_call_premium": "-334104792.0000",
+        "net_put_premium": "57863115.0000",
+        "net_volume": "-781063"
+      },
+      {
+        "timestamp": "2025-10-03T19:10:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.62",
+        "net_call_premium": "-330378444.0000",
+        "net_put_premium": "56640610.0000",
+        "net_volume": "-773631"
+      },
+      {
+        "timestamp": "2025-10-03T19:11:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.9401",
+        "net_call_premium": "-328744240.0000",
+        "net_put_premium": "54863405.0000",
+        "net_volume": "-766403"
+      },
+      {
+        "timestamp": "2025-10-03T19:12:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.68",
+        "net_call_premium": "-328268517.0000",
+        "net_put_premium": "55100150.0000",
+        "net_volume": "-767724"
+      },
+      {
+        "timestamp": "2025-10-03T19:13:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.52",
+        "net_call_premium": "-328372431.0000",
+        "net_put_premium": "54665876.0000",
+        "net_volume": "-766515"
+      },
+      {
+        "timestamp": "2025-10-03T19:14:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.51",
+        "net_call_premium": "-328019816.0000",
+        "net_put_premium": "54044573.0000",
+        "net_volume": "-763986"
+      },
+      {
+        "timestamp": "2025-10-03T19:15:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.38",
+        "net_call_premium": "-326225157.0000",
+        "net_put_premium": "53770615.0000",
+        "net_volume": "-760978"
+      },
+      {
+        "timestamp": "2025-10-03T19:16:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.41",
+        "net_call_premium": "-323375830.0000",
+        "net_put_premium": "53236039.0000",
+        "net_volume": "-759543"
+      },
+      {
+        "timestamp": "2025-10-03T19:17:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.385",
+        "net_call_premium": "-324701778.0000",
+        "net_put_premium": "53016428.0000",
+        "net_volume": "-756938"
+      },
+      {
+        "timestamp": "2025-10-03T19:18:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.33",
+        "net_call_premium": "-326470056.0000",
+        "net_put_premium": "52390003.0000",
+        "net_volume": "-766655"
+      },
+      {
+        "timestamp": "2025-10-03T19:19:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.45",
+        "net_call_premium": "-326152951.0000",
+        "net_put_premium": "52287175.0000",
+        "net_volume": "-769113"
+      },
+      {
+        "timestamp": "2025-10-03T19:20:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.315",
+        "net_call_premium": "-325732743.0000",
+        "net_put_premium": "53863527.0000",
+        "net_volume": "-771327"
+      },
+      {
+        "timestamp": "2025-10-03T19:21:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.3053",
+        "net_call_premium": "-323128486.0000",
+        "net_put_premium": "54502341.0000",
+        "net_volume": "-771245"
+      },
+      {
+        "timestamp": "2025-10-03T19:22:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.415",
+        "net_call_premium": "-323707402.0000",
+        "net_put_premium": "55255102.0000",
+        "net_volume": "-780673"
+      },
+      {
+        "timestamp": "2025-10-03T19:23:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.295",
+        "net_call_premium": "-324833735.0000",
+        "net_put_premium": "55058394.0000",
+        "net_volume": "-793791"
+      },
+      {
+        "timestamp": "2025-10-03T19:24:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.2744",
+        "net_call_premium": "-325557877.0000",
+        "net_put_premium": "56434940.0000",
+        "net_volume": "-806801"
+      },
+      {
+        "timestamp": "2025-10-03T19:25:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.43",
+        "net_call_premium": "-323782420.0000",
+        "net_put_premium": "57210678.0000",
+        "net_volume": "-797695"
+      },
+      {
+        "timestamp": "2025-10-03T19:26:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.49",
+        "net_call_premium": "-322409333.0000",
+        "net_put_premium": "56316568.0000",
+        "net_volume": "-794499"
+      },
+      {
+        "timestamp": "2025-10-03T19:27:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.38",
+        "net_call_premium": "-322194364.0000",
+        "net_put_premium": "56185988.0000",
+        "net_volume": "-792597"
+      },
+      {
+        "timestamp": "2025-10-03T19:28:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.33",
+        "net_call_premium": "-322718288.0000",
+        "net_put_premium": "58890986.0000",
+        "net_volume": "-793428"
+      },
+      {
+        "timestamp": "2025-10-03T19:29:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.34",
+        "net_call_premium": "-321935527.0000",
+        "net_put_premium": "58947908.0000",
+        "net_volume": "-788488"
+      },
+      {
+        "timestamp": "2025-10-03T19:30:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.31",
+        "net_call_premium": "-324240009.0000",
+        "net_put_premium": "59888549.0000",
+        "net_volume": "-791874"
+      },
+      {
+        "timestamp": "2025-10-03T19:31:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.255",
+        "net_call_premium": "-323605609.0000",
+        "net_put_premium": "60774581.0000",
+        "net_volume": "-731599"
+      },
+      {
+        "timestamp": "2025-10-03T19:32:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.305",
+        "net_call_premium": "-325446018.0000",
+        "net_put_premium": "60149396.0000",
+        "net_volume": "-729870"
+      },
+      {
+        "timestamp": "2025-10-03T19:33:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.575",
+        "net_call_premium": "-324649021.0000",
+        "net_put_premium": "58697093.0000",
+        "net_volume": "-722447"
+      },
+      {
+        "timestamp": "2025-10-03T19:34:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.525",
+        "net_call_premium": "-322776493.0000",
+        "net_put_premium": "58753242.0000",
+        "net_volume": "-718367"
+      },
+      {
+        "timestamp": "2025-10-03T19:35:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.57",
+        "net_call_premium": "-320326923.0000",
+        "net_put_premium": "58770316.0000",
+        "net_volume": "-721004"
+      },
+      {
+        "timestamp": "2025-10-03T19:36:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.66",
+        "net_call_premium": "-318255259.0000",
+        "net_put_premium": "57565050.0000",
+        "net_volume": "-721269"
+      },
+      {
+        "timestamp": "2025-10-03T19:37:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.66",
+        "net_call_premium": "-317946014.0000",
+        "net_put_premium": "57134086.0000",
+        "net_volume": "-725720"
+      },
+      {
+        "timestamp": "2025-10-03T19:38:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.6144",
+        "net_call_premium": "-318173015.0000",
+        "net_put_premium": "57558417.0000",
+        "net_volume": "-730207"
+      },
+      {
+        "timestamp": "2025-10-03T19:39:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.52",
+        "net_call_premium": "-317014707.0000",
+        "net_put_premium": "57745039.0000",
+        "net_volume": "-727919"
+      },
+      {
+        "timestamp": "2025-10-03T19:40:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.55",
+        "net_call_premium": "-316891402.0000",
+        "net_put_premium": "57452397.0000",
+        "net_volume": "-734217"
+      },
+      {
+        "timestamp": "2025-10-03T19:41:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.82",
+        "net_call_premium": "-313053614.0000",
+        "net_put_premium": "57651442.0000",
+        "net_volume": "-735623"
+      },
+      {
+        "timestamp": "2025-10-03T19:42:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.68",
+        "net_call_premium": "-314639007.0000",
+        "net_put_premium": "57018223.0000",
+        "net_volume": "-731519"
+      },
+      {
+        "timestamp": "2025-10-03T19:43:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.63",
+        "net_call_premium": "-314954675.0000",
+        "net_put_premium": "56012763.0000",
+        "net_volume": "-731628"
+      },
+      {
+        "timestamp": "2025-10-03T19:44:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.53",
+        "net_call_premium": "-314308156.0000",
+        "net_put_premium": "56387297.0000",
+        "net_volume": "-734171"
+      },
+      {
+        "timestamp": "2025-10-03T19:45:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.71",
+        "net_call_premium": "-314556461.0000",
+        "net_put_premium": "55392787.0000",
+        "net_volume": "-730665"
+      },
+      {
+        "timestamp": "2025-10-03T19:46:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.575",
+        "net_call_premium": "-314956554.0000",
+        "net_put_premium": "55070540.0000",
+        "net_volume": "-729586"
+      },
+      {
+        "timestamp": "2025-10-03T19:47:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.65",
+        "net_call_premium": "-317834890.0000",
+        "net_put_premium": "54073271.0000",
+        "net_volume": "-732753"
+      },
+      {
+        "timestamp": "2025-10-03T19:48:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.6815",
+        "net_call_premium": "-318357487.0000",
+        "net_put_premium": "53733699.0000",
+        "net_volume": "-732540"
+      },
+      {
+        "timestamp": "2025-10-03T19:49:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.48",
+        "net_call_premium": "-318477630.0000",
+        "net_put_premium": "53743550.0000",
+        "net_volume": "-731362"
+      },
+      {
+        "timestamp": "2025-10-03T19:50:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.19",
+        "net_call_premium": "-325789142.0000",
+        "net_put_premium": "56625692.0000",
+        "net_volume": "-744483"
+      },
+      {
+        "timestamp": "2025-10-03T19:51:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.35",
+        "net_call_premium": "-323705859.0000",
+        "net_put_premium": "57040503.0000",
+        "net_volume": "-740122"
+      },
+      {
+        "timestamp": "2025-10-03T19:52:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.365",
+        "net_call_premium": "-321106615.0000",
+        "net_put_premium": "58387512.0000",
+        "net_volume": "-736897"
+      },
+      {
+        "timestamp": "2025-10-03T19:53:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.29",
+        "net_call_premium": "-319059731.0000",
+        "net_put_premium": "58929867.0000",
+        "net_volume": "-734486"
+      },
+      {
+        "timestamp": "2025-10-03T19:54:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.41",
+        "net_call_premium": "-317499283.0000",
+        "net_put_premium": "57504539.0000",
+        "net_volume": "-729016"
+      },
+      {
+        "timestamp": "2025-10-03T19:55:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.1687",
+        "net_call_premium": "-317154045.0000",
+        "net_put_premium": "54910230.0000",
+        "net_volume": "-728852"
+      },
+      {
+        "timestamp": "2025-10-03T19:56:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "603.03",
+        "net_call_premium": "-318624228.0000",
+        "net_put_premium": "55230039.0000",
+        "net_volume": "-732609"
+      },
+      {
+        "timestamp": "2025-10-03T19:57:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.98",
+        "net_call_premium": "-318429085.0000",
+        "net_put_premium": "56024243.0000",
+        "net_volume": "-731346"
+      },
+      {
+        "timestamp": "2025-10-03T19:58:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.93",
+        "net_call_premium": "-321190790.0000",
+        "net_put_premium": "55923236.0000",
+        "net_volume": "-738234"
+      },
+      {
+        "timestamp": "2025-10-03T19:59:00.000000Z",
+        "date": "2025-10-03",
+        "underlying_price": "602.86",
+        "net_call_premium": "-320314572.0000",
+        "net_put_premium": "56019366.0000",
+        "net_volume": "-737112"
+      }
+    ],
+    "date": "2025-10-03"
+  }
+}

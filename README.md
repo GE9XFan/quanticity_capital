@@ -1,56 +1,76 @@
-# Quanticity Capital – Automated Options Trading Platform
+# Quanticity Capital – Unusual Whales REST Capture
 
-This repository houses the solo-development project for the SPY/QQQ/IWM automated options trading stack. Phase 0 is complete, and Phase 1 ingestion is feature-complete but still has follow-up tasks before sign-off:
+Phase 0 is focused on **calling the live Unusual Whales REST API**, validating the responses, and saving the raw JSON to disk. Nothing else is wired yet—no Redis, no WebSockets, no FastAPI. This repository now contains only the tooling required for that task.
 
-- **Phase 0** – Repo scaffold, FastAPI app factory, Docker stack, runtime docs ✅
-- **Phase 1** – Unusual Whales ingestion worker (WebSocket + REST), Redis live cache, Postgres persistence, raw REST archive ✅ *(metrics exporter + feed classification outstanding)*
-
-## Current Layout
+## Repository Layout
 
 ```
 src/
-  app/            FastAPI service (Phase 0 skeleton, metrics endpoint todo)
-  ingestion/      Unusual Whales worker (service, handlers, REST scheduler, rate limit)
-sql/              Ad-hoc SQL scripts (`20250104_uw_phase1_tables.sql`)
-docs/             Scope, implementation guides, API queries/samples
-tests/            Pytest suites + fixture payloads under `tests/data/uw`
+  config/            Runtime settings (pydantic-settings)
+  clients/           HTTP client wrapper around httpx
+  ingestion/         Endpoint catalogue + ingestion runner
+  cli/               CLI entry point (`python -m src.cli.uw_rest_fetch`)
+
+data/unusual_whales/raw/   Raw JSON responses organised by endpoint
+logs/                      Timestamped log files from each run
 ```
 
-## Getting Started
+All other code from earlier phases has been archived under `archive/` for reference.
+
+## Prerequisites
+
+- Python 3.11
+- A valid Unusual Whales API token (advanced plan)
+
+Create/activate a virtualenv and install dependencies:
 
 ```bash
-# install dependencies
-make install
-
-# run unit tests (uses local venv)
-make test
-
-# launch FastAPI (Phase 0 skeleton)
-make run
-
-# launch ingestion worker (requires `.env` with UNUSUAL_WHALES_API_TOKEN)
-make ingest-run
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Docker users can run the full stack via `make docker-up` (FastAPI, Postgres, Redis, ingestion worker).
+Copy the example environment file and set your token (and optional overrides):
 
-## Documentation
+```bash
+cp .env.example .env
+# edit .env and set UNUSUAL_WHALES_API_TOKEN=...
+```
 
-- `docs/project_scope.md` – overall roadmap and guiding principles.
-- `docs/phase1_implementation.md` – detailed ingestion design, verified endpoint catalog, outstanding follow-ups.
-- `docs/api_queries.md` – REST/WebSocket request examples (token placeholders, sanitized).
-- `docs/api_samples/` – JSON snapshots collected from live REST calls.
+## Fetching REST Data
 
-## Outstanding Follow-ups (Phase 1 sign-off blockers)
+Run the fetcher to hit every documented REST endpoint for the configured tickers (defaults to `SPY,QQQ,IWM`). This command talks to the live API—no mocks.
 
-- Expose ingestion metrics from the FastAPI service (`/metrics`).
-- Classify each REST/WebSocket feed (Redis snapshot vs Postgres archive vs future derived table) prior to building curated tables in Phase 2.
-- Keep `docs/api_queries.md` in sync with any new payload observations.
+```bash
+make uw-rest-fetch
+# or: python -m src.cli.uw_rest_fetch
+```
 
-## Environment & Secrets
+Outputs:
 
-Create a `.env` (gitignored) with `UNUSUAL_WHALES_API_TOKEN` and database/redis connection strings as needed. See `src/app/config.py` and `src/ingestion/config.py` for the full list of tunable settings.
+- Raw responses written to `data/unusual_whales/raw/<endpoint>/<ticker>_<timestamp>.json`
+- Per-endpoint indexes (`index.ndjson`) that track when each file was created
+- Structured logs in `logs/unusual_whales_rest_<timestamp>.log`
 
----
+The CLI prints a summary when the run completes, including success/failure counts and the destination directory.
 
-Questions? Open an issue or ping the project notes—future phases will build analytics, risk, execution, and distribution on top of this ingestion foundation.
+## Configuration Reference
+
+All runtime settings come from environment variables (see `src/config/settings.py` for defaults):
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `UNUSUAL_WHALES_API_TOKEN` | – | **Required** API token |
+| `TARGET_SYMBOLS` | `SPY,QQQ,IWM` | Comma-separated list of tickers |
+| `REQUEST_TIMEOUT_SECONDS` | `30.0` | HTTP timeout per request |
+| `RATE_LIMIT_REQUESTS_PER_MINUTE` | `100` | Max requests per minute (hard cap 120) |
+| `RATE_LIMIT_LEEWAY_SECONDS` | `0.5` | Extra wait inserted between calls |
+
+## Next Steps (after Phase 0)
+
+1. Decide how to persist the latest payloads (Redis snapshots, Postgres archive, etc.).
+2. Introduce scheduling so the fetcher runs continuously or on a cadence.
+3. Expand into WebSocket ingestion once the REST flow is locked down.
+4. Build analytics, signals, and the rest of the trading pipeline on top of the captured data.
+
+Until we explicitly move to the next phase, this repository’s only contract is: **call the real API, save the real JSON, and log any errors.**

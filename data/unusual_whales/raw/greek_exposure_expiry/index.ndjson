@@ -1,0 +1,3 @@
+{"file": "SPY_2025-10-04T19-45-26-725057.json", "ticker": "SPY", "fetched_at": "2025-10-04T19:45:26.725889", "status_code": 200, "timestamp": 561709.081173333}
+{"file": "QQQ_2025-10-04T19-45-57-486375.json", "ticker": "QQQ", "fetched_at": "2025-10-04T19:45:57.486889", "status_code": 200, "timestamp": 561739.842370125}
+{"file": "IWM_2025-10-04T19-46-28-456674.json", "ticker": "IWM", "fetched_at": "2025-10-04T19:46:28.457170", "status_code": 200, "timestamp": 561770.81242275}

@@ -1,0 +1,714 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561698.184818625,
+    "endpoint": "market_total_options_volume",
+    "ticker": null,
+    "saved_at": "2025-10-04T19:45:15.828578",
+    "endpoint_key": "market_total_options_volume"
+  },
+  "data": {
+    "data": [
+      {
+        "date": "2025-10-03",
+        "call_premium": "27941805305.67",
+        "call_volume": 52134725,
+        "put_premium": "12600643891.27",
+        "put_volume": 33737167
+      },
+      {
+        "date": "2025-10-02",
+        "call_premium": "25353805200.84",
+        "call_volume": 42132954,
+        "put_premium": "11420144339.93",
+        "put_volume": 25459319
+      },
+      {
+        "date": "2025-10-01",
+        "call_premium": "37112216516.83",
+        "call_volume": 40848855,
+        "put_premium": "10457642604.79",
+        "put_volume": 24436251
+      },
+      {
+        "date": "2025-09-30",
+        "call_premium": "36885526692.98",
+        "call_volume": 36379759,
+        "put_premium": "11319336275.96",
+        "put_volume": 24636931
+      },
+      {
+        "date": "2025-09-29",
+        "call_premium": "21073640358.82",
+        "call_volume": 36515682,
+        "put_premium": "9831610737.18",
+        "put_volume": 22088779
+      },
+      {
+        "date": "2025-09-26",
+        "call_premium": "28570964742.72",
+        "call_volume": 41800627,
+        "put_premium": "10166217170.72",
+        "put_volume": 27174066
+      },
+      {
+        "date": "2025-09-25",
+        "call_premium": "42155788301.56",
+        "call_volume": 41760796,
+        "put_premium": "16225635928.85",
+        "put_volume": 30046777
+      },
+      {
+        "date": "2025-09-24",
+        "call_premium": "26647031613.64",
+        "call_volume": 37329759,
+        "put_premium": "11289369635.39",
+        "put_volume": 24512676
+      },
+      {
+        "date": "2025-09-23",
+        "call_premium": "29115465964.98",
+        "call_volume": 40135315,
+        "put_premium": "11708426106.94",
+        "put_volume": 26136761
+      },
+      {
+        "date": "2025-09-22",
+        "call_premium": "27577848835.50",
+        "call_volume": 43533444,
+        "put_premium": "12618568192.65",
+        "put_volume": 26426641
+      },
+      {
+        "date": "2025-09-19",
+        "call_premium": "34619876679.60",
+        "call_volume": 50217339,
+        "put_premium": "11466510501.87",
+        "put_volume": 29572688
+      },
+      {
+        "date": "2025-09-18",
+        "call_premium": "50594994378.99",
+        "call_volume": 50948950,
+        "put_premium": "16751062664.97",
+        "put_volume": 29685780
+      },
+      {
+        "date": "2025-09-17",
+        "call_premium": "23533754714.98",
+        "call_volume": 40914212,
+        "put_premium": "13225184205.97",
+        "put_volume": 27566299
+      },
+      {
+        "date": "2025-09-16",
+        "call_premium": "33037920972.89",
+        "call_volume": 34830235,
+        "put_premium": "10802078636.25",
+        "put_volume": 20902939
+      },
+      {
+        "date": "2025-09-15",
+        "call_premium": "41344398828.18",
+        "call_volume": 40302801,
+        "put_premium": "13032678672.48",
+        "put_volume": 22524257
+      },
+      {
+        "date": "2025-09-12",
+        "call_premium": "35714595178.52",
+        "call_volume": 47118136,
+        "put_premium": "11577618048.71",
+        "put_volume": 27619308
+      },
+      {
+        "date": "2025-09-11",
+        "call_premium": "23204427549.84",
+        "call_volume": 40225725,
+        "put_premium": "14260003160.23",
+        "put_volume": 27280730
+      },
+      {
+        "date": "2025-09-10",
+        "call_premium": "26850014791.92",
+        "call_volume": 39948011,
+        "put_premium": "10433776657.27",
+        "put_volume": 25447643
+      },
+      {
+        "date": "2025-09-09",
+        "call_premium": "25223075312.83",
+        "call_volume": 31491918,
+        "put_premium": "8840690029.31",
+        "put_volume": 21848981
+      },
+      {
+        "date": "2025-09-08",
+        "call_premium": "23957792571.25",
+        "call_volume": 31633174,
+        "put_premium": "8165005457.28",
+        "put_volume": 21725051
+      },
+      {
+        "date": "2025-09-05",
+        "call_premium": "16909057172.44",
+        "call_volume": 44823979,
+        "put_premium": "10795303016.53",
+        "put_volume": 30403212
+      },
+      {
+        "date": "2025-09-04",
+        "call_premium": "15495525921.49",
+        "call_volume": 33304967,
+        "put_premium": "11677964563.49",
+        "put_volume": 24788007
+      },
+      {
+        "date": "2025-09-03",
+        "call_premium": "14723297628.14",
+        "call_volume": 32153399,
+        "put_premium": "8133536800.38",
+        "put_volume": 21167698
+      },
+      {
+        "date": "2025-09-02",
+        "call_premium": "12965829845.24",
+        "call_volume": 31228125,
+        "put_premium": "11510925901.78",
+        "put_volume": 23226265
+      },
+      {
+        "date": "2025-08-29",
+        "call_premium": "16175348970.43",
+        "call_volume": 40114119,
+        "put_premium": "9690115861.75",
+        "put_volume": 25935042
+      },
+      {
+        "date": "2025-08-28",
+        "call_premium": "17852972453.51",
+        "call_volume": 33975440,
+        "put_premium": "10244108672.94",
+        "put_volume": 23707245
+      },
+      {
+        "date": "2025-08-27",
+        "call_premium": "18487381184.20",
+        "call_volume": 28425750,
+        "put_premium": "7429036584.08",
+        "put_volume": 18282553
+      },
+      {
+        "date": "2025-08-26",
+        "call_premium": "33153836381.69",
+        "call_volume": 26578633,
+        "put_premium": "8098673137.92",
+        "put_volume": 17801566
+      },
+      {
+        "date": "2025-08-25",
+        "call_premium": "11996792374.92",
+        "call_volume": 29078586,
+        "put_premium": "7082355452.43",
+        "put_volume": 19681033
+      },
+      {
+        "date": "2025-08-22",
+        "call_premium": "19622042369.42",
+        "call_volume": 46613530,
+        "put_premium": "10140871613.39",
+        "put_volume": 30869759
+      },
+      {
+        "date": "2025-08-21",
+        "call_premium": "12119096153.76",
+        "call_volume": 26544295,
+        "put_premium": "12245709532.15",
+        "put_volume": 22708010
+      },
+      {
+        "date": "2025-08-20",
+        "call_premium": "15857428323.56",
+        "call_volume": 34971500,
+        "put_premium": "13333468611.39",
+        "put_volume": 28082894
+      },
+      {
+        "date": "2025-08-19",
+        "call_premium": "14828024946.09",
+        "call_volume": 33303969,
+        "put_premium": "9462481444.86",
+        "put_volume": 23539095
+      },
+      {
+        "date": "2025-08-18",
+        "call_premium": "13085334175.33",
+        "call_volume": 29030109,
+        "put_premium": "6988814064.20",
+        "put_volume": 18197987
+      },
+      {
+        "date": "2025-08-15",
+        "call_premium": "22077058813.22",
+        "call_volume": 41972591,
+        "put_premium": "9109945174.04",
+        "put_volume": 25764466
+      },
+      {
+        "date": "2025-08-14",
+        "call_premium": "19828611135.47",
+        "call_volume": 36677537,
+        "put_premium": "13947870576.81",
+        "put_volume": 26465740
+      },
+      {
+        "date": "2025-08-13",
+        "call_premium": "21452238593.93",
+        "call_volume": 37667579,
+        "put_premium": "11145254763.15",
+        "put_volume": 23777442
+      },
+      {
+        "date": "2025-08-12",
+        "call_premium": "16407592491.69",
+        "call_volume": 34688290,
+        "put_premium": "11283204027.04",
+        "put_volume": 23871953
+      },
+      {
+        "date": "2025-08-11",
+        "call_premium": "19215629327.14",
+        "call_volume": 32402651,
+        "put_premium": "10841801332.46",
+        "put_volume": 22056705
+      },
+      {
+        "date": "2025-08-08",
+        "call_premium": "21649887892.57",
+        "call_volume": 38971118,
+        "put_premium": "11085097114.39",
+        "put_volume": 27038296
+      },
+      {
+        "date": "2025-08-07",
+        "call_premium": "18618762321.54",
+        "call_volume": 36991118,
+        "put_premium": "17544524980.63",
+        "put_volume": 25640762
+      },
+      {
+        "date": "2025-08-06",
+        "call_premium": "18987226613.03",
+        "call_volume": 32599970,
+        "put_premium": "10099624406.26",
+        "put_volume": 22922840
+      },
+      {
+        "date": "2025-08-05",
+        "call_premium": "12299608130.11",
+        "call_volume": 29141579,
+        "put_premium": "11288667444.19",
+        "put_volume": 22510058
+      },
+      {
+        "date": "2025-08-04",
+        "call_premium": "13658131172.65",
+        "call_volume": 28037733,
+        "put_premium": "11172097987.27",
+        "put_volume": 21465322
+      },
+      {
+        "date": "2025-08-01",
+        "call_premium": "21462443118.45",
+        "call_volume": 42365018,
+        "put_premium": "20215635798.42",
+        "put_volume": 35693962
+      },
+      {
+        "date": "2025-07-31",
+        "call_premium": "25056807889.89",
+        "call_volume": 37317251,
+        "put_premium": "20723709232.19",
+        "put_volume": 28151751
+      },
+      {
+        "date": "2025-07-30",
+        "call_premium": "19558603714.86",
+        "call_volume": 30061349,
+        "put_premium": "10570933990.44",
+        "put_volume": 21489525
+      },
+      {
+        "date": "2025-07-29",
+        "call_premium": "16446784057.54",
+        "call_volume": 30913883,
+        "put_premium": "11528232465.49",
+        "put_volume": 22016610
+      },
+      {
+        "date": "2025-07-28",
+        "call_premium": "17532491690.87",
+        "call_volume": 28410329,
+        "put_premium": "8756366415.51",
+        "put_volume": 18628612
+      },
+      {
+        "date": "2025-07-25",
+        "call_premium": "16431416039.82",
+        "call_volume": 34196778,
+        "put_premium": "8568461827.25",
+        "put_volume": 24149135
+      },
+      {
+        "date": "2025-07-24",
+        "call_premium": "16621098341.76",
+        "call_volume": 34473195,
+        "put_premium": "17591136721.12",
+        "put_volume": 24246967
+      },
+      {
+        "date": "2025-07-23",
+        "call_premium": "13130153665.07",
+        "call_volume": 34313807,
+        "put_premium": "8057913281.94",
+        "put_volume": 22348774
+      },
+      {
+        "date": "2025-07-22",
+        "call_premium": "14201540618.33",
+        "call_volume": 32363756,
+        "put_premium": "8758688941.04",
+        "put_volume": 21364025
+      },
+      {
+        "date": "2025-07-21",
+        "call_premium": "21103186945.53",
+        "call_volume": 34770508,
+        "put_premium": "9689825258.17",
+        "put_volume": 23239805
+      },
+      {
+        "date": "2025-07-18",
+        "call_premium": "23558622824.82",
+        "call_volume": 40598558,
+        "put_premium": "10343108605.64",
+        "put_volume": 25666274
+      },
+      {
+        "date": "2025-07-17",
+        "call_premium": "20169929678.56",
+        "call_volume": 36789011,
+        "put_premium": "11888223093.45",
+        "put_volume": 24047895
+      },
+      {
+        "date": "2025-07-16",
+        "call_premium": "16828121788.16",
+        "call_volume": 34062051,
+        "put_premium": "9272932207.05",
+        "put_volume": 23566524
+      },
+      {
+        "date": "2025-07-15",
+        "call_premium": "19903094713.43",
+        "call_volume": 34370978,
+        "put_premium": "9576863303.63",
+        "put_volume": 22950443
+      },
+      {
+        "date": "2025-07-14",
+        "call_premium": "16848040591.86",
+        "call_volume": 27810904,
+        "put_premium": "7574029237.31",
+        "put_volume": 19087629
+      },
+      {
+        "date": "2025-07-11",
+        "call_premium": "18258862558.46",
+        "call_volume": 35886375,
+        "put_premium": "8719827140.30",
+        "put_volume": 23947660
+      },
+      {
+        "date": "2025-07-10",
+        "call_premium": "18816771852.64",
+        "call_volume": 32575565,
+        "put_premium": "10700919125.09",
+        "put_volume": 20505357
+      },
+      {
+        "date": "2025-07-09",
+        "call_premium": "16998719894.20",
+        "call_volume": 30736200,
+        "put_premium": "8022837356.34",
+        "put_volume": 19625815
+      },
+      {
+        "date": "2025-07-08",
+        "call_premium": "14007510444.17",
+        "call_volume": 27438200,
+        "put_premium": "8052461074.89",
+        "put_volume": 18294131
+      },
+      {
+        "date": "2025-07-07",
+        "call_premium": "15403209161.59",
+        "call_volume": 28060059,
+        "put_premium": "9486381705.45",
+        "put_volume": 21105481
+      },
+      {
+        "date": "2025-07-03",
+        "call_premium": "14471858083.60",
+        "call_volume": 26895267,
+        "put_premium": "6955494195.83",
+        "put_volume": 16375316
+      },
+      {
+        "date": "2025-07-02",
+        "call_premium": "19263597465.38",
+        "call_volume": 33525757,
+        "put_premium": "8927090941.24",
+        "put_volume": 20803594
+      },
+      {
+        "date": "2025-07-01",
+        "call_premium": "19787278195.79",
+        "call_volume": 33283546,
+        "put_premium": "9382832611.87",
+        "put_volume": 21931158
+      },
+      {
+        "date": "2025-06-30",
+        "call_premium": "28099970652.50",
+        "call_volume": 33413759,
+        "put_premium": "10734760703.90",
+        "put_volume": 20494924
+      },
+      {
+        "date": "2025-06-27",
+        "call_premium": "22239452567.02",
+        "call_volume": 39228996,
+        "put_premium": "11473655468.74",
+        "put_volume": 26341149
+      },
+      {
+        "date": "2025-06-26",
+        "call_premium": "20490708553.54",
+        "call_volume": 32507384,
+        "put_premium": "12511209353.72",
+        "put_volume": 21355793
+      },
+      {
+        "date": "2025-06-25",
+        "call_premium": "17259173976.68",
+        "call_volume": 30700789,
+        "put_premium": "8894860393.48",
+        "put_volume": 20196614
+      },
+      {
+        "date": "2025-06-24",
+        "call_premium": "18801106758.90",
+        "call_volume": 30908855,
+        "put_premium": "9380891744.12",
+        "put_volume": 22541753
+      },
+      {
+        "date": "2025-06-23",
+        "call_premium": "19028129205.11",
+        "call_volume": 30274057,
+        "put_premium": "12357753153.09",
+        "put_volume": 24563134
+      },
+      {
+        "date": "2025-06-20",
+        "call_premium": "23039127247.52",
+        "call_volume": 35837154,
+        "put_premium": "12552526631.84",
+        "put_volume": 25642776
+      },
+      {
+        "date": "2025-06-18",
+        "call_premium": "29855450187.84",
+        "call_volume": 30817186,
+        "put_premium": "20434762687.12",
+        "put_volume": 22986602
+      },
+      {
+        "date": "2025-06-17",
+        "call_premium": "16780701197.54",
+        "call_volume": 27745891,
+        "put_premium": "21176295577.27",
+        "put_volume": 24000013
+      },
+      {
+        "date": "2025-06-16",
+        "call_premium": "20843643798.87",
+        "call_volume": 28914970,
+        "put_premium": "17962468710.13",
+        "put_volume": 21509193
+      },
+      {
+        "date": "2025-06-13",
+        "call_premium": "27206167282.79",
+        "call_volume": 42252630,
+        "put_premium": "12929108556.04",
+        "put_volume": 27978508
+      },
+      {
+        "date": "2025-06-12",
+        "call_premium": "16186378776.24",
+        "call_volume": 27193760,
+        "put_premium": "13945592866.72",
+        "put_volume": 21148115
+      },
+      {
+        "date": "2025-06-11",
+        "call_premium": "24403423342.02",
+        "call_volume": 34253938,
+        "put_premium": "9934465550.07",
+        "put_volume": 21245186
+      },
+      {
+        "date": "2025-06-10",
+        "call_premium": "15672911393.60",
+        "call_volume": 28772360,
+        "put_premium": "8995390665.09",
+        "put_volume": 19085403
+      },
+      {
+        "date": "2025-06-09",
+        "call_premium": "14416994445.16",
+        "call_volume": 28883931,
+        "put_premium": "8344108755.46",
+        "put_volume": 18750712
+      },
+      {
+        "date": "2025-06-06",
+        "call_premium": "15100685159.42",
+        "call_volume": 34259884,
+        "put_premium": "10589403903.03",
+        "put_volume": 25458535
+      },
+      {
+        "date": "2025-06-05",
+        "call_premium": "19353072218.57",
+        "call_volume": 35046896,
+        "put_premium": "18441719598.91",
+        "put_volume": 27527403
+      },
+      {
+        "date": "2025-06-04",
+        "call_premium": "16218896509.46",
+        "call_volume": 27183548,
+        "put_premium": "8415521610.11",
+        "put_volume": 18657020
+      },
+      {
+        "date": "2025-06-03",
+        "call_premium": "17897333944.55",
+        "call_volume": 27483202,
+        "put_premium": "9679669671.88",
+        "put_volume": 19703195
+      },
+      {
+        "date": "2025-06-02",
+        "call_premium": "14896734575.00",
+        "call_volume": 24918228,
+        "put_premium": "9133097924.44",
+        "put_volume": 18811986
+      },
+      {
+        "date": "2025-05-30",
+        "call_premium": "15570997456.26",
+        "call_volume": 33843928,
+        "put_premium": "11647343779.30",
+        "put_volume": 25896462
+      },
+      {
+        "date": "2025-05-29",
+        "call_premium": "16056735884.93",
+        "call_volume": 29539069,
+        "put_premium": "13475739122.73",
+        "put_volume": 21501283
+      },
+      {
+        "date": "2025-05-28",
+        "call_premium": "12849736535.20",
+        "call_volume": 25366181,
+        "put_premium": "8161651151.10",
+        "put_volume": 17532545
+      },
+      {
+        "date": "2025-05-27",
+        "call_premium": "16121516173.53",
+        "call_volume": 28513098,
+        "put_premium": "9239817746.36",
+        "put_volume": 19929868
+      },
+      {
+        "date": "2025-05-23",
+        "call_premium": "13111015737.16",
+        "call_volume": 30913060,
+        "put_premium": "11067680806.21",
+        "put_volume": 23687997
+      },
+      {
+        "date": "2025-05-22",
+        "call_premium": "16117940518.22",
+        "call_volume": 30818051,
+        "put_premium": "13829882867.31",
+        "put_volume": 22618995
+      },
+      {
+        "date": "2025-05-21",
+        "call_premium": "15674853830.00",
+        "call_volume": 34141766,
+        "put_premium": "11415778012.50",
+        "put_volume": 26769552
+      },
+      {
+        "date": "2025-05-20",
+        "call_premium": "16594261498.92",
+        "call_volume": 27001261,
+        "put_premium": "8376647650.06",
+        "put_volume": 17929757
+      },
+      {
+        "date": "2025-05-19",
+        "call_premium": "21207983396.77",
+        "call_volume": 25888307,
+        "put_premium": "10869086787.47",
+        "put_volume": 19919996
+      },
+      {
+        "date": "2025-05-16",
+        "call_premium": "23982732324.31",
+        "call_volume": 37325593,
+        "put_premium": "11794626023.83",
+        "put_volume": 22534504
+      },
+      {
+        "date": "2025-05-15",
+        "call_premium": "23573862456.66",
+        "call_volume": 33291378,
+        "put_premium": "20185134561.34",
+        "put_volume": 25896755
+      },
+      {
+        "date": "2025-05-14",
+        "call_premium": "25939259467.24",
+        "call_volume": 36450919,
+        "put_premium": "12383515544.03",
+        "put_volume": 23065882
+      },
+      {
+        "date": "2025-05-13",
+        "call_premium": "26401049197.61",
+        "call_volume": 40442719,
+        "put_premium": "12444375227.29",
+        "put_volume": 26884207
+      }
+    ]
+  }
+}

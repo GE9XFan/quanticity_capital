@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561743.481259791,
+    "endpoint": "interpolated_iv",
+    "ticker": "QQQ",
+    "saved_at": "2025-10-04T19:46:01.125303",
+    "endpoint_key": "interpolated_iv"
+  },
+  "data": {
+    "data": [
+      {
+        "date": "2025-10-03",
+        "days": 1,
+        "percentile": "0.345",
+        "volatility": "0.187",
+        "implied_move_perc": "0"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 5,
+        "percentile": "0.023",
+        "volatility": "0.102",
+        "implied_move_perc": "0.007"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 7,
+        "percentile": "0.031",
+        "volatility": "0.126",
+        "implied_move_perc": "0.011"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 14,
+        "percentile": "0.046",
+        "volatility": "0.143",
+        "implied_move_perc": "0.018"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 30,
+        "percentile": "0.383",
+        "volatility": "0.178",
+        "implied_move_perc": "0.035"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 60,
+        "percentile": "0.36",
+        "volatility": "0.186",
+        "implied_move_perc": "0.051"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 90,
+        "percentile": "0.354",
+        "volatility": "0.191",
+        "implied_move_perc": "0.064"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 180,
+        "percentile": "0.366",
+        "volatility": "0.203",
+        "implied_move_perc": "0.096"
+      },
+      {
+        "date": "2025-10-03",
+        "days": 365,
+        "percentile": "0.447",
+        "volatility": "0.217",
+        "implied_move_perc": "0.147"
+      }
+    ]
+  }
+}

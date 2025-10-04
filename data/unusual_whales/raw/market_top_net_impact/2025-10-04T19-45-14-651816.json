@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561697.008078083,
+    "endpoint": "market_top_net_impact",
+    "ticker": null,
+    "saved_at": "2025-10-04T19:45:14.651828",
+    "endpoint_key": "market_top_net_impact"
+  },
+  "data": {
+    "data": [
+      {
+        "ticker": "NBIS",
+        "net_premium": 29945881.0
+      },
+      {
+        "ticker": "UNH",
+        "net_premium": 27317656.0
+      },
+      {
+        "ticker": "AAPL",
+        "net_premium": 13643463.0
+      },
+      {
+        "ticker": "RKLB",
+        "net_premium": 13473055.0
+      },
+      {
+        "ticker": "MU",
+        "net_premium": 12898735.0
+      },
+      {
+        "ticker": "RGTI",
+        "net_premium": 10743950.0
+      },
+      {
+        "ticker": "COIN",
+        "net_premium": 10188067.0
+      },
+      {
+        "ticker": "NFLX",
+        "net_premium": 10152460.0
+      },
+      {
+        "ticker": "IBIT",
+        "net_premium": 10076960.0
+      },
+      {
+        "ticker": "WOLF1",
+        "net_premium": 9399666.0
+      },
+      {
+        "ticker": "MSTR",
+        "net_premium": -17763802.0
+      },
+      {
+        "ticker": "AMZN",
+        "net_premium": -20098168.0
+      },
+      {
+        "ticker": "AMD",
+        "net_premium": -21465654.0
+      },
+      {
+        "ticker": "QQQ",
+        "net_premium": -25298642.0
+      },
+      {
+        "ticker": "SPY",
+        "net_premium": -32227864.0
+      },
+      {
+        "ticker": "CRCL",
+        "net_premium": -42975142.0
+      },
+      {
+        "ticker": "META",
+        "net_premium": -68145556.0
+      },
+      {
+        "ticker": "NVDA",
+        "net_premium": -70131894.0
+      },
+      {
+        "ticker": "PLTR",
+        "net_premium": -72331650.0
+      },
+      {
+        "ticker": "TSLA",
+        "net_premium": -102923484.0
+      }
+    ]
+  }
+}

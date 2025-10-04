@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561716.247742416,
+    "endpoint": "max_pain",
+    "ticker": "SPY",
+    "saved_at": "2025-10-04T19:45:33.891672",
+    "endpoint_key": "max_pain"
+  },
+  "data": {
+    "data": [
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-03",
+        "max_pain": "665",
+        "next_upper_strike": "666",
+        "next_lower_strike": "664"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-06",
+        "max_pain": "667",
+        "next_upper_strike": "668",
+        "next_lower_strike": "666"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-07",
+        "max_pain": "667",
+        "next_upper_strike": "668",
+        "next_lower_strike": "666"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-08",
+        "max_pain": "666",
+        "next_upper_strike": "667",
+        "next_lower_strike": "665"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-09",
+        "max_pain": "666",
+        "next_upper_strike": "667",
+        "next_lower_strike": "665"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-10",
+        "max_pain": "663",
+        "next_upper_strike": "664",
+        "next_lower_strike": "662"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-13",
+        "max_pain": "668",
+        "next_upper_strike": "669",
+        "next_lower_strike": "667"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-14",
+        "max_pain": "667",
+        "next_upper_strike": "668",
+        "next_lower_strike": "666"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-15",
+        "max_pain": "667",
+        "next_upper_strike": "668",
+        "next_lower_strike": "666"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-16",
+        "max_pain": "670",
+        "next_upper_strike": "675",
+        "next_lower_strike": "665"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-17",
+        "max_pain": "655",
+        "next_upper_strike": "656",
+        "next_lower_strike": "654"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-24",
+        "max_pain": "661",
+        "next_upper_strike": "662",
+        "next_lower_strike": "660"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-10-31",
+        "max_pain": "653",
+        "next_upper_strike": "654",
+        "next_lower_strike": "652"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-11-07",
+        "max_pain": "664",
+        "next_upper_strike": "665",
+        "next_lower_strike": "663"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-11-14",
+        "max_pain": "668",
+        "next_upper_strike": "669",
+        "next_lower_strike": "667"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-11-21",
+        "max_pain": "660",
+        "next_upper_strike": "661",
+        "next_lower_strike": "659"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-11-28",
+        "max_pain": "645",
+        "next_upper_strike": "646",
+        "next_lower_strike": "644"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-12-19",
+        "max_pain": "625",
+        "next_upper_strike": "630",
+        "next_lower_strike": "620"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2025-12-31",
+        "max_pain": "625",
+        "next_upper_strike": "626",
+        "next_lower_strike": "624"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-01-16",
+        "max_pain": "610",
+        "next_upper_strike": "615",
+        "next_lower_strike": "605"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-01-30",
+        "max_pain": "645",
+        "next_upper_strike": "646",
+        "next_lower_strike": "644"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-02-20",
+        "max_pain": "655",
+        "next_upper_strike": "660",
+        "next_lower_strike": "650"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-02-27",
+        "max_pain": "654",
+        "next_upper_strike": "655",
+        "next_lower_strike": "653"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-03-20",
+        "max_pain": "625",
+        "next_upper_strike": "630",
+        "next_lower_strike": "620"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-03-31",
+        "max_pain": "630",
+        "next_upper_strike": "635",
+        "next_lower_strike": "625"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-06-18",
+        "max_pain": "600",
+        "next_upper_strike": "605",
+        "next_lower_strike": "595"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-06-30",
+        "max_pain": "650",
+        "next_upper_strike": "655",
+        "next_lower_strike": "645"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-09-18",
+        "max_pain": "660",
+        "next_upper_strike": "665",
+        "next_lower_strike": "655"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-09-30",
+        "max_pain": "667",
+        "next_upper_strike": "668",
+        "next_lower_strike": "666"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2026-12-18",
+        "max_pain": "575",
+        "next_upper_strike": "580",
+        "next_lower_strike": "570"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2027-01-15",
+        "max_pain": "655",
+        "next_upper_strike": "660",
+        "next_lower_strike": "650"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2027-12-17",
+        "max_pain": "605",
+        "next_upper_strike": "610",
+        "next_lower_strike": "600"
+      },
+      {
+        "close": "669.21",
+        "open": "669.99",
+        "expiry": "2028-01-21",
+        "max_pain": "610",
+        "next_upper_strike": "615",
+        "next_lower_strike": "605"
+      }
+    ],
+    "date": "2025-10-03"
+  }
+}

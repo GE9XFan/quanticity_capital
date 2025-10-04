@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561775.594346,
+    "endpoint": "iv_rank",
+    "ticker": "IWM",
+    "saved_at": "2025-10-04T19:46:33.238780",
+    "endpoint_key": "iv_rank"
+  },
+  "data": {
+    "data": [
+      {
+        "close": "241.62",
+        "date": "2025-09-29",
+        "updated_at": "2025-09-29T22:35:21.813921Z",
+        "volatility": "0.2062",
+        "iv_rank_1y": "9.4195"
+      },
+      {
+        "close": "241.96",
+        "date": "2025-09-30",
+        "updated_at": "2025-09-30T22:35:30.944925Z",
+        "volatility": "0.2052",
+        "iv_rank_1y": "9.072"
+      },
+      {
+        "close": "242.49",
+        "date": "2025-10-01",
+        "updated_at": "2025-10-01T22:35:24.201745Z",
+        "volatility": "0.2016",
+        "iv_rank_1y": "7.8647"
+      },
+      {
+        "close": "244.02",
+        "date": "2025-10-02",
+        "updated_at": "2025-10-02T22:35:26.453501Z",
+        "volatility": "0.2022",
+        "iv_rank_1y": "8.0936"
+      },
+      {
+        "close": "245.83",
+        "date": "2025-10-03",
+        "updated_at": "2025-10-03T22:35:21.198710Z",
+        "volatility": "0.2004",
+        "iv_rank_1y": "7.4739"
+      }
+    ]
+  }
+}

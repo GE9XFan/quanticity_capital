@@ -29,3 +29,7 @@ htmlcov/
 
 # API example snapshots (sensitive data)
 docs/api_samples/
+
+# Runtime artifacts
+data/
+logs/

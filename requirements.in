@@ -1,9 +1,10 @@
 fastapi
 uvicorn[standard]
 redis
-psycopg[binary]
 httpx
+websockets
 pydantic
 pydantic-settings
 python-dotenv
-asyncpg
+ibapi
+anthropic

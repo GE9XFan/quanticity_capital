@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561763.39584675,
+    "endpoint": "etf_exposure",
+    "ticker": "IWM",
+    "saved_at": "2025-10-04T19:46:21.040086",
+    "endpoint_key": "etf_exposure"
+  },
+  "data": {
+    "data": [
+      {
+        "weight": "70.5401869806",
+        "full_name": "DIREXION DAILY SMALL CAP BULL 3X SHARES",
+        "etf": "TNA",
+        "last_price": "47.37",
+        "prev_price": "46.35",
+        "shares": 6245610
+      },
+      {
+        "weight": "41.11245",
+        "full_name": "ISHARES RUSSELL 2500 ETF",
+        "etf": "SMMD",
+        "last_price": "74.69",
+        "prev_price": "74.32",
+        "shares": 2760808
+      },
+      {
+        "weight": "6.49",
+        "full_name": "MAIN SECTOR ROTATION ETF",
+        "etf": "SECT",
+        "last_price": "63.45",
+        "prev_price": "63.47",
+        "shares": 252880
+      },
+      {
+        "weight": "34.72577400002812",
+        "full_name": "LEADERSHARES(R) EQUITY SKEW ETF",
+        "etf": "SQEW",
+        "last_price": "36.24",
+        "prev_price": "36.21",
+        "shares": 116707
+      },
+      {
+        "weight": "100.52755",
+        "full_name": "ISHARES RUSSELL 2000 BUYWRITE ETF",
+        "etf": "IWMW",
+        "last_price": "40.4418",
+        "prev_price": "40.2393",
+        "shares": 107453
+      },
+      {
+        "weight": "0.31",
+        "full_name": "FIRST TRUST LONG/SHORT EQUITY ETF",
+        "etf": "FTLS",
+        "last_price": "69.98",
+        "prev_price": "70.33",
+        "shares": 21409
+      },
+      {
+        "weight": "12.74",
+        "full_name": "RAREVIEW SYSTEMATIC EQUITY ETF",
+        "etf": "RSEE",
+        "last_price": "33.4942",
+        "prev_price": "33.4085",
+        "shares": 19113
+      },
+      {
+        "weight": "0",
+        "full_name": "Harbor Active Small Cap ETF",
+        "etf": "SMLL",
+        "last_price": "21.31",
+        "prev_price": "21.2659",
+        "shares": 9125
+      },
+      {
+        "weight": "3.51322",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2050 ETF",
+        "etf": "ITDF",
+        "last_price": "37.06",
+        "prev_price": "36.97",
+        "shares": 4910
+      },
+      {
+        "weight": "2.83141",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2045 ETF",
+        "etf": "ITDE",
+        "last_price": "36.193",
+        "prev_price": "36.0953",
+        "shares": 4340
+      },
+      {
+        "weight": "3.90109",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2055 ETF",
+        "etf": "ITDG",
+        "last_price": "37.456",
+        "prev_price": "37.3371",
+        "shares": 3744
+      },
+      {
+        "weight": "1.83318",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2040 ETF",
+        "etf": "ITDD",
+        "last_price": "35.31",
+        "prev_price": "35.2066",
+        "shares": 2989
+      },
+      {
+        "weight": "4.00304",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2060 ETF",
+        "etf": "ITDH",
+        "last_price": "37.427",
+        "prev_price": "37.2854",
+        "shares": 2941
+      },
+      {
+        "weight": "3.14",
+        "full_name": "DGA ABSOLUTE RETURN ETF",
+        "etf": "HF",
+        "last_price": "21.165",
+        "prev_price": "21.1239",
+        "shares": 2630
+      },
+      {
+        "weight": "0.76",
+        "full_name": "ADVISORSHARES STAR GLOBAL BUY-WRITE ETF",
+        "etf": "VEGA",
+        "last_price": "48.9569",
+        "prev_price": "48.918",
+        "shares": 2202
+      },
+      {
+        "weight": "1.23332",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2035 ETF",
+        "etf": "ITDC",
+        "last_price": "34.15",
+        "prev_price": "34.11",
+        "shares": 2186
+      },
+      {
+        "weight": "3.99872",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2065 ETF",
+        "etf": "ITDI",
+        "last_price": "37.42",
+        "prev_price": "37.2771",
+        "shares": 2171
+      },
+      {
+        "weight": "0.62163",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2030 ETF",
+        "etf": "ITDB",
+        "last_price": "33.127",
+        "prev_price": "33.097",
+        "shares": 750
+      },
+      {
+        "weight": "4.00247",
+        "full_name": "ISHARES LIFEPATH TARGET DATE 2070 ETF",
+        "etf": "ITDJ",
+        "last_price": "29.035",
+        "prev_price": "28.923",
+        "shares": 595
+      },
+      {
+        "weight": "0.2",
+        "full_name": "CAMBRIA TAX AWARE ETF",
+        "etf": "TAX",
+        "last_price": "27.8291",
+        "prev_price": "27.9",
+        "shares": 364
+      },
+      {
+        "weight": "1.5",
+        "full_name": "HARBOR MULTI-ASSET EXPLORER ETF",
+        "etf": "MAPP",
+        "last_price": "26.4098",
+        "prev_price": "26.3256",
+        "shares": 274
+      },
+      {
+        "weight": "1.696885",
+        "full_name": "SIMPLIFY PIPER SANDLER US SMALL-CAP PLUS INCOME ETF",
+        "etf": "LITL",
+        "last_price": "28.3876",
+        "prev_price": "28.3442",
+        "shares": 267
+      },
+      {
+        "weight": "0.05",
+        "full_name": "CAMBRIA ENDOWMENT STYLE ETF",
+        "etf": "ENDW",
+        "last_price": "30.3209",
+        "prev_price": "30.32",
+        "shares": 262
+      },
+      {
+        "weight": "0.17538",
+        "full_name": "ISHARES LIFEPATH RETIREMENT ETF",
+        "etf": "IRTR",
+        "last_price": "30.7084",
+        "prev_price": "30.7084",
+        "shares": 133
+      },
+      {
+        "weight": "-0.00576",
+        "full_name": "BLACKROCK TOTAL RETURN ETF",
+        "etf": "BRTR",
+        "last_price": "50.9351",
+        "prev_price": "50.9627",
+        "shares": -51
+      },
+      {
+        "weight": "-2.83",
+        "full_name": "ADAPTIVE ALPHA OPPORTUNITIES ETF",
+        "etf": "AGOX",
+        "last_price": "30.8604",
+        "prev_price": "30.8399",
+        "shares": -42862
+      }
+    ]
+  }
+}

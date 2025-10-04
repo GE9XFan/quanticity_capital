@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561785.152870583,
+    "endpoint": "options_volume",
+    "ticker": "IWM",
+    "saved_at": "2025-10-04T19:46:42.797247",
+    "endpoint_key": "options_volume"
+  },
+  "data": {
+    "data": [
+      {
+        "date": "2025-10-03",
+        "call_premium": "173596518.00",
+        "call_volume": 685379,
+        "call_volume_ask_side": 317077,
+        "call_volume_bid_side": 278296,
+        "put_premium": "148035496.00",
+        "put_volume": 1023712,
+        "put_volume_ask_side": 420694,
+        "put_volume_bid_side": 405126,
+        "net_call_premium": "12575560.00",
+        "net_put_premium": "10753342.00",
+        "avg_30_day_call_volume": "686025",
+        "avg_30_day_put_volume": "869516.4",
+        "avg_7_day_call_volume": "508452.5714",
+        "avg_7_day_put_volume": "720706.1429",
+        "bearish_premium": "120721917.00",
+        "bullish_premium": "116780825.00",
+        "avg_3_day_call_volume": "531857.6667",
+        "avg_3_day_put_volume": "567505.3333",
+        "call_open_interest": 3106781,
+        "put_open_interest": 7657119
+      }
+    ]
+  }
+}

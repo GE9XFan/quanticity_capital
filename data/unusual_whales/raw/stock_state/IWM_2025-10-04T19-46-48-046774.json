@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "status_code": 200,
+    "timestamp": 561790.402365166,
+    "endpoint": "stock_state",
+    "ticker": "IWM",
+    "saved_at": "2025-10-04T19:46:48.046780",
+    "endpoint_key": "stock_state"
+  },
+  "data": {
+    "data": {
+      "close": "245.92",
+      "high": "246.19",
+      "low": "245.38",
+      "open": "245.84",
+      "volume": 2040703,
+      "market_time": "postmarket",
+      "tape_time": "2025-10-03T23:56:15Z",
+      "total_volume": 34579056,
+      "prev_close": "245.83"
+    }
+  }
+}
