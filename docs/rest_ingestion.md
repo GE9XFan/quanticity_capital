@@ -132,6 +132,8 @@ Each JSON file contains:
   redis-cli HGETALL uw:rest:flow_alerts:SPY
   ```
 
+- **Quick health report**: `python -m src.cli.report_last_run --limit 5`
+
 - **Postgres history** (requires `STORE_TO_POSTGRES=true`):
 
   ```bash
@@ -142,6 +144,12 @@ Each JSON file contains:
 
   ```bash
   psql "$POSTGRES_DSN" -f sql/uw_rest_history.sql
+  ```
+
+- **Inspect a stored JSON file**:
+
+  ```bash
+  python -m src.cli.inspect_json data/unusual_whales/raw/flow_alerts/SPY_<timestamp>.json
   ```
 
 ## Endpoints Fetched

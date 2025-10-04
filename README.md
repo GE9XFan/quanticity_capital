@@ -104,7 +104,11 @@ The CLI prints a summary when the run completes, including success/failure count
   ```
 
 - **Loop mode**: each cycle prints start/end markers and Redis success counters so you can watch progress in real time. Use `Ctrl+C` to stop cleanly.
-- **Loop mode**: each cycle prints start/end markers and Redis success counters so you can watch progress in real time. Press `Ctrl+C` to stop; the CLI handles shutdown and exits with a clear status code.
+- **Quick health report** (latest files, snapshot timestamps, Postgres rows):
+
+  ```bash
+  python -m src.cli.report_last_run --limit 5
+  ```
 
 ## WebSocket Consumer (optional)
 
@@ -119,6 +123,12 @@ tail -f "$(ls -t logs/uw_websocket_*.log | head -n 1)"
 
 # Inspect latest WebSocket events
 redis-cli XREVRANGE uw:ws:flow-alerts:SPY + - COUNT 5
+```
+
+## Inspect a stored JSON snapshot
+
+```bash
+python -m src.cli.inspect_json data/unusual_whales/raw/flow_alerts/SPY_<timestamp>.json
 ```
 
 ## Configuration Reference
@@ -147,6 +157,7 @@ All runtime settings come from environment variables (see `src/config/settings.p
 - `docs/rest_ingestion.md` – step-by-step run and monitoring guide (same tone as this page).
 - `docs/storage_plan.md` – Redis key layout and which feeds might need history later.
 - `docs/websocket_scope.md` – plain-English plan for the future WebSocket consumer.
+- `docs/ib_ingestion_plan.md` – upcoming Interactive Brokers feed strategy.
 
 ### Optional add-ons
 

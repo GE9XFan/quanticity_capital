@@ -25,6 +25,7 @@ The project has been reset to the first milestone: prove that we can call the li
 - Raw output directory structure with per-endpoint indexes to track fetch history.
 - Redis snapshot plan defined in `docs/storage_plan.md` (includes which feeds may need history later).
 - WebSocket roadmap captured in `docs/websocket_scope.md` so the next phase is already spelled out.
+- Interactive Brokers roadmap captured in `docs/ib_ingestion_plan.md` ready for the next integration step.
 - Documentation in `docs/rest_ingestion.md` describing usage, configuration, monitoring, and output format.
 
 ## Configuration

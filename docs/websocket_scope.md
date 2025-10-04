@@ -44,3 +44,18 @@ For now, this page is our north star. Once the REST pipeline runs on autopilot, 
 2. Start the consumer: `python -m src.cli.uw_websocket` or `make uw-websocket`.
 3. Watch logs: `tail -f "$(ls -t logs/uw_websocket_*.log | head -n 1)"`.
 4. Inspect streams: `redis-cli XREVRANGE uw:ws:flow-alerts:SPY + - COUNT 5`.
+
+### Validation checklist (do this during market hours)
+
+1. **Connectivity:** log should show “Subscribed” messages for each channel and incoming payloads every few seconds.
+2. **Redis stream length:** `redis-cli xlen uw:ws:flow-alerts:SPY` should grow steadily (expect dozens per minute).
+3. **Sample payloads:** grab a single entry to eyeball the structure:
+   ```bash
+   redis-cli XREVRANGE uw:ws:option_trades:SPY + - COUNT 1
+   ```
+4. **Snapshot mirror:** for overlapping feeds, confirm the REST snapshot hash updates too:
+   ```bash
+   redis-cli HGETALL uw:rest:flow_alerts:SPY
+   ```
+   The `fetched_at` should match the latest WebSocket timestamp.
+5. **Alert thresholds:** if the stream stops for more than ~10 seconds during market hours, log a warning and consider reconnect logic tweaks.
