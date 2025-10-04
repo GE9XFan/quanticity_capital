@@ -1,0 +1,26 @@
+# Core Dependencies
+python-dotenv==1.0.0        # Environment variable management
+pydantic==2.5.3             # Data validation and models
+
+# Interactive Brokers API
+# Note: ibapi must be installed from official IB source
+# Download from: https://interactivebrokers.github.io/
+# Install: cd ~/Downloads/twsapi_macunix/IBJts/source/pythonclient && python setup.py install
+# ibapi==10.37.2 (installed manually)
+protobuf==5.29.3                # Required by ibapi 10.37.2 for protocol buffers
+
+# Database
+psycopg2-binary==2.9.9      # PostgreSQL adapter
+
+# Redis
+redis==5.0.1                # Redis client
+
+# Testing
+pytest==7.4.3               # Testing framework
+pytest-asyncio==0.21.1      # Async testing support
+pytest-timeout==2.2.0       # Test timeout support
+
+# Development Tools
+black==23.12.1              # Code formatter
+flake8==6.1.0               # Linting
+mypy==1.7.1                 # Type checking
