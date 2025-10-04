@@ -106,6 +106,21 @@ The CLI prints a summary when the run completes, including success/failure count
 - **Loop mode**: each cycle prints start/end markers and Redis success counters so you can watch progress in real time. Use `Ctrl+C` to stop cleanly.
 - **Loop mode**: each cycle prints start/end markers and Redis success counters so you can watch progress in real time. Press `Ctrl+C` to stop; the CLI handles shutdown and exits with a clear status code.
 
+## WebSocket Consumer (optional)
+
+Once you set `ENABLE_WEBSOCKET=true` you can stream live events:
+
+```bash
+make uw-websocket
+# or: python -m src.cli.uw_websocket
+
+# Watch the WebSocket log
+tail -f "$(ls -t logs/uw_websocket_*.log | head -n 1)"
+
+# Inspect latest WebSocket events
+redis-cli XREVRANGE uw:ws:flow-alerts:SPY + - COUNT 5
+```
+
 ## Configuration Reference
 
 All runtime settings come from environment variables (see `src/config/settings.py` for defaults):
@@ -115,10 +130,28 @@ All runtime settings come from environment variables (see `src/config/settings.p
 | `UNUSUAL_WHALES_API_TOKEN` | – | **Required** API token |
 | `TARGET_SYMBOLS` | `SPY,QQQ,IWM` | Comma-separated list of tickers |
 | `STORE_TO_REDIS` | `true` | Write latest payloads into Redis hashes |
+| `ENABLE_HISTORY_STREAMS` | `true` | Append history events to Redis streams |
 | `FETCH_INTERVAL_SECONDS` | `0` | Loop interval in seconds (`0` runs once) |
+| `REDIS_STREAM_MAXLEN` | `5000` | Max entries to keep per Redis stream |
+| `STORE_TO_POSTGRES` | `false` | Persist history feeds into Postgres (see `sql/uw_rest_history.sql`) |
+| `POSTGRES_DSN` | `postgresql://postgres:postgres@localhost:5432/quanticity` | Postgres connection URI |
 | `REQUEST_TIMEOUT_SECONDS` | `30.0` | HTTP timeout per request |
 | `RATE_LIMIT_REQUESTS_PER_MINUTE` | `100` | Max requests per minute (hard cap 120) |
 | `RATE_LIMIT_LEEWAY_SECONDS` | `0.5` | Extra wait inserted between calls |
+| `ENABLE_WEBSOCKET` | `false` | Turn on WebSocket consumer |
+| `UNUSUAL_WHALES_WEBSOCKET_URL` | `wss://api.unusualwhales.com/socket` | WebSocket endpoint |
+| `WEBSOCKET_RECONNECT_SECONDS` | `5.0` | Delay before reconnecting |
+
+### Need more detail?
+
+- `docs/rest_ingestion.md` – step-by-step run and monitoring guide (same tone as this page).
+- `docs/storage_plan.md` – Redis key layout and which feeds might need history later.
+- `docs/websocket_scope.md` – plain-English plan for the future WebSocket consumer.
+
+### Optional add-ons
+
+- **Postgres history tables**: run `psql "$POSTGRES_DSN" -f sql/uw_rest_history.sql` before enabling `STORE_TO_POSTGRES=true`.
+- **WebSocket consumer**: once `ENABLE_WEBSOCKET=true`, start it with `make uw-websocket` (logs land in `logs/uw_websocket_*.log`).
 
 ## Next Steps (after Phase 0)
 

@@ -6,6 +6,7 @@ Handles authentication, retries, and response normalization.
 import asyncio
 import json
 import logging
+from datetime import datetime, timezone
 from typing import Optional, Dict, Any
 from urllib.parse import urljoin
 
@@ -122,7 +123,7 @@ class UnusualWhalesClient:
                     "ticker": ticker,
                     "status_code": response.status_code,
                     "data": data,
-                    "timestamp": asyncio.get_event_loop().time(),
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
                 }
 
             except (httpx.TimeoutException, httpx.NetworkError) as e:

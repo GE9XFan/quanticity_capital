@@ -23,7 +23,8 @@ The project has been reset to the first milestone: prove that we can call the li
 - Endpoint definitions are data-driven (`src/ingestion/uw_endpoints.py`) so additions/removals happen in one place.
 - `httpx` client with rate limiting (configurable, defaults to 100 req/min), retry/backoff for 429/5xx, and JSON normalisation.
 - Raw output directory structure with per-endpoint indexes to track fetch history.
-- Redis snapshot plan defined in `docs/storage_plan.md` (Phase 1 implementation in progress).
+- Redis snapshot plan defined in `docs/storage_plan.md` (includes which feeds may need history later).
+- WebSocket roadmap captured in `docs/websocket_scope.md` so the next phase is already spelled out.
 - Documentation in `docs/rest_ingestion.md` describing usage, configuration, monitoring, and output format.
 
 ## Configuration

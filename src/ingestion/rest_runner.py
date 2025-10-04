@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import asyncio
 import json
 import logging
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from src.clients.postgres_store import PostgresStore, create_postgres_store
 from src.clients.redis_store import RedisStore, create_store
 from src.clients.unusual_whales import UnusualWhalesClient
 from src.config.settings import get_settings
@@ -18,7 +18,15 @@ logger = logging.getLogger(__name__)
 
 
 class RestIngestionRunner:
-    """Coordinate REST ingestion, disk persistence, and Redis snapshots."""
+    """Coordinate REST ingestion, disk persistence, and downstream storage."""
+
+    HISTORY_ENDPOINTS = {
+        "flow_alerts",
+        "net_prem_ticks",
+        "nope",
+        "ohlc_1m",
+        "options_volume",
+    }
 
     def __init__(self, data_dir: Optional[Path] = None) -> None:
         self.settings = get_settings()
@@ -34,8 +42,11 @@ class RestIngestionRunner:
             "end_time": None,
             "redis_success": 0,
             "redis_failures": 0,
+            "postgres_success": 0,
+            "postgres_failures": 0,
         }
         self.redis_store: Optional[RedisStore] = None
+        self.postgres_store: Optional[PostgresStore] = None
 
     async def run(self) -> Dict[str, Any]:
         """Fetch all configured endpoints once."""
@@ -51,17 +62,19 @@ class RestIngestionRunner:
             "errors": [],
         }
 
-        self.redis_store = await create_store(self.settings, self.settings.store_to_redis)
+        need_redis = self.settings.store_to_redis or (
+            self.settings.enable_history_streams and self.settings.redis_stream_maxlen > 0
+        )
+        self.redis_store = await create_store(self.settings, need_redis)
+        self.postgres_store = await create_postgres_store(self.settings)
 
         try:
             async with UnusualWhalesClient() as client:
-                # Global endpoints first
                 logger.info("Fetching %d global endpoints...", len(GLOBAL_ENDPOINTS))
                 for endpoint in GLOBAL_ENDPOINTS:
                     result = await self._fetch_persist(client, endpoint, ticker=None)
                     self._record_result(results, result)
 
-                # Ticker endpoints
                 logger.info(
                     "Fetching %d endpoints for %d symbols...",
                     len(TICKER_ENDPOINTS),
@@ -76,17 +89,22 @@ class RestIngestionRunner:
             if self.redis_store is not None:
                 await self.redis_store.close()
                 self.redis_store = None
+            if self.postgres_store is not None:
+                await self.postgres_store.close()
+                self.postgres_store = None
 
         self.stats["end_time"] = datetime.utcnow()
         duration = (self.stats["end_time"] - self.stats["start_time"]).total_seconds()
         logger.info(
-            "Ingestion completed in %.2fs. Success: %s, Failed: %s, Total: %s, Redis ok: %s, Redis errors: %s",
+            "Ingestion completed in %.2fs. Success: %s, Failed: %s, Total: %s, Redis ok: %s, Redis errors: %s, Postgres ok: %s, Postgres errors: %s",
             duration,
             self.stats["successful_requests"],
             self.stats["failed_requests"],
             self.stats["total_requests"],
             self.stats["redis_success"],
             self.stats["redis_failures"],
+            self.stats["postgres_success"],
+            self.stats["postgres_failures"],
         )
 
         return results
@@ -121,7 +139,6 @@ class RestIngestionRunner:
                 "status_code": response.get("status_code"),
             }
 
-        # Persist to disk
         metadata = {
             "status_code": response["status_code"],
             "timestamp": response["timestamp"],
@@ -130,7 +147,6 @@ class RestIngestionRunner:
         }
         file_path = self._save_response(endpoint.key, ticker, response["data"], metadata)
 
-        # Optional Redis snapshot
         redis_key = None
         if self.redis_store is not None:
             try:
@@ -138,17 +154,49 @@ class RestIngestionRunner:
                     endpoint=endpoint.key,
                     ticker=ticker,
                     payload=response["data"],
-                    fetched_at=datetime.utcnow().isoformat(),
+                    fetched_at=metadata["timestamp"],
                 )
-                self.stats["redis_success"] += 1
+                if redis_key is not None:
+                    self.stats["redis_success"] += 1
             except Exception as redis_error:
                 self.stats["redis_failures"] += 1
                 logger.error(
-                    "Redis write failed for %s: %s",
+                    "Redis snapshot failed for %s: %s",
                     identifier,
                     redis_error,
                     exc_info=True,
                 )
+
+        if (
+            self.redis_store is not None
+            and self.settings.enable_history_streams
+            and self.settings.redis_stream_maxlen > 0
+            and endpoint.key in self.HISTORY_ENDPOINTS
+        ):
+            event = {"fetched_at": metadata["timestamp"], "payload": response["data"]}
+            stream_key = self._history_stream_key(endpoint.key, ticker)
+            try:
+                await self.redis_store.append_stream(stream_key, event)
+            except Exception as stream_error:
+                logger.error(
+                    "Redis stream append failed for %s: %s",
+                    identifier,
+                    stream_error,
+                    exc_info=True,
+                )
+
+        if self.postgres_store is not None and endpoint.key in self.HISTORY_ENDPOINTS:
+            try:
+                await self.postgres_store.write_history(
+                    endpoint=endpoint.key,
+                    symbol=(ticker.upper() if ticker else None),
+                    fetched_at_iso=metadata["timestamp"],
+                    payload=response["data"],
+                )
+                self.stats["postgres_success"] += 1
+            except Exception as pg_error:
+                self.stats["postgres_failures"] += 1
+                logger.error("Postgres write failed for %s: %s", identifier, pg_error, exc_info=True)
 
         logger.info("✓ %s → %s", identifier, file_path)
         return {
@@ -198,9 +246,8 @@ class RestIngestionRunner:
         index_entry = {
             "file": file_path.name,
             "ticker": ticker,
-            "fetched_at": datetime.utcnow().isoformat(),
+            "fetched_at": metadata.get("timestamp"),
             "status_code": metadata.get("status_code"),
-            "timestamp": metadata.get("timestamp"),
         }
         with open(index_path, "a") as handle:
             handle.write(json.dumps(index_entry) + "\n")
@@ -223,6 +270,11 @@ class RestIngestionRunner:
         if result.get("ticker"):
             endpoint_key = f"{endpoint_key}:{result['ticker']}"
         self.stats["endpoints_processed"].add(endpoint_key)
+
+    def _history_stream_key(self, endpoint: str, ticker: Optional[str]) -> str:
+        if ticker is None:
+            return f"uw:rest:{endpoint}:stream"
+        return f"uw:rest:{endpoint}:{ticker.upper()}:stream"
 
 
 async def run_ingestion(data_dir: Optional[Path] = None) -> Dict[str, Any]:

@@ -25,6 +25,7 @@ src/
 
 | Date (UTC) | Symbols | Requests | Success | Failures |
 |------------|---------|----------|---------|----------|
+| 2025-10-04 21:12 | SPY, QQQ, IWM | 243 | 243 | 0 |
 | 2025-10-04 20:10 | SPY, QQQ, IWM | 81 | 81 | 0 |
 
 The table is updated after every verified live pull. Review the log files in `logs/` for detailed timing and retry behaviour.
@@ -41,6 +42,7 @@ echo "UNUSUAL_WHALES_API_TOKEN=your_token_here" >> .env
 
 # 3) Start Redis if snapshots are enabled
 redis-server &
+# or: docker run --rm -p 6379:6379 redis:7
 
 # 4) Run the fetcher once
 make uw-rest-fetch
@@ -63,6 +65,10 @@ All settings via environment variables or `.env` file:
 | `UNUSUAL_WHALES_API_TOKEN` | (required) | Your API token |
 | `TARGET_SYMBOLS` | `SPY,QQQ,IWM` | Comma-separated ticker list |
 | `STORE_TO_REDIS` | `true` | Enable Redis snapshot writing |
+| `ENABLE_HISTORY_STREAMS` | `true` | Append history feeds to capped Redis streams |
+| `REDIS_STREAM_MAXLEN` | `5000` | Max entries to keep per stream |
+| `STORE_TO_POSTGRES` | `false` | Persist history feeds into Postgres |
+| `POSTGRES_DSN` | `postgresql://postgres:postgres@localhost:5432/quanticity` | Postgres connection string |
 | `FETCH_INTERVAL_SECONDS` | `0` | Loop interval in seconds (`0` disables loop) |
 | `RATE_LIMIT_REQUESTS_PER_MINUTE` | `100` | Max API requests/minute |
 | `RATE_LIMIT_LEEWAY_SECONDS` | `0.5` | Extra safety delay |
@@ -124,6 +130,18 @@ Each JSON file contains:
   redis-cli KEYS 'uw:rest:*'
   redis-cli HGETALL uw:rest:market_tide
   redis-cli HGETALL uw:rest:flow_alerts:SPY
+  ```
+
+- **Postgres history** (requires `STORE_TO_POSTGRES=true`):
+
+  ```bash
+  psql "$POSTGRES_DSN" -c "SELECT endpoint, symbol, fetched_at FROM uw_rest_history ORDER BY fetched_at DESC LIMIT 5;"
+  ```
+
+  Remember to run the DDL first:
+
+  ```bash
+  psql "$POSTGRES_DSN" -f sql/uw_rest_history.sql
   ```
 
 ## Endpoints Fetched

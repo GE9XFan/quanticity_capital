@@ -115,6 +115,8 @@ def print_summary(results: dict) -> None:
     print(f"Unique endpoints processed: {len(stats['endpoints_processed'])}")
     print(f"Redis snapshots successful: {stats['redis_success']}")
     print(f"Redis snapshot failures: {stats['redis_failures']}")
+    print(f"Postgres writes successful: {stats['postgres_success']}")
+    print(f"Postgres write failures: {stats['postgres_failures']}")
 
     # Errors summary
     if errors:
